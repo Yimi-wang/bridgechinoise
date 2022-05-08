@@ -7,6 +7,7 @@ import static Modele.Starthand.stardhand;
 public class Gameprocess {
     public static void creatJeu(){
         Jeu j = new Jeu();
+
         Gamestart(j);
     }
 
