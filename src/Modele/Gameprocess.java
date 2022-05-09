@@ -2,12 +2,12 @@ package Modele;
 import Modele.Jeu;
 
 import static Modele.Starthand.stardhand;
+import static Modele.Atout.*;
 
 
 public class Gameprocess {
     public static void creatJeu(){
         Jeu j = new Jeu();
-
         Gamestart(j);
     }
 
@@ -17,6 +17,11 @@ public class Gameprocess {
             j.playerfirst = (j.numberOfGames - 1) % 2;
             stardhand(j);
         }
+        turnstrat(j);
+    }
+
+    public static void turnstrat(Jeu j){
+        determinierAtout(j);
     }
 
 }
