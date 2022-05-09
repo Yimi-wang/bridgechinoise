@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Atout {
 
     static void determinierAtout(Jeu j){
@@ -7,11 +9,11 @@ public class Atout {
         j.avoiratout=false;
         for (int i = 0; i<=5;i++){
             if (j.pilescard[i].size()!=0){
-                Brand c = j.pilescard[0].get(0);
+                Brand c = j.pilescard[i].get(0);
                 if(c.getNum()> maxtop.getNum()){
                     maxtop=c;
                 }
-                else if(c.getNum()==maxtop.getNum()){
+                else if(Objects.equals(c.getNum(), maxtop.getNum())){
                     if(c.getInttype()<maxtop.getInttype()){
                         maxtop=c;
                     }

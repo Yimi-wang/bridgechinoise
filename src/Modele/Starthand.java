@@ -49,7 +49,6 @@ public class Starthand {
             j.playercard[1].add(card);
         }
         else{
-            //j.pilescard[(i-21)%6].add(card);
             switch ((i-21)%6){
                 case 0:
                     j.pilescard[0].add(c);
@@ -77,21 +76,20 @@ public class Starthand {
         showcard(j);
     }
 
-    private static void showcard(Jeu j) {
+    static void showcard(Jeu j) {
         System.out.println("player 1 card");
-        for(int i=0;i<11;i++){
+        for(int i=0;i<j.playercard[0].size();i++){
             Brand b =  j.playercard[0].get(i);
-            //Brand b = j.playcard0.get(i);
             String s = b.toString();
-            System.out.println(s);
+            System.out.println("index "+i+" "+s);
         }
         System.out.println("player 2 card");
-        for(int i=0;i<11;i++){
+        for(int i=0;i< j.playercard[1].size();i++){
             Brand b =  j.playercard[1].get(i);
-            //Brand b =  j.playcard1.get(i);
             String s = b.toString();
-            System.out.println(s);
+            System.out.println("index "+i+" "+s);
         }
+        /*
         System.out.println("pile 1 card");
         for(int i=0;i<5;i++){
             Brand b =  j.pilescard[0].get(i);
@@ -127,6 +125,14 @@ public class Starthand {
             Brand b =  j.pilescard[5].get(i);
             String s = b.toString();
             System.out.println(s);
+        }
+
+         */
+        for(int i=0;i<=5;i++){
+            if(j.pilescard[i].size()>0){
+            Brand b =  j.pilescard[i].get(0);
+            String s = b.toString();
+            System.out.println("pile "+i+" "+s);}
         }
     }
 

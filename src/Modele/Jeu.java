@@ -10,7 +10,11 @@ public class Jeu {
     public int numberOfGames=0;//回合数
     public int numberOfRounds;//轮数
     int playerfirst=2 ;//哪个玩家先手，0代表玩家A。1代表玩家B
+    int playerNow;
     Brand atout;
     Boolean avoiratout;
 
+    Brand FirstPlayerPlayCard;
+    Brand SecondPlayerPlayerCard;
+    public int Playerwin;
 }

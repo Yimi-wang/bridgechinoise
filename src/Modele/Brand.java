@@ -3,7 +3,7 @@ package Modele;
 public class Brand {
     // 扑克牌的类型 ：
     private Type type;
-    private Integer inttype;
+    private final Integer inttype;
     // 扑克牌的大小
     private Integer num;
 
