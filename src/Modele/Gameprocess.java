@@ -21,6 +21,7 @@ public class Gameprocess {
         if (j.playerfirst == 2) {//如果本轮该开始的话，判断哪个玩家先开始游戏。
             j.playerfirst = (j.numberOfGames - 1) % 2;
             j.numberOfRounds=1;
+            //进行发牌以及牌堆的实现
             stardhand(j);
         }
         //进行26轮游戏（因为一共52张牌）
