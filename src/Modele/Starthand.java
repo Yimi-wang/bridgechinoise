@@ -1,6 +1,6 @@
 package Modele;
 
-
+import static Modele.HandCardSorting.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -77,6 +77,8 @@ public class Starthand {
     }
 
     static void showcard(Jeu j) {
+        //将牌按照花色和大小排序
+        handcardsorting(j);
         System.out.println("player 1 card");
         for(int i=0;i<j.playercard[0].size();i++){
             Brand b =  j.playercard[0].get(i);

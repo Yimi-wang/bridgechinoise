@@ -23,7 +23,16 @@ public class Gameprocess {
             j.numberOfRounds=1;
             stardhand(j);
         }
-        turnstrat(j);
+        //进行26轮游戏（因为一共52张牌）
+        while(j.numberOfRounds!=27){
+            turnstrat(j);}
+        //游戏结束，判断胜负手
+        if(j.Player1Score>j.Player2Score){
+            System.out.println("Player 1 win!");
+        }
+        else{
+            System.out.println("Player 2 win!");
+        }
     }
 
     public static void turnstrat(Jeu j){
@@ -54,7 +63,19 @@ public class Gameprocess {
         //比较双方牌的大小
         comparer(j);
         //根据赢家，进行拿牌操作。
-        takecard(j);
+        //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
+        if(j.numberOfGames<=15) takecard(j);
+        //轮数增加
+        j.numberOfRounds++;
+        //先后手改变
+        j.playerfirst=j.Playerwin;
+        //得分增加
+        if(j.Playerwin==0){
+            j.Player1Score++;
+        }else {
+            j.Player2Score++;
+        }
+        System.out.println(("Player 1 score est " + j.Player1Score +". Player 2 Score est "+j.Player2Score));
     }
 
 }

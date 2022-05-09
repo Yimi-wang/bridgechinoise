@@ -17,4 +17,6 @@ public class Jeu {
     Brand FirstPlayerPlayCard;
     Brand SecondPlayerPlayerCard;
     public int Playerwin;
+    public int Player1Score =0;
+    public int Player2Score =0;
 }
