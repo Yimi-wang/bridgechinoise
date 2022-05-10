@@ -2,6 +2,7 @@ package Modele;
 
 import Controleur.IASimple;
 import Controleur.IArandom;
+import Controleur.IArandom2;
 
 import java.util.Scanner;
 
@@ -27,8 +28,8 @@ public class Takecard {
             index = input.nextInt();
         }
         //把赢家的牌放到手牌里头
-        Brand card = j.pilescard[index].get(index);
-        j.pilescard[index].remove(index);
+        Brand card = j.pilescard[index].get(0);
+        j.pilescard[index].remove(0);
         j.playercard[j.Playerwin].add(card);
         showcard(j);
     }
@@ -51,8 +52,8 @@ public class Takecard {
             index = input.nextInt();
         }
         //把输家的牌放到手牌里头
-        Brand card = j.pilescard[index].get(index);
-        j.pilescard[index].remove(index);
+        Brand card = j.pilescard[index].get(0);
+        j.pilescard[index].remove(0);
         j.playercard[a].add(card);
         showcard(j);
     }
@@ -65,11 +66,16 @@ public class Takecard {
                 break;
             case 2:
                 index = IASimple.IASimpleTakeCard(j);
+                break;
+            case 3:
+                index = IArandom2.IarandomGetCard2(j);
+                break;
         }
         Brand card = j.pilescard[index].get(0);
         System.out.println("IA prendre"+card.toString() + index);
-        j.pilescard[index].remove(index);
-        j.playercard[1].add(card);
+        j.pilescard[index].remove(0);
+        j.playercard[j.playerNow].add(card);
+//        j.playercard[1].add(card);
         showcard(j);
     }
 

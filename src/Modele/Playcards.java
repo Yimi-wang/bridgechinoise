@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import static Controleur.IASimple.IASimplePlayerCard;
 import static Controleur.IArandom.IArandomPlayerCard;
+import static Controleur.IArandom2.IArandomPlayerCard2;
 import static Modele.Histoire.returnhistoire;
 
 public class Playcards {
@@ -50,7 +51,9 @@ public class Playcards {
                 break;
             case 2:
                 index= IASimplePlayerCard(j);
-
+                break;
+            case 3:
+                index= IArandomPlayerCard2(j);
                 break;
         }
         System.out.println(index);
@@ -61,7 +64,12 @@ public class Playcards {
         //进行出牌操作
         playcards(j,index);
         //打印IA出的牌
-        System.out.println("IA jouer"+j.SecondPlayerPlayerCard.toString());
+        if(j.playerNow==0){
+            System.out.println("IA 1 jouer"+j.FirstPlayerPlayCard.toString());
+        }else {
+            System.out.println("IA 2 jouer"+j.SecondPlayerPlayerCard.toString());
+        }
+
     }
     //实现将玩家选择的牌放到jeu数据里头，同时将该牌从手牌中删除
     static void playcards(Jeu j, int index){

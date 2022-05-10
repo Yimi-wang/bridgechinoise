@@ -78,7 +78,6 @@ public class IASimple {
                     if (j.pilescard[i].get(0) == j.atout) return i;
                 }
 
-
             }
         }
         //如果王牌数量大于四，就拿第二大的王牌
@@ -101,8 +100,12 @@ public class IASimple {
             }
         return i2;}
         //如果只剩下一张牌，就拿最后一张牌
-        else if(numberpile==1){
-            return 0;
+        else if(numberpile==1) {
+            for (int i = 0; i <= 5; i++) {
+                if (j.pilescard[i].size() != 0) {
+                    return i;
+                }
+            }
         }
         //如果没有王牌，就拿最大的牌。
         else{
