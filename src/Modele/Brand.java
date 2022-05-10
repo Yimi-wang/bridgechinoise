@@ -1,6 +1,6 @@
 package Modele;
 
-public class Brand {
+public class Brand implements Cloneable {
     // 扑克牌的类型 ：
     private Type type;
     private final Integer inttype;
@@ -39,4 +39,14 @@ public class Brand {
     public String toString() {
         return "Brand [type=" + type + ", num=" + num + "]";
     }
+
+    public Object clone() {
+               Brand temp = null;
+              try{
+                     temp = (Brand) super.clone();
+               }catch(CloneNotSupportedException e) {
+                      e.printStackTrace();
+               }
+           return temp;
+         }
 }

@@ -40,10 +40,12 @@ public class Gameprocess {
         determinierAtout(j);//判断王牌花色
         //先手方出牌
         playerfirstplaycard(j);
-        ajoutelistdehistoire(j,1);
+        Jeu j1=(Jeu)j.clone();
+        ajoutelistdehistoire(j1,1);
         //后手方出牌
         playersecondeplaycard(j);
-        ajoutelistdehistoire(j,2);
+        Jeu j2 =(Jeu)j.clone();
+        ajoutelistdehistoire(j2,2);
         //比较双方牌的大小
         comparer(j);
         //根据赢家，进行拿牌操作。
@@ -51,9 +53,11 @@ public class Gameprocess {
         if(j.numberOfRounds<=15) {
             //takecard(j);
             playerwintakecard(j);
-            ajoutelistdehistoire(j,3);
+            Jeu j3=(Jeu)j.clone();
+            ajoutelistdehistoire(j3,3);
             playerlosetakecard(j);
-            ajoutelistdehistoire(j,4);
+            Jeu j4 =(Jeu)j.clone();
+            ajoutelistdehistoire(j4,4);
         }
         //轮数增加
         j.numberOfRounds++;
