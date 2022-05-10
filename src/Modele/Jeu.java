@@ -42,4 +42,16 @@ public class Jeu implements Cloneable{
         }
         return a;
     }
+
+    public int getNumberOfGames() {
+        return numberOfGames;
+    }
+
+    public int getPlayer1Score() {
+        return Player1Score;
+    }
+
+    public int getPlayer2Score() {
+        return Player2Score;
+    }
 }

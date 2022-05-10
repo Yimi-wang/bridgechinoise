@@ -14,7 +14,6 @@ public class Histoire {
     static public void ajoutelistdehistoire(Jeu j, int index) {
         DonneeDeHistore H = new DonneeDeHistore(j, index);
         listdehistoire.add(H);
-        System.out.println("put in histoire");
     }
 
     static public void returnhistoire() {
@@ -54,6 +53,9 @@ public class Histoire {
                 turnstrat(oldJeu);
         }
 
+    }
+    static public void cleanhistoire(){
+        listdehistoire.clear();
     }
 
 }

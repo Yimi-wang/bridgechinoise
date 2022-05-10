@@ -4,6 +4,7 @@ import Modele.Jeu;
 import java.util.Scanner;
 
 import static Modele.Histoire.ajoutelistdehistoire;
+import static Modele.Histoire.cleanhistoire;
 import static Modele.Playcards.*;
 import static Modele.Starthand.stardhand;
 import static Modele.Atout.*;
@@ -13,7 +14,8 @@ import static Modele.Takecard.*;
 public class Gameprocess {
     public static void creatJeu(){
         Jeu j = new Jeu();
-        Gamestart(j);
+        Gamemode(j);
+
     }
 
     public static void Gamestart(Jeu j) {
@@ -24,18 +26,117 @@ public class Gameprocess {
             //进行发牌以及牌堆的实现
             stardhand(j);
         }
-        //进行26轮游戏（因为一共52张牌）
-        while(j.numberOfRounds!=27){
-            turnstrat(j);}
-        //游戏结束，判断胜负手
-        if(j.Player1Score>j.Player2Score){
-            System.out.println("Player 1 win!");
-        }
-        else{
-            System.out.println("Player 2 win!");
-        }
     }
 
+    public static void Gamemode(Jeu j){
+        System.out.println("Gamemode 1 : BO1");
+        System.out.println("Gamemode 2 : BO3");
+        System.out.println("Gamemode 3 : Number de Game Fixe");
+        System.out.println("Gamemode 4 : Score Fixe");
+        System.out.println("Donner le 'gamemode' que vous voulez jouer");
+        boolean win= false;
+        int player1 = 0;
+        Scanner input = new Scanner(System.in);
+        int gamemode = input.nextInt();
+        switch (gamemode){
+            case 1 :
+                Gamestart(j);
+                //进行26轮游戏（因为一共52张牌）
+                while(j.numberOfRounds!=27){
+                    turnstrat(j);}
+                //游戏结束，判断胜负手
+                if(j.Player1Score>j.Player2Score){
+                    System.out.println("Player 1 win!");
+                }
+                else{
+                    System.out.println("Player 2 win!");
+                }
+                break;
+            case 2 :
+                for(int i =0; i<3;i++){
+                    Gamestart(j);
+                    while(j.numberOfRounds!=27){
+                        turnstrat(j);}
+                    //游戏结束，判断胜负手
+                    if(j.Player1Score>j.Player2Score){
+                        player1=player1+1;
+                    }
+                    if(player1>=2){
+                        System.out.println("Player 1 win!");
+                        win=true;
+                    }
+                    else{
+                        System.out.println("Player 2 win!");
+                        win=true;
+                    }
+                    if(win)break;
+                    cleanhistoire();
+                    int numberofgame=j.getNumberOfGames();
+                    Jeu j2 = new Jeu();
+                    j2.numberOfGames =numberofgame;
+                    j=j2;}
+                break;
+            case 3 :
+                System.out.println("Donner le numbre de game vous voulez jouer");
+                input = new Scanner(System.in);
+                int nGame = input.nextInt();
+                for(int i =0; i<nGame;i++){
+                    Gamestart(j);
+                    while(j.numberOfRounds!=27){
+                        turnstrat(j);}
+                    cleanhistoire();
+                    int numberofgame=j.getNumberOfGames();
+                    int p2=j.getPlayer2Score();
+                    int p1=j.getPlayer1Score();
+                    Jeu j2 = new Jeu();
+                    j2.numberOfGames =numberofgame;
+                    j2.Player1Score =p1;
+                    j2.Player2Score =p2;
+                    j=j2;
+                    }
+                if(j.Player1Score>j.Player2Score){
+                    System.out.println("Player 1 win!");
+                }
+                else{
+                     System.out.println("Player 2 win!");
+                 }
+                break;
+            case 4:
+                System.out.println("Donner le score vous voulez jouer");
+                input = new Scanner(System.in);
+                int ScoreWin = input.nextInt();
+                while(j.getPlayer1Score()<ScoreWin&&j.getPlayer2Score()<ScoreWin){
+                    Gamestart(j);
+                    while(j.numberOfRounds!=27){
+                        turnstrat(j);
+                        if(j.getPlayer1Score()>=ScoreWin||j.getPlayer2Score()>=ScoreWin){
+                            if(j.Player1Score>j.Player2Score){
+                                System.out.println("Player 1 win!");
+                        }
+                        else{
+                            System.out.println("Player 2 win!");
+                        }
+                        break;
+                    }
+                    }
+                    cleanhistoire();
+                    int numberofgame=j.getNumberOfGames();
+                    int p2=j.getPlayer2Score();
+                    int p1=j.getPlayer1Score();
+                    Jeu j2 = new Jeu();
+                    j2.numberOfGames =numberofgame;
+                    j2.Player1Score =p1;
+                    j2.Player2Score =p2;
+                    j=j2;
+
+                }
+                break;
+
+
+
+        }
+
+    }
     public static void turnstrat(Jeu j){
         determinierAtout(j);//判断王牌花色
         //先手方出牌
