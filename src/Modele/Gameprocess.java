@@ -12,8 +12,16 @@ import static Modele.Takecard.*;
 
 
 public class Gameprocess {
+    static int IA = 0;
     public static void creatJeu(){
         Jeu j = new Jeu();
+        System.out.println("IA 0 : sans IA");
+        System.out.println("IA 1 : random");
+        System.out.println("IA 2 : IA simple");
+        System.out.println("IA 3 : QAQ");
+        System.out.println("Donner le 'IA' que vous voulez jouer");
+        Scanner input = new Scanner(System.in);
+        IA= input.nextInt();
         Gamemode(j);
 
     }
@@ -140,11 +148,20 @@ public class Gameprocess {
     public static void turnstrat(Jeu j){
         determinierAtout(j);//判断王牌花色
         //先手方出牌
-        playerfirstplaycard(j);
+        j.playerNow=j.playerfirst;
+        if(IA>0&&j.getPlayerNow()==1){
+            IAplaycard(j,IA);
+        }else{
+        playerfirstplaycard(j);}
         Jeu j1=(Jeu)j.clone();
         ajoutelistdehistoire(j1,1);
         //后手方出牌
-        playersecondeplaycard(j);
+        j.playerNow=j.playerNow+1;
+        if(j.playerNow ==2) j.playerNow=0;
+        if(IA>0&&j.getPlayerNow()==1){
+            IAplaycard(j,IA);
+        }else{
+        playersecondeplaycard(j);}
         Jeu j2 =(Jeu)j.clone();
         ajoutelistdehistoire(j2,2);
         //比较双方牌的大小
@@ -152,11 +169,19 @@ public class Gameprocess {
         //根据赢家，进行拿牌操作。
         //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
         if(j.numberOfRounds<=15) {
-            //takecard(j);
-            playerwintakecard(j);
+            j.playerNow =j.Playerwin;
+            if(IA>0 && j.playerNow==1){
+                IAtakecard(j,IA);
+            }else{
+            playerwintakecard(j);}
             Jeu j3=(Jeu)j.clone();
             ajoutelistdehistoire(j3,3);
-            playerlosetakecard(j);
+            j.playerNow =j.Playerwin+1;
+            if(j.playerNow==2)j.playerNow=0;
+            if(IA>0 && j.playerNow==1){
+                IAtakecard(j,IA);
+            }else{
+            playerlosetakecard(j);}
             Jeu j4 =(Jeu)j.clone();
             ajoutelistdehistoire(j4,4);
         }

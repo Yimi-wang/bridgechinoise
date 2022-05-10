@@ -1,13 +1,17 @@
 package Modele;
 
+import Controleur.IASimple;
+import Controleur.IArandom;
+
 import java.util.Objects;
 import java.util.Scanner;
 
+import static Controleur.IASimple.IASimplePlayerCard;
+import static Controleur.IArandom.IArandomPlayerCard;
 import static Modele.Histoire.returnhistoire;
 
 public class Playcards {
     static void playerfirstplaycard(Jeu j){
-        j.playerNow=j.playerfirst;
         //输入先手方想出的牌
         System.out.println("Maintenant c'est le tour de Jouer"+(j.playerNow+1));
         System.out.println(("Donned le index que vous voulez jouer"));
@@ -23,8 +27,6 @@ public class Playcards {
         System.out.println((j.playerNow+1)+"jouer"+j.FirstPlayerPlayCard.toString());
     }
     static void playersecondeplaycard(Jeu j){
-        j.playerNow=j.playerNow+1;
-        if(j.playerNow ==2) j.playerNow=0;
         //输入后手方想出的牌
         System.out.println("Maintenant c'est le tour de Jouer"+(j.playerNow+1));
         System.out.println(("Donned le index que vous voulez jouer"));
@@ -39,7 +41,28 @@ public class Playcards {
         //打印后手方出的牌
         System.out.println((j.playerNow+1)+"jouer"+j.SecondPlayerPlayerCard.toString());
     }
+    static void IAplaycard(Jeu j,int IA){
+        int index = 0;
+        //选择IA
+        switch(IA){
+            case 1:
+                index= IArandomPlayerCard(j);
+                break;
+            case 2:
+                index= IASimplePlayerCard(j);
 
+                break;
+        }
+        System.out.println(index);
+        //回退历史记录
+        if(index==-1){
+            returnhistoire();
+        }
+        //进行出牌操作
+        playcards(j,index);
+        //打印IA出的牌
+        System.out.println("IA jouer"+j.SecondPlayerPlayerCard.toString());
+    }
     //实现将玩家选择的牌放到jeu数据里头，同时将该牌从手牌中删除
     static void playcards(Jeu j, int index){
         if (j.playerNow==j.playerfirst){
@@ -59,7 +82,7 @@ public class Playcards {
     }
     public static boolean limite(Jeu j,Brand card){
         boolean limite=false;
-        for(int i =0; i<=10;i++){
+        for(int i =0; i<j.playercard[j.playerNow].size();i++){
             if (Objects.equals(j.playercard[j.playerNow].get(i).getInttype(), j.FirstPlayerPlayCard.getInttype())){
                 limite=true;
                 break;
