@@ -1,8 +1,6 @@
 package Modele;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Jeu implements Cloneable{
     LinkedList<Brand>[] playercard;//=new List[2];//玩家手牌//建立了一个tableau 的list playercard[0]是玩家1的手卡，etc
@@ -42,8 +40,6 @@ public class Jeu implements Cloneable{
                 a.pilescard[i].add(temp);
             }
         }
-//        a.pilescard=(LinkedList<Brand>[]) this.pilescard.clone();
-
         return a;
     }
 }
