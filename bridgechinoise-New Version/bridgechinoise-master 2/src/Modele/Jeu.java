@@ -21,6 +21,7 @@ public class Jeu implements Cloneable{
     public int Player2totalScore;
     public int Player1WinGame;
     public int Player2WinGame;
+    public int TurnProcess;
 
     public Jeu() {
         numberOfGames=0;
@@ -31,6 +32,7 @@ public class Jeu implements Cloneable{
         Player2totalScore=0;
         Player1WinGame=0;
         Player2WinGame=0;
+        TurnProcess=1;
 
     }
 
@@ -60,13 +62,7 @@ public class Jeu implements Cloneable{
         return a;
     }
 
-    public void reset() {
-        playerFirst=2;
-        numberOfRounds=0;
-        Playerwin=2;
-        Player1Score=0;
-        Player2Score=0;
-    }
+
 
     public void handCardSorting(){
         for (int i =0; i < 2; i++){

@@ -24,6 +24,7 @@ public class TakeCard {
         //回退历史记录
         if(index==-1){
             h.returnHistoire();
+            return;
         }
         //如果输入有误，重新输入
         while(j.pilescard[index].size()==0){
@@ -35,6 +36,7 @@ public class TakeCard {
         Brand card = j.pilescard[index].get(0);
         j.pilescard[index].remove(0);
         j.playercard[j.Playerwin].add(card);
+        j.TurnProcess++;
         j.showCard();
     }
     public void playerLoseTakeCard(){
@@ -48,6 +50,7 @@ public class TakeCard {
         //回退历史记录
         if(index==-1){
             h.returnHistoire();
+            return;
         }
         //如果输入有误，重新输入
         while(j.pilescard[index].size()==0){
@@ -59,6 +62,7 @@ public class TakeCard {
         Brand card = j.pilescard[index].get(0);
         j.pilescard[index].remove(0);
         j.playercard[a].add(card);
+        j.TurnProcess++;
         j.showCard();
     }
 
