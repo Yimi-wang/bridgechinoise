@@ -156,7 +156,7 @@ public class GameProcess {
             case 1:
                 j.playerNow = j.playerFirst;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    //IAplaycard(j,IA);
+                    playCards.IAplaycard(j,IA);
                 } else {
                     playCards.playerFirstPlayCard();
                 }
@@ -168,7 +168,7 @@ public class GameProcess {
                 j.playerNow = j.playerNow + 1;
                 if (j.playerNow == 2) j.playerNow = 0;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    //IAplaycard(j,IA);
+                    playCards.IAplaycard(j,IA);
                 } else {
                     playCards.playerSecondePlayCard();
                 }
@@ -183,7 +183,7 @@ public class GameProcess {
                 if (j.numberOfRounds <= 15) {
                     j.playerNow = j.Playerwin;
                     if (IA > 0 && j.playerNow == 1) {
-                        //IAtakecard(j,IA);
+                        takeCard.IAtakecard(j,IA);
                     } else {
                         takeCard.playerWinTakeCard();
                     }
@@ -196,7 +196,7 @@ public class GameProcess {
                     j.playerNow = j.Playerwin + 1;
                     if (j.playerNow == 2) j.playerNow = 0;
                     if (IA > 0 && j.playerNow == 1) {
-                        //IAtakecard(j,IA);
+                        takeCard.IAtakecard(j,IA);
                     } else {
                         takeCard.playerLoseTakeCard();
                     }

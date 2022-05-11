@@ -1,5 +1,9 @@
 package Modele;
 
+import Controleur.IASimple;
+import Controleur.IArandom;
+import Controleur.IArandom2;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -48,35 +52,34 @@ public class PlayCards {
         System.out.println((j.playerNow + 1) + "jouer" + j.SecondPlayerPlayerCard.toString());
     }
 
-//    static void IAplaycard(Jeu j,int IA){
-//        int index = 0;
-//        //选择IA
-//        switch(IA){
-//            case 1:
-//                index= IArandomPlayerCard(j);
-//                break;
-//            case 2:
-//                index= IASimplePlayerCard(j);
-//                break;
-//            case 3:
-//                index= IArandomPlayerCard2(j);
-//                break;
-//        }
-//        System.out.println(index);
-//        //回退历史记录
-//        if(index==-1){
-//            //returnhistoire();
-//        }
-//        //进行出牌操作
-//        playcards(j,index);
-//        //打印IA出的牌
-//        if(j.playerNow==0){
-//            System.out.println("IA 1 jouer"+j.FirstPlayerPlayCard.toString());
-//        }else {
-//            System.out.println("IA 2 jouer"+j.SecondPlayerPlayerCard.toString());
-//        }
-//
-//    }
+    void IAplaycard(Jeu j,int IA){
+        int index = 0;
+        //选择IA
+        switch(IA){
+            case 1:
+                IArandom iar=new IArandom(j);
+                index= iar.IArandomPlayerCard();
+                break;
+            case 2:
+                IASimple ias= new IASimple(j);
+                index= ias.IASimplePlayerCard();
+                break;
+            case 3:
+                IArandom2 iar2 = new IArandom2(j);
+                index= iar2.IArandomPlayerCard2(j);
+                break;
+        }
+        System.out.println(index);
+        //进行出牌操作
+        if(j.playerNow==0){
+            System.out.println("IA 1 jouer"+j.playercard[j.playerNow].get(index).toString());
+        }else {
+            System.out.println("IA 2 jouer"+j.playercard[j.playerNow].get(index).toString());
+        }
+        playCards(index);
+        //打印IA出的牌
+
+    }
 
     //实现将玩家选择的牌放到jeu数据里头，同时将该牌从手牌中删除
     void playCards(int index) {

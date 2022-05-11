@@ -1,6 +1,8 @@
 package Modele;
 
 import Controleur.IASimple;
+import Controleur.IArandom;
+import Controleur.IArandom2;
 
 import java.util.Scanner;
 
@@ -66,25 +68,29 @@ public class TakeCard {
         j.showCard();
     }
 
-//    public void IAtakecard(Jeu j, int IA){
-//        int index=-1;
-//        switch (IA){
-//            case 1:
-//                index = IArandom.IarandomGetCard(j);
-//                break;
-//            case 2:
-//                index = IASimple.IASimpleTakeCard(j);
-//                break;
-//            case 3:
-//                index = IArandom2.IarandomGetCard2(j);
-//                break;
-//        }
-//        Brand card = j.pilescard[index].get(0);
-//        System.out.println("IA prendre"+card.toString() + index);
-//        j.pilescard[index].remove(0);
-//        j.playercard[j.playerNow].add(card);
-////        j.playercard[1].add(card);
-//        j.showCard();
-//    }
+    public void IAtakecard(Jeu j, int IA){
+        int index=-1;
+        switch (IA){
+            case 1:
+                IArandom iar=new IArandom(j);
+                index = iar.IarandomGetCard();
+                break;
+            case 2:
+                IASimple ias= new IASimple(j);
+                index = ias.IASimpleTakeCard();
+                break;
+            case 3:
+                IArandom2 iar2=new IArandom2(j);
+                index = iar2.IarandomGetCard2();
+                break;
+        }
+        Brand card = j.pilescard[index].get(0);
+        System.out.println("IA prendre"+card.toString() + index);
+        j.pilescard[index].remove(0);
+        j.playercard[j.playerNow].add(card);
+        j.TurnProcess++;
+//        j.playercard[1].add(card);
+        j.showCard();
+    }
 
 }
