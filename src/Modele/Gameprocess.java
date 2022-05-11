@@ -6,6 +6,7 @@ import java.util.Scanner;
 import static Modele.Histoire.ajoutelistdehistoire;
 import static Modele.Histoire.cleanhistoire;
 import static Modele.Playcards.*;
+import static Modele.ResetJeu.reset;
 import static Modele.Starthand.stardhand;
 import static Modele.Atout.*;
 import static Modele.Takecard.*;
@@ -70,24 +71,18 @@ public class Gameprocess {
                         //turnstrat2(j);}
                     //游戏结束，判断胜负手
                     if(j.Player1Score>j.Player2Score){
-                        player1=player1+1;
-                    }else{
-                        player2=player2 + 1;
+                        j.Player1WinGame++;
+                    } else if (j.Player1Score<j.Player2Score) {
+                        j.Player2WinGame++;
                     }
-                    if(player1>=2){
+                    if(j.Player1WinGame==2){
                         System.out.println("Player 1 win!");
-                        win=true;
-                    }
-                    else if (player2>=2){
+                        break;
+                    } else if (j.Player2WinGame==2) {
                         System.out.println("Player 2 win!");
-                        win=true;
+                        break;
                     }
-                    if(win)break;
-                    cleanhistoire();
-                    int numberofgame=j.getNumberOfGames();
-                    Jeu j2 = new Jeu();
-                    j2.numberOfGames =numberofgame;
-                    j=j2;}
+                }
                 break;
             case 3 :
                 System.out.println("Donner le numbre de game vous voulez jouer");
@@ -97,17 +92,10 @@ public class Gameprocess {
                     Gamestart(j);
                     while(j.numberOfRounds!=27){
                         turnstrat(j);}
+                    reset(j);
                     cleanhistoire();
-                    int numberofgame=j.getNumberOfGames();
-                    int p2=j.getPlayer2Score();
-                    int p1=j.getPlayer1Score();
-                    Jeu j2 = new Jeu();
-                    j2.numberOfGames =numberofgame;
-                    j2.Player1Score =p1;
-                    j2.Player2Score =p2;
-                    j=j2;
                 }
-                if(j.Player1Score>j.Player2Score){
+                if(j.Player1totalScore>j.Player2totalScore){
                     System.out.println("Player 1 win!");
                 }
                 else{
@@ -118,12 +106,12 @@ public class Gameprocess {
                 System.out.println("Donner le score vous voulez jouer");
                 input = new Scanner(System.in);
                 int ScoreWin = input.nextInt();
-                while(j.getPlayer1Score()<ScoreWin&&j.getPlayer2Score()<ScoreWin){
+                while(j.Player1totalScore<ScoreWin&&j.Player2totalScore<ScoreWin){
                     Gamestart(j);
                     while(j.numberOfRounds!=27){
                         turnstrat(j);
-                        if(j.getPlayer1Score()>=ScoreWin||j.getPlayer2Score()>=ScoreWin){
-                            if(j.Player1Score>j.Player2Score){
+                        if(j.Player1totalScore>=ScoreWin||j.Player2totalScore>=ScoreWin){
+                            if(j.Player1totalScore>j.Player2totalScore){
                                 System.out.println("Player 1 win!");
                             }
                             else{
@@ -132,16 +120,8 @@ public class Gameprocess {
                             break;
                         }
                     }
+                    reset(j);
                     cleanhistoire();
-                    int numberofgame=j.getNumberOfGames();
-                    int p2=j.getPlayer2Score();
-                    int p1=j.getPlayer1Score();
-                    Jeu j2 = new Jeu();
-                    j2.numberOfGames =numberofgame;
-                    j2.Player1Score =p1;
-                    j2.Player2Score =p2;
-                    j=j2;
-
                 }
                 break;
 

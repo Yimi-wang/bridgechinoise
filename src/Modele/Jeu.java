@@ -17,6 +17,10 @@ public class Jeu implements Cloneable{
     public int Playerwin;
     public int Player1Score =0;
     public int Player2Score =0;
+    public int Player1totalScore=0;
+    public int Player2totalScore=0;
+    public int Player1WinGame=0;
+    public int Player2WinGame=0;
     public Object clone() {
         Jeu a = new Jeu();
        try{
