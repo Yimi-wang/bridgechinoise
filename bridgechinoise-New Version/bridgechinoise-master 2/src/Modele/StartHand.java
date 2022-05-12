@@ -23,6 +23,7 @@ public class StartHand {
 
     }
     void stardHand(){
+        //n
         Brand card = null;
         createPlayingCard();//
         j.playercard = new LinkedList[2];//手牌
