@@ -151,6 +151,73 @@ public class GameProcess {
     }
 
     public void turnstart() {
+        j = h.listDeHistoire.get(h.listDeHistoire.size()-1);
+        playCards = new PlayCards(j, h);
+        takeCard = new TakeCard(j, h);
+        switch (j.TurnProcess) {
+            //先手方出牌
+            case 1:
+                j.playerNow = j.playerFirst;
+                if (IA > 0 && j.getPlayerNow() == 1) {
+                    playCards.IAplaycard(j, IA);
+                } else {
+                    playCards.playerFirstPlayCard();
+                }
+                break;
+            //后手方出牌
+            case 2:
+                j.playerNow = j.playerNow + 1;
+                if (j.playerNow == 2) j.playerNow = 0;
+                if (IA > 0 && j.getPlayerNow() == 1) {
+                    playCards.IAplaycard(j, IA);
+                } else {
+                    playCards.playerSecondePlayCard();
+                }
+                break;
+            //根据赢家，进行拿牌操作。
+            //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
+            case 3:
+                if (j.numberOfRounds <= 15) {
+                    j.playerNow = j.Playerwin;
+                    if (j.playerNow == 2) j.playerNow = 0;
+                    if (IA > 0 && j.playerNow == 1) {
+                        takeCard.IAtakecard(j, IA);
+                    } else {
+                        takeCard.playerWinTakeCard();
+                    }
+
+                } else {
+                    j.TurnProcess++;
+                }
+                break;
+            case 4:
+                if (j.numberOfRounds <= 15) {
+                    j.playerNow = j.Playerwin + 1;
+                    if (j.playerNow == 2) j.playerNow = 0;
+                    if (IA > 0 && j.playerNow == 1) {
+                        takeCard.IAtakecard(j, IA);
+                    } else {
+                        takeCard.playerLoseTakeCard();
+                    }
+                } else {
+                    j.TurnProcess++;
+                }
+                break;
+        }
+    }
+
+    public void reset() {
+        j.playerFirst = 2;
+        j.numberOfRounds = 0;
+        j.Playerwin = 1100000;
+        j.Player1Score = 0;
+        j.Player2Score = 0;
+        j.TurnProcess = 1;
+
+    }
+
+
+    public void AIvsAI() {
         j = h.listDeHistoire.get(h.listDeHistoire.size() - 1);
         playCards = new PlayCards(j, h);
         takeCard = new TakeCard(j, h);
@@ -203,16 +270,6 @@ public class GameProcess {
                 }
                 break;
         }
-    }
-
-    public void reset() {
-        j.playerFirst = 2;
-        j.numberOfRounds = 0;
-        j.Playerwin = 2;
-        j.Player1Score = 0;
-        j.Player2Score = 0;
-        j.TurnProcess = 1;
-
     }
 }
 

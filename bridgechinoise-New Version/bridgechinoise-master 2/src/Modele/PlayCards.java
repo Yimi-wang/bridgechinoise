@@ -27,7 +27,7 @@ public class PlayCards {
         //回退历史记录
         if (index == -1) {
             h.returnHistoire();
-            return ;
+            return;
         }
         //进行出牌操作
         playCards(index);
@@ -46,13 +46,13 @@ public class PlayCards {
         //回退历史记录
         if (index == -1) {
             h.returnHistoire();
-            return ;
+            return;
         }
         //进行出牌操作
         playCards(index);
         //打印后手方出的牌
         System.out.println((j.playerNow + 1) + "jouer" + j.SecondPlayerPlayerCard.toString());
-        comparer();
+        j = comparer(j);
         //先后手改变
         j.playerFirst = j.Playerwin;
         //得分增加
@@ -62,37 +62,50 @@ public class PlayCards {
             j.Player2Score++;
         }
         System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
-        if(j.numberOfRounds>15)j.numberOfRounds++;
+        if (j.numberOfRounds > 15) j.numberOfRounds++;
         Jeu j2 = (Jeu) j.clone();
         h.ajouteListDeHistoire(j2);
     }
 
-    void IAplaycard(Jeu j,int IA){
+    void IAplaycard(Jeu j, int IA) {
         int index = 0;
         //选择IA
-        switch(IA){
+        switch (IA) {
             case 1:
-                IArandom iar=new IArandom(j);
-                index= iar.IArandomPlayerCard();
+                IArandom iar = new IArandom(j);
+                index = iar.IArandomPlayerCard();
                 break;
             case 2:
-                IASimple ias= new IASimple(j);
-                index= ias.IASimplePlayerCard();
+                IASimple ias = new IASimple(j);
+                index = ias.IASimplePlayerCard();
                 break;
             case 3:
                 IArandom2 iar2 = new IArandom2(j);
-                index= iar2.IArandomPlayerCard2(j);
+                index = iar2.IArandomPlayerCard2(j);
                 break;
         }
         System.out.println(index);
         //进行出牌操作
-        if(j.playerNow==0){
-            System.out.println("IA 1 jouer"+j.playercard[j.playerNow].get(index).toString());
-        }else {
-            System.out.println("IA 2 jouer"+j.playercard[j.playerNow].get(index).toString());
+        if (j.playerNow == 0) {
+            System.out.println("IA 1 jouer" + j.playercard[j.playerNow].get(index).toString());
+        } else {
+            System.out.println("IA 2 jouer" + j.playercard[j.playerNow].get(index).toString());
         }
         playCards(index);
         //打印IA出的牌
+        if (j.playerNow != j.playerFirst) {
+            j = comparer(j);
+            //先后手改变
+            j.playerFirst = j.Playerwin;
+            //得分增加
+            if (j.Playerwin == 0) {
+                j.Player1Score++;
+            } else {
+                j.Player2Score++;
+            }
+            System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
+            if (j.numberOfRounds > 15) j.numberOfRounds++;
+        }
         Jeu j2 = (Jeu) j.clone();
         h.ajouteListDeHistoire(j2);
 
@@ -130,14 +143,15 @@ public class PlayCards {
         } else return true;
     }
 
-    public void comparer() {
+    public Jeu comparer(Jeu j) {
+        this.j = j;
         //如果双方出同花色
         if (Objects.equals(j.FirstPlayerPlayCard.getInttype(), j.SecondPlayerPlayerCard.getInttype())) {
             if (j.FirstPlayerPlayCard.getNum() > j.SecondPlayerPlayerCard.getNum())
                 j.Playerwin = j.playerFirst;
             else {
                 j.Playerwin = j.playerFirst + 1;
-                if (j.Playerwin == 2) {
+                if (j.Playerwin >= 2) {
                     j.Playerwin = 0;
                 }
             }
@@ -149,7 +163,7 @@ public class PlayCards {
                 //如果后手方出王牌的话
                 if (Objects.equals(j.SecondPlayerPlayerCard.getInttype(), j.atout.getInttype())) {
                     j.Playerwin = j.playerFirst + 1;
-                    if (j.Playerwin == 2)
+                    if (j.Playerwin >= 2)
                         j.Playerwin = 0;
                 } else {//如果后手方不出王牌的话
                     j.Playerwin = j.playerFirst;
@@ -162,6 +176,7 @@ public class PlayCards {
 
         }
         System.out.println("winner is " + (j.Playerwin + 1));
+        return j;
     }
 
 }
