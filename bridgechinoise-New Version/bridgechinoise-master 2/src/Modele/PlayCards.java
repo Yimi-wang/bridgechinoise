@@ -70,7 +70,7 @@ public class PlayCards {
     }
 
     void IAplaycard(Jeu j, int IA) {
-        System.out.println("numbre of Rounds est "+j.numberOfRounds);
+        System.out.println("numbre of Rounds est " + j.numberOfRounds);
         int index = 0;
         j.showCard();
         if (j.playerNow == 0) {

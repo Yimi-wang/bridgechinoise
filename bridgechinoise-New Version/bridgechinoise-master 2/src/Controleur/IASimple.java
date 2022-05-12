@@ -41,7 +41,7 @@ public class IASimple {
                 }
             }
             //如果有同花色但赢不了，出最小的牌
-            Brand min = new Brand(Type.trefle,10000,1000000000);
+            Brand min = new Brand(Type.trefle, 10000, 1000000000);
             //如果都没有。出最小的牌
             if (!peutAtout) {
                 for (int i = j.playercard[1].size() - 1; i >= 0; i--) {
@@ -159,7 +159,7 @@ public class IASimple {
         for (int i = 0; i <= 5; i++) {
             if (j.pilescard[i].size() != 0) {
                 if (j.pilescard[i].get(0).getNum() > b.getNum()) {
-                    b=j.pilescard[i].get(0);
+                    b = j.pilescard[i].get(0);
                     index = i;
                 } else if (Objects.equals(j.pilescard[i].get(0).getNum(), b.getNum())) {
                     if (j.pilescard[i].get(0).getInttype() > b.getInttype()) {

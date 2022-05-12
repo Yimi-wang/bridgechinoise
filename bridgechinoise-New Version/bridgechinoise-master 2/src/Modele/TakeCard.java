@@ -107,7 +107,7 @@ public class TakeCard {
         j.playercard[j.playerNow].add(card);
         j.TurnProcess++;
 
-        if(j.playerNow!=j.Playerwin){
+        if (j.playerNow != j.Playerwin) {
             j.numberOfRounds++;
         }
         j.showCard();

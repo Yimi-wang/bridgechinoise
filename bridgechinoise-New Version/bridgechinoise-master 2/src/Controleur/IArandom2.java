@@ -8,20 +8,21 @@ import java.util.Random;
 
 public class IArandom2 {
     public Jeu j;
-    public IArandom2(Jeu j){
-        this.j=j;
+
+    public IArandom2(Jeu j) {
+        this.j = j;
     }
-    public int IArandomPlayerCard2(Jeu j){
+
+    public int IArandomPlayerCard2(Jeu j) {
         Random r = new Random();
-        if (j.getPlayerNow()==0){
-            if(j.getPlayerfirst()==j.getPlayerNow()){
+        if (j.getPlayerNow() == 0) {
+            if (j.getPlayerfirst() == j.getPlayerNow()) {
                 return r.nextInt(j.playercard[0].size());
-            }
-            else{
-                int index=r.nextInt(j.playercard[0].size());
+            } else {
+                int index = r.nextInt(j.playercard[0].size());
                 System.out.println("le firstplayercard est:" + j.getFirstPlayerPlayCard().toString());
-                while(!limite(j, j.playercard[0].get(index))){
-                    index=r.nextInt(j.playercard[0].size());
+                while (!limite(j, j.playercard[0].get(index))) {
+                    index = r.nextInt(j.playercard[0].size());
                 }
                 return index;
             }
@@ -29,12 +30,12 @@ public class IArandom2 {
         return -1;
     }
 
-    public int IarandomGetCard2(){
+    public int IarandomGetCard2() {
         Random r = new Random();
-        int index =r.nextInt(6);
-        if(j.getPlayerNow()==0){
-            while (j.pilescard[index].size()==0){
-                index =r.nextInt(6);
+        int index = r.nextInt(6);
+        if (j.getPlayerNow() == 0) {
+            while (j.pilescard[index].size() == 0) {
+                index = r.nextInt(6);
             }
         }
         return index;

@@ -9,9 +9,9 @@ public class Atout {
         this.j = j;
     }
 
-    void determinerAtout(){
+    void determinerAtout() {
         //在前15轮才有王牌，后面没有王牌
-        if(j.numberOfRounds<=15) {
+        if (j.numberOfRounds <= 15) {
             Brand maxtop = new Brand(Type.trefle, 1, 3);
             j.avoiratout = false;
             for (int i = 0; i <= 5; i++) {
@@ -30,18 +30,18 @@ public class Atout {
                 j.atout = maxtop;
                 j.avoiratout = true;
             }
-        }
-        else{
-            j.avoiratout=false;
+        } else {
+            j.avoiratout = false;
         }
         toStringAtout(j);
     }
+
     public void toStringAtout(Jeu j) {
-        if(j.avoiratout){
+        if (j.avoiratout) {
             String a = j.atout.toString();
-            System.out.println( "Atout est "+a);
-        }else {
-            System.out.println( "Pas de atout");
+            System.out.println("Atout est " + a);
+        } else {
+            System.out.println("Pas de atout");
         }
 
     }

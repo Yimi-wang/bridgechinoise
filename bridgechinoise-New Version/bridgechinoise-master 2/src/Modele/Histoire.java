@@ -1,9 +1,10 @@
 package Modele;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 
-public class Histoire {
+public class Histoire implements Serializable {
     LinkedList<Jeu> listDeHistoire;
 
     public Jeu j;
@@ -25,9 +26,9 @@ public class Histoire {
             System.out.println("首回合");
         }
 
-        listDeHistoire.remove(listDeHistoire.size()-1);
-        listDeHistoire.remove(listDeHistoire.size()-1);
-        Jeu j1=listDeHistoire.get(listDeHistoire.size()-1);
+        listDeHistoire.remove(listDeHistoire.size() - 1);
+        listDeHistoire.remove(listDeHistoire.size() - 1);
+        Jeu j1 = listDeHistoire.get(listDeHistoire.size() - 1);
         Jeu j0 = (Jeu) j1.clone();
         ajouteListDeHistoire(j0);
         System.out.println("delete");

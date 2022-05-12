@@ -8,11 +8,11 @@ public class Brand implements Cloneable {
     private Integer num;
 
     // 直接创建一个构造器用来 创建每一张扑克牌
-    public Brand(Type type, Integer num,Integer inttype) {
+    public Brand(Type type, Integer num, Integer inttype) {
         super();
         this.type = type;
         this.num = num;
-        this.inttype=inttype;
+        this.inttype = inttype;
     }
 
     public Type getType() {
@@ -41,12 +41,12 @@ public class Brand implements Cloneable {
     }
 
     public Object clone() {
-               Brand temp = null;
-              try{
-                     temp = (Brand) super.clone();
-               }catch(CloneNotSupportedException e) {
-                      e.printStackTrace();
-               }
-           return temp;
-         }
+        Brand temp = null;
+        try {
+            temp = (Brand) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
 }
