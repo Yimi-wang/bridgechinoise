@@ -211,6 +211,7 @@ public class GameProcess {
                     } else {
                         takeCard.playerLoseTakeCard();
                     }
+                    j.numberOfRounds++;
                     Jeu j4 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j4);
                 }else{

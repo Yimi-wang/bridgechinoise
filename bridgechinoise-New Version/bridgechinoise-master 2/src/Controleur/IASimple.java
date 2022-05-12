@@ -40,8 +40,9 @@ public class IASimple {
                     if (Objects.equals(j.playercard[1].get(index).getInttype(), j.atout.getInttype())) return index;
                 }
             }
+            //如果有同花色但赢不了，出最小的牌
+            Brand min = new Brand(Type.trefle,13,3);
             //如果都没有。出最小的牌
-            Brand min = j.playercard[1].get(0);
             if (!peutAtout) {
                 for (int i = j.playercard[1].size() - 1; i >= 1; i--) {
                     if ((j.playercard[1].get(i).getNum() <= min.getNum()) && Objects.equals(j.playercard[1].get(i).getInttype(), j.getFirstPlayerPlayCard().getInttype())) {
@@ -161,7 +162,7 @@ public class IASimple {
                     b=j.pilescard[i].get(0);
                     index = i;
                 } else if (Objects.equals(j.pilescard[i].get(0).getNum(), b.getNum())) {
-                    if (j.pilescard[i].get(0).getInttype() < b.getInttype()) {
+                    if (j.pilescard[i].get(0).getInttype() > b.getInttype()) {
                         b = j.pilescard[i].get(0);
                         index = i;
                     }
