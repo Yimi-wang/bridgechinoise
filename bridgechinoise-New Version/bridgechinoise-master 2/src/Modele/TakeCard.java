@@ -84,6 +84,7 @@ public class TakeCard {
                 index = iar2.IarandomGetCard2();
                 break;
         }
+        System.out.println(index);
         Brand card = j.pilescard[index].get(0);
         System.out.println("IA prendre"+card.toString() + index);
         j.pilescard[index].remove(0);
