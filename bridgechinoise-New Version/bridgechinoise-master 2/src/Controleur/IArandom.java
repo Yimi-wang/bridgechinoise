@@ -13,7 +13,7 @@ public class IArandom {
     public IArandom(Jeu j){
         this.j=j;
     }
-    public int IArandomPlayerCard(){
+    public int IArandomPlayerCard(Jeu j){
         Random r = new Random();
         if (j.getPlayerNow()==1){
             if(j.getPlayerfirst()==j.getPlayerNow()){
@@ -21,14 +21,14 @@ public class IArandom {
             }
             else{
                 int index=r.nextInt(j.playercard[1].size());
-                System.out.println("le index est:" + index);
-                while(limite(j,j.getFirstPlayerPlayCard())&&(!Objects.equals(j.playercard[1].get(index).getInttype(), j.getFirstPlayerPlayCard().getInttype()))){
+                System.out.println("le firstplayercard est:" + j.getFirstPlayerPlayCard().toString());
+                while(!limite(j, j.playercard[1].get(index))){
                     index=r.nextInt(j.playercard[1].size());
                 }
                 return index;
             }
         }
-    return -1;
+        return -1;
     }
 
     public int IarandomGetCard(){
@@ -41,10 +41,11 @@ public class IArandom {
         }
         return index;
     }
+
     public boolean limite(Jeu j, Brand card) {
         boolean limite = false;
-        for (int i = 0; i < j.playercard[j.getPlayerNow()].size(); i++) {
-            if (Objects.equals(j.playercard[j.getPlayerNow()].get(i).getInttype(), j.getFirstPlayerPlayCard().getInttype())) {
+        for (int i = 0; i < j.playercard[1].size(); i++) {
+            if (Objects.equals(j.playercard[1].get(i).getInttype(), j.getFirstPlayerPlayCard().getInttype())) {
                 limite = true;
                 break;
             }

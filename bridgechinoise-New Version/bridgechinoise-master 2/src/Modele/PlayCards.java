@@ -82,7 +82,7 @@ public class PlayCards {
         switch (IA) {
             case 1:
                 IArandom iar = new IArandom(j);
-                index = iar.IArandomPlayerCard();
+                index = iar.IArandomPlayerCard(j);
                 break;
             case 2:
                 IASimple ias = new IASimple(j);
