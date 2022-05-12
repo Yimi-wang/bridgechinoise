@@ -16,14 +16,14 @@ public class StartHand {
     }
 
     void createPlayingCard() {
-        for(int i=1;i<=52;i++){
+        for(int i=0;i<52;i++){
             listCard.add(i);
         }
         Collections.shuffle(listCard); //随机打乱list数据
 
     }
     void stardHand(){
-        //n
+
         Brand card = null;
         createPlayingCard();//
         j.playercard = new LinkedList[2];//手牌
