@@ -18,7 +18,7 @@ public class PlayCards {
     }
 
 
-    void playerFirstPlayCard() {
+    Jeu playerFirstPlayCard() {
         //输入先手方想出的牌
         System.out.println("Maintenant c'est le tour de Jouer" + (j.playerNow + 1));
         System.out.println(("Donned le index que vous voulez jouer"));
@@ -26,16 +26,17 @@ public class PlayCards {
         int index = input.nextInt();
         //回退历史记录
         if (index == -1) {
-            h.returnHistoire();
-            return;
+            j = h.returnHistoire();
+            return j;
         }
         //进行出牌操作
         playCards(index);
         //打印先手方出的牌
         System.out.println((j.playerNow + 1) + "jouer" + j.FirstPlayerPlayCard.toString());
+        return j;
     }
 
-    void playerSecondePlayCard() {
+    Jeu playerSecondePlayCard() {
         //输入后手方想出的牌
         System.out.println("Maintenant c'est le tour de Jouer" + (j.playerNow + 1));
         System.out.println(("Donned le index que vous voulez jouer"));
@@ -43,13 +44,14 @@ public class PlayCards {
         int index = input.nextInt();
         //回退历史记录
         if (index == -1) {
-            h.returnHistoire();
-            return;
+            j = h.returnHistoire();
+            return j;
         }
         //进行出牌操作
         playCards(index);
         //打印后手方出的牌
         System.out.println((j.playerNow + 1) + "jouer" + j.SecondPlayerPlayerCard.toString());
+        return j;
     }
 
     void IAplaycard(Jeu j,int IA){

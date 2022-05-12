@@ -16,7 +16,7 @@ public class TakeCard {
     }
 
 
-    public void playerWinTakeCard(){
+    public Jeu playerWinTakeCard(){
         //赢家拿牌
         System.out.println("Maintenant c'est le tour de Jouer"+(j.Playerwin+1));
         System.out.println(("Donned le index que vous voulez prendre"));
@@ -25,8 +25,8 @@ public class TakeCard {
         int index = input.nextInt();
         //回退历史记录
         if(index==-1){
-            h.returnHistoire();
-            return;
+            j = h.returnHistoire();
+            return j;
         }
         //如果输入有误，重新输入
         while(j.pilescard[index].size()==0){
@@ -40,8 +40,9 @@ public class TakeCard {
         j.playercard[j.Playerwin].add(card);
         j.TurnProcess++;
         j.showCard();
+        return j;
     }
-    public void playerLoseTakeCard(){
+    public Jeu playerLoseTakeCard(){
         int a=j.Playerwin+1;
         if (a==2) a=0;
         System.out.println("Maintenant c'est le tour de Jouer"+(a+1));
@@ -51,8 +52,8 @@ public class TakeCard {
         int index = input.nextInt();
         //回退历史记录
         if(index==-1){
-            h.returnHistoire();
-            return;
+            j = h.returnHistoire();
+            return j;
         }
         //如果输入有误，重新输入
         while(j.pilescard[index].size()==0){
@@ -66,6 +67,7 @@ public class TakeCard {
         j.playercard[a].add(card);
         j.TurnProcess++;
         j.showCard();
+        return j;
     }
 
     public void IAtakecard(Jeu j, int IA){

@@ -158,7 +158,7 @@ public class GameProcess {
                 if (IA > 0 && j.getPlayerNow() == 1) {
                     playCards.IAplaycard(j,IA);
                 } else {
-                    playCards.playerFirstPlayCard();
+                    j = playCards.playerFirstPlayCard();
                 }
                 Jeu j1 = (Jeu) j.clone();
                 h.ajouteListDeHistoire(j1);
@@ -170,7 +170,7 @@ public class GameProcess {
                 if (IA > 0 && j.getPlayerNow() == 1) {
                     playCards.IAplaycard(j,IA);
                 } else {
-                    playCards.playerSecondePlayCard();
+                    j = playCards.playerSecondePlayCard();
                 }
                 //比较双方牌的大小
                 playCards.comparer();
@@ -194,7 +194,7 @@ public class GameProcess {
                     if (IA > 0 && j.playerNow == 1) {
                         takeCard.IAtakecard(j,IA);
                     } else {
-                        takeCard.playerWinTakeCard();
+                        j = takeCard.playerWinTakeCard();
                     }
                     Jeu j3 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j3);
@@ -209,7 +209,7 @@ public class GameProcess {
                     if (IA > 0 && j.playerNow == 1) {
                         takeCard.IAtakecard(j,IA);
                     } else {
-                        takeCard.playerLoseTakeCard();
+                        j = takeCard.playerLoseTakeCard();
                     }
                     j.numberOfRounds++;
                     Jeu j4 = (Jeu) j.clone();
@@ -218,7 +218,6 @@ public class GameProcess {
                     j.TurnProcess++;
                     j.numberOfRounds++;
                 }
-                //轮数增加
                 break;
         }
     }
