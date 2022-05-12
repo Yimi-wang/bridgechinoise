@@ -68,7 +68,14 @@ public class PlayCards {
     }
 
     void IAplaycard(Jeu j, int IA) {
+        System.out.println("numbre of Rounds est "+j.numberOfRounds);
         int index = 0;
+        j.showCard();
+        if (j.playerNow == 0) {
+            System.out.println("IA random");
+        } else {
+            System.out.println("IA simple");
+        }
         //选择IA
         switch (IA) {
             case 1:

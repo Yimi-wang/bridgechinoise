@@ -22,6 +22,7 @@ public class IArandom2 {
                 System.out.println("le index est:" + index);
                 while(limite(j,j.getFirstPlayerPlayCard())&&(!Objects.equals(j.playercard[0].get(index).getInttype(), j.getFirstPlayerPlayCard().getInttype()))){
                     index=r.nextInt(j.playercard[0].size());
+                    System.out.println("le index est:" + index);
                 }
                 return index;
             }

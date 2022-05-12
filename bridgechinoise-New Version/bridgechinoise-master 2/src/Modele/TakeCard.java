@@ -79,6 +79,12 @@ public class TakeCard {
     }
 
     public void IAtakecard(Jeu j, int IA) {
+        //System.out.println("numbre of Rounds est "+j.numberOfRounds);
+        if (j.playerNow == 0) {
+            System.out.println("IA random");
+        } else {
+            System.out.println("IA simple");
+        }
         int index = -1;
         switch (IA) {
             case 1:
@@ -100,7 +106,10 @@ public class TakeCard {
         j.pilescard[index].remove(0);
         j.playercard[j.playerNow].add(card);
         j.TurnProcess++;
-//        j.playercard[1].add(card);
+
+        if(j.playerNow!=j.Playerwin){
+            j.numberOfRounds++;
+        }
         j.showCard();
         Jeu j1 = (Jeu) j.clone();
         h.ajouteListDeHistoire(j1);
