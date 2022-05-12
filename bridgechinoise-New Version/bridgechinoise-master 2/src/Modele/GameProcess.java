@@ -25,8 +25,6 @@ public class GameProcess {
         j = new Jeu();
         a = new Atout(j);
         h = new Histoire(j);
-        playCards = new PlayCards(j, h);
-        takeCard = new TakeCard(j, h);
         j.playerFirst = 2;
         System.out.println("IA 0 : sans IA");
         System.out.println("IA 1 : random");
@@ -36,7 +34,6 @@ public class GameProcess {
         Scanner input = new Scanner(System.in);
         IA = input.nextInt();
         gameMode();
-
     }
 
     public void gameStart() {
@@ -51,6 +48,8 @@ public class GameProcess {
             a.determinerAtout();
             Jeu j0 = (Jeu) j.clone();
             h.ajouteListDeHistoire(j0);
+            Jeu j100 = (Jeu) j.clone();
+            h.ajouteListDeHistoire(j100);
 
         }
     }
@@ -83,8 +82,9 @@ public class GameProcess {
                 for (int i = 0; i < 3; i++) {
                     gameStart();
                     while (j.numberOfRounds != 26) {
-                        if (j.TurnProcess == 5)
+                        if (j.TurnProcess == 5) {
                             j.TurnProcess = 1;
+                        }
                         turnstart();
                     }
                     //turnstrat2();}
@@ -151,40 +151,28 @@ public class GameProcess {
     }
 
     public void turnstart() {
+        j = h.listDeHistoire.get(h.listDeHistoire.size() - 1);
+        playCards = new PlayCards(j, h);
+        takeCard = new TakeCard(j, h);
         switch (j.TurnProcess) {
             //先手方出牌
             case 1:
                 j.playerNow = j.playerFirst;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    playCards.IAplaycard(j,IA);
+                    playCards.IAplaycard(j, IA);
                 } else {
-                    j = playCards.playerFirstPlayCard();
+                    playCards.playerFirstPlayCard();
                 }
-                Jeu j1 = (Jeu) j.clone();
-                h.ajouteListDeHistoire(j1);
                 break;
             //后手方出牌
             case 2:
                 j.playerNow = j.playerNow + 1;
                 if (j.playerNow == 2) j.playerNow = 0;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    playCards.IAplaycard(j,IA);
+                    playCards.IAplaycard(j, IA);
                 } else {
-                    j = playCards.playerSecondePlayCard();
+                    playCards.playerSecondePlayCard();
                 }
-                //比较双方牌的大小
-                playCards.comparer();
-                //先后手改变
-                j.playerFirst = j.Playerwin;
-                //得分增加
-                if (j.Playerwin == 0) {
-                    j.Player1Score++;
-                } else {
-                    j.Player2Score++;
-                }
-                Jeu j2 = (Jeu) j.clone();
-                h.ajouteListDeHistoire(j2);
-                System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
                 break;
             //根据赢家，进行拿牌操作。
             //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
@@ -192,13 +180,12 @@ public class GameProcess {
                 if (j.numberOfRounds <= 15) {
                     j.playerNow = j.Playerwin;
                     if (IA > 0 && j.playerNow == 1) {
-                        takeCard.IAtakecard(j,IA);
+                        takeCard.IAtakecard(j, IA);
                     } else {
-                        j = takeCard.playerWinTakeCard();
+                        takeCard.playerWinTakeCard();
                     }
-                    Jeu j3 = (Jeu) j.clone();
-                    h.ajouteListDeHistoire(j3);
-                }else {
+
+                } else {
                     j.TurnProcess++;
                 }
                 break;
@@ -207,27 +194,24 @@ public class GameProcess {
                     j.playerNow = j.Playerwin + 1;
                     if (j.playerNow == 2) j.playerNow = 0;
                     if (IA > 0 && j.playerNow == 1) {
-                        takeCard.IAtakecard(j,IA);
+                        takeCard.IAtakecard(j, IA);
                     } else {
-                        j = takeCard.playerLoseTakeCard();
+                        takeCard.playerLoseTakeCard();
                     }
-                    j.numberOfRounds++;
-                    Jeu j4 = (Jeu) j.clone();
-                    h.ajouteListDeHistoire(j4);
-                }else{
+                } else {
                     j.TurnProcess++;
-                    j.numberOfRounds++;
                 }
                 break;
         }
     }
+
     public void reset() {
-        j.playerFirst=2;
-        j.numberOfRounds=0;
-        j.Playerwin=2;
-        j.Player1Score=0;
-        j.Player2Score=0;
-        j.TurnProcess=1;
+        j.playerFirst = 2;
+        j.numberOfRounds = 0;
+        j.Playerwin = 2;
+        j.Player1Score = 0;
+        j.Player2Score = 0;
+        j.TurnProcess = 1;
 
     }
 }

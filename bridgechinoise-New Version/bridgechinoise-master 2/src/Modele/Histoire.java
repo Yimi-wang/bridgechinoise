@@ -19,14 +19,15 @@ public class Histoire {
         System.out.println("put in histoire");
     }
 
-    public Jeu returnHistoire() {
+    public void returnHistoire() {
         if (j.numberOfRounds == 0) {
             //无法回退
             System.out.println("首回合");
         }
-        Jeu newJeu = listDeHistoire.get(listDeHistoire.size() - 2);
+
         listDeHistoire.remove(listDeHistoire.size()-1);
-        return newJeu;
+        listDeHistoire.remove(listDeHistoire.size()-1);
+        System.out.println("delete");
 
     }
 
