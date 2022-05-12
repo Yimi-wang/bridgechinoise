@@ -26,7 +26,7 @@ public class Atout {
                     }
                 }
             }
-            if (maxtop.getNum() > 9) {
+            if (maxtop.getNum() >= 9) {
                 j.atout = maxtop;
                 j.avoiratout = true;
             }

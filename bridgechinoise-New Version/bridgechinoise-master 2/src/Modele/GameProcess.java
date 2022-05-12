@@ -217,6 +217,74 @@ public class GameProcess {
                 break;
         }
     }
+
+    public void turnstart2() {
+        switch (j.TurnProcess) {
+            //先手方出牌
+            case 1:
+                j.playerNow = j.playerFirst;
+                if (IA > 0 && j.getPlayerNow() == 1) {
+                    playCards.IAplaycard(j,IA);
+                } else {
+                    playCards.playerFirstPlayCard();
+                }
+                Jeu j1 = (Jeu) j.clone();
+                h.ajouteListDeHistoire(j1);
+                break;
+            //后手方出牌
+            case 2:
+                j.playerNow = j.playerNow + 1;
+                if (j.playerNow == 2) j.playerNow = 0;
+                if (IA > 0 && j.getPlayerNow() == 1) {
+                    playCards.IAplaycard(j,IA);
+                } else {
+                    playCards.playerSecondePlayCard();
+                }
+                Jeu j2 = (Jeu) j.clone();
+                h.ajouteListDeHistoire(j2);
+                //比较双方牌的大小
+                playCards.comparer();
+                break;
+            //根据赢家，进行拿牌操作。
+            //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
+            case 3:
+                if (j.numberOfRounds <= 15) {
+                    j.playerNow = j.Playerwin;
+                    if (IA > 0 && j.playerNow == 1) {
+                        takeCard.IAtakecard(j,IA);
+                    } else {
+                        takeCard.playerWinTakeCard();
+                    }
+                    Jeu j3 = (Jeu) j.clone();
+                    h.ajouteListDeHistoire(j3);
+                }
+                break;
+            case 4:
+                if (j.numberOfRounds <= 15) {
+                    j.playerNow = j.Playerwin + 1;
+                    if (j.playerNow == 2) j.playerNow = 0;
+                    if (IA > 0 && j.playerNow == 1) {
+                        takeCard.IAtakecard(j,IA);
+                    } else {
+                        takeCard.playerLoseTakeCard();
+                    }
+                    Jeu j4 = (Jeu) j.clone();
+                    h.ajouteListDeHistoire(j4);
+                }
+                //轮数增加
+                j.numberOfRounds++;
+                //先后手改变
+                j.playerFirst = j.Playerwin;
+                //得分增加
+                if (j.Playerwin == 0) {
+                    j.Player1Score++;
+                } else {
+                    j.Player2Score++;
+                }
+                System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
+                break;
+        }
+    }
     public void reset() {
         j.playerFirst=2;
         j.numberOfRounds=0;
