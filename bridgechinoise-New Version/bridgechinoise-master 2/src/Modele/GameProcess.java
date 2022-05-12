@@ -156,7 +156,7 @@ public class GameProcess {
             case 1:
                 j.playerNow = j.playerFirst;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    playCards.IAplaycard(j,IA);
+                    playCards.IAplaycard(j, IA);
                 } else {
                     playCards.playerFirstPlayCard();
                 }
@@ -168,7 +168,7 @@ public class GameProcess {
                 j.playerNow = j.playerNow + 1;
                 if (j.playerNow == 2) j.playerNow = 0;
                 if (IA > 0 && j.getPlayerNow() == 1) {
-                    playCards.IAplaycard(j,IA);
+                    playCards.IAplaycard(j, IA);
                 } else {
                     playCards.playerSecondePlayCard();
                 }
@@ -183,12 +183,14 @@ public class GameProcess {
                 if (j.numberOfRounds <= 15) {
                     j.playerNow = j.Playerwin;
                     if (IA > 0 && j.playerNow == 1) {
-                        takeCard.IAtakecard(j,IA);
+                        takeCard.IAtakecard(j, IA);
                     } else {
                         takeCard.playerWinTakeCard();
                     }
                     Jeu j3 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j3);
+                } else {
+                    j.TurnProcess++;
                 }
                 break;
             case 4:
@@ -196,34 +198,50 @@ public class GameProcess {
                     j.playerNow = j.Playerwin + 1;
                     if (j.playerNow == 2) j.playerNow = 0;
                     if (IA > 0 && j.playerNow == 1) {
-                        takeCard.IAtakecard(j,IA);
+                        takeCard.IAtakecard(j, IA);
                     } else {
                         takeCard.playerLoseTakeCard();
                     }
+                    //轮数增加
+                    j.numberOfRounds++;
+                    //先后手改变
+                    j.playerFirst = j.Playerwin;
+                    //得分增加
+                    if (j.Playerwin == 0) {
+                        j.Player1Score++;
+                    } else {
+                        j.Player2Score++;
+                    }
+                    System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
+                    Jeu j4 = (Jeu) j.clone();
+                    h.ajouteListDeHistoire(j4);
+                } else {
+                    j.TurnProcess++;
+                    //轮数增加
+                    j.numberOfRounds++;
+                    //先后手改变
+                    j.playerFirst = j.Playerwin;
+                    //得分增加
+                    if (j.Playerwin == 0) {
+                        j.Player1Score++;
+                    } else {
+                        j.Player2Score++;
+                    }
+                    System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
                     Jeu j4 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j4);
                 }
-                //轮数增加
-                j.numberOfRounds++;
-                //先后手改变
-                j.playerFirst = j.Playerwin;
-                //得分增加
-                if (j.Playerwin == 0) {
-                    j.Player1Score++;
-                } else {
-                    j.Player2Score++;
-                }
-                System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
                 break;
         }
     }
+
     public void reset() {
-        j.playerFirst=2;
-        j.numberOfRounds=0;
-        j.Playerwin=2;
-        j.Player1Score=0;
-        j.Player2Score=0;
-        j.TurnProcess=1;
+        j.playerFirst = 2;
+        j.numberOfRounds = 0;
+        j.Playerwin = 2;
+        j.Player1Score = 0;
+        j.Player2Score = 0;
+        j.TurnProcess = 1;
 
     }
 }
