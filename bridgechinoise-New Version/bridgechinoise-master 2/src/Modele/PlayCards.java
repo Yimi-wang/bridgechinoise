@@ -58,8 +58,10 @@ public class PlayCards {
         //得分增加
         if (j.Playerwin == 0) {
             j.Player1Score++;
+            j.Player1totalScore++;
         } else {
             j.Player2Score++;
+            j.Player2totalScore++;
         }
         System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
         if (j.numberOfRounds > 15) j.numberOfRounds++;
@@ -107,8 +109,11 @@ public class PlayCards {
             //得分增加
             if (j.Playerwin == 0) {
                 j.Player1Score++;
+                j.Player1totalScore++;
+
             } else {
                 j.Player2Score++;
+                j.Player2totalScore++;
             }
             System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
             if (j.numberOfRounds > 15) j.numberOfRounds++;

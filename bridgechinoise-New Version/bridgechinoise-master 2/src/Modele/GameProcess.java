@@ -1,7 +1,5 @@
 package Modele;
 
-import Modele.Jeu;
-
 import java.util.Scanner;
 
 
@@ -115,13 +113,13 @@ public class GameProcess {
                             j.TurnProcess = 1;
                         turnstart();
                     }
-                    h.cleanHistoire();
                 }
                 if (j.Player1totalScore > j.Player2totalScore) {
                     System.out.println("Player 1 win!");
                 } else {
                     System.out.println("Player 2 win!");
                 }
+                h.cleanHistoire();
                 break;
             case 4:
                 System.out.println("Donner le score vous voulez jouer");
@@ -142,8 +140,9 @@ public class GameProcess {
                             break;
                         }
                     }
-                    h.cleanHistoire();
+
                 }
+                h.cleanHistoire();
                 break;
             case 5:
                 gameAI();
@@ -152,7 +151,8 @@ public class GameProcess {
         }
 
     }
-    public void gameAI(){
+
+    public void gameAI() {
         System.out.println("Gamemode 1 : BO1");
         System.out.println("Gamemode 2 : BO3");
         System.out.println("Gamemode 3 : Number de Game Fixe");
@@ -179,13 +179,12 @@ public class GameProcess {
             case 2:
                 for (int i = 0; i < 3; i++) {
                     gameStart();
-                    while (j.numberOfRounds != 26) {
+                    while (j.numberOfRounds != 27) {
                         if (j.TurnProcess == 5) {
                             j.TurnProcess = 1;
                         }
                         AIvsAI();
                     }
-                    //turnstrat2();}
                     //游戏结束，判断胜负手
                     if (j.Player1Score > j.Player2Score) {
                         j.Player1WinGame++;
@@ -207,18 +206,21 @@ public class GameProcess {
                 int nGame = input.nextInt();
                 for (int i = 0; i < nGame; i++) {
                     gameStart();
-                    while (j.numberOfRounds != 26) {
+                    while (j.numberOfRounds != 27) {
                         if (j.TurnProcess == 5)
                             j.TurnProcess = 1;
                         AIvsAI();
                     }
-                    h.cleanHistoire();
+                    System.out.println("player 1 total score est " + j.Player1totalScore);
+                    System.out.println("player 2 total score est " + j.Player2totalScore);
+
                 }
                 if (j.Player1totalScore > j.Player2totalScore) {
                     System.out.println("Player 1 win!");
                 } else {
                     System.out.println("Player 2 win!");
                 }
+                h.cleanHistoire();
                 break;
             case 4:
                 System.out.println("Donner le score vous voulez jouer");
@@ -239,15 +241,17 @@ public class GameProcess {
                             break;
                         }
                     }
-                    h.cleanHistoire();
                 }
+                System.out.println("player 1 total score est " + j.Player1totalScore);
+                System.out.println("player 2 total score est " + j.Player2totalScore);
+                h.cleanHistoire();
                 break;
         }
     }
 
 
     public void turnstart() {
-        j = h.listDeHistoire.get(h.listDeHistoire.size()-1);
+        j = h.listDeHistoire.get(h.listDeHistoire.size() - 1);
         playCards = new PlayCards(j, h);
         takeCard = new TakeCard(j, h);
         switch (j.TurnProcess) {
