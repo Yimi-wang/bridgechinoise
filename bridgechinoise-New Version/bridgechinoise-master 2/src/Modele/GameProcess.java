@@ -172,10 +172,19 @@ public class GameProcess {
                 } else {
                     playCards.playerSecondePlayCard();
                 }
-                Jeu j2 = (Jeu) j.clone();
-                h.ajouteListDeHistoire(j2);
                 //比较双方牌的大小
                 playCards.comparer();
+                //先后手改变
+                j.playerFirst = j.Playerwin;
+                //得分增加
+                if (j.Playerwin == 0) {
+                    j.Player1Score++;
+                } else {
+                    j.Player2Score++;
+                }
+                Jeu j2 = (Jeu) j.clone();
+                h.ajouteListDeHistoire(j2);
+                System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
                 break;
             //根据赢家，进行拿牌操作。
             //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
@@ -189,6 +198,8 @@ public class GameProcess {
                     }
                     Jeu j3 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j3);
+                }else {
+                    j.TurnProcess++;
                 }
                 break;
             case 4:
@@ -202,18 +213,11 @@ public class GameProcess {
                     }
                     Jeu j4 = (Jeu) j.clone();
                     h.ajouteListDeHistoire(j4);
+                }else{
+                    j.TurnProcess++;
+                    j.numberOfRounds++;
                 }
                 //轮数增加
-                j.numberOfRounds++;
-                //先后手改变
-                j.playerFirst = j.Playerwin;
-                //得分增加
-                if (j.Playerwin == 0) {
-                    j.Player1Score++;
-                } else {
-                    j.Player2Score++;
-                }
-                System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
                 break;
         }
     }
