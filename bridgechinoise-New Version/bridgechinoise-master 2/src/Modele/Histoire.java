@@ -16,7 +16,7 @@ public class Histoire {
 
     public void ajouteListDeHistoire(Jeu j) {
         listDeHistoire.add(j);
-
+        System.out.println("put in histoire");
     }
 
     public void returnHistoire() {
