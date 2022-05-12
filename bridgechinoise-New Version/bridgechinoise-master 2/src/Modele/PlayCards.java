@@ -93,6 +93,8 @@ public class PlayCards {
         }
         playCards(index);
         //打印IA出的牌
+        Jeu j2 = (Jeu) j.clone();
+        h.ajouteListDeHistoire(j2);
 
     }
 

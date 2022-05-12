@@ -102,6 +102,8 @@ public class TakeCard {
         j.TurnProcess++;
 //        j.playercard[1].add(card);
         j.showCard();
+        Jeu j1 = (Jeu) j.clone();
+        h.ajouteListDeHistoire(j1);
     }
 
 }
