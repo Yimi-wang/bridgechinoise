@@ -3,7 +3,7 @@ package Modele;
 import java.io.*;
 import java.util.Scanner;
 
-public class SaveLoad implements  java.io.Serializable{
+public class SaveLoad implements java.io.Serializable {
     GameProcess GameProcess = new GameProcess();
 
     public SaveLoad() {
@@ -24,7 +24,7 @@ public class SaveLoad implements  java.io.Serializable{
         System.out.println("Donner le nom pour save");
         Scanner input = new Scanner(System.in);
         String Save = input.nextLine();
-        Save=Save.concat(".ser");
+        Save = Save.concat(".ser");
 
         try {
             FileOutputStream fileOut = new FileOutputStream(Save);
@@ -48,19 +48,17 @@ public class SaveLoad implements  java.io.Serializable{
             System.out.println("Donner le nom pour load");
             Scanner input = new Scanner(System.in);
             String Load = input.nextLine();
-            Load=Load.concat(".ser");
+            Load = Load.concat(".ser");
             //读取对象
             FileInputStream fileIn = new FileInputStream(Load);
             ObjectInputStream objIn = new ObjectInputStream(fileIn);
 
-            h  = (Histoire) objIn.readObject();
+            h = (Histoire) objIn.readObject();
             objIn.close();
-        } catch(IOException i)
-        {
+        } catch (IOException i) {
             i.printStackTrace();
             return;
-        }catch(ClassNotFoundException c)
-        {
+        } catch (ClassNotFoundException c) {
             System.out.println("class not found");
             c.printStackTrace();
             return;
