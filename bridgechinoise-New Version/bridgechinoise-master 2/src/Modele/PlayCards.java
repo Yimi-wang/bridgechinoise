@@ -11,6 +11,7 @@ public class PlayCards {
 
     Jeu j;
     Histoire h;
+    SaveLoad SL = new SaveLoad();
 
     public PlayCards(Jeu j, Histoire h) {
         this.j = j;
@@ -27,6 +28,11 @@ public class PlayCards {
         //回退历史记录
         if (index == -1) {
             h.returnHistoire();
+            return;
+        }
+        //保存读取
+        if(index==-2){
+            SL.saveorload(h);
             return;
         }
         //进行出牌操作
@@ -46,6 +52,11 @@ public class PlayCards {
         //回退历史记录
         if (index == -1) {
             h.returnHistoire();
+            return;
+        }
+        //保存读取
+        if(index==-2){
+            SL.saveorload(h);
             return;
         }
         //进行出牌操作

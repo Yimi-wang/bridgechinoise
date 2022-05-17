@@ -24,7 +24,9 @@ public class Jeu implements Cloneable, Serializable {
     public int Player2WinGame;
     public int TurnProcess;
     //存储游戏模式等信息。
-    public int Gamemode;
+    public int GameMode;
+    public int GameInformation;
+    public int Game_ind;
 
     public Jeu() {
         numberOfGames = 0;
