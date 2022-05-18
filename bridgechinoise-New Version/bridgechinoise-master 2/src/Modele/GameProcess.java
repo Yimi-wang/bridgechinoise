@@ -21,6 +21,8 @@ public class GameProcess {
         player2 = 0;
         IA = 0;
         j = new Jeu();
+        a = new Atout(j);
+        h = new Histoire(j);
 
         j.playerFirst = 2;
         System.out.println("IA 0 : sans IA");
