@@ -1,5 +1,8 @@
 package Modele;
 
+import Web.GameStartInternet;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -12,11 +15,11 @@ public class GameProcess {
     Histoire h;
     PlayCards playCards;
     TakeCard takeCard;
-
+    GameStartInternet GSI = new GameStartInternet();
     public GameProcess() {
     }
 
-    public void creatJeu() {
+    public void creatJeu() throws IOException, ClassNotFoundException {
         player1 = 0;
         player2 = 0;
         IA = 0;
@@ -34,13 +37,14 @@ public class GameProcess {
         Scanner input = new Scanner(System.in);
         IA = input.nextInt();
         if(IA==4){
+            GSI.choseSorC();
             return;
         }
         gameMode();
     }
 
     public void gameStart(Jeu j, Histoire h) {
-        reset();
+        j.reset();
         if (j.numberOfGames == 0) j.numberOfGames = 1;//如果游戏刚开始的话
         if (j.playerFirst == 2) {//如果本轮该开始的话，判断哪个玩家先开始游戏。
             j.playerFirst = (j.numberOfGames - 1) % 2;
@@ -320,17 +324,6 @@ public class GameProcess {
                 break;
         }
     }
-
-    public void reset() {
-        j.playerFirst = 2;
-        j.numberOfRounds = 0;
-        j.Playerwin = 1100000;
-        j.Player1Score = 0;
-        j.Player2Score = 0;
-        j.TurnProcess = 1;
-
-    }
-
 
     public void AIvsAI() {
         j = h.listDeHistoire.get(h.listDeHistoire.size() - 1);

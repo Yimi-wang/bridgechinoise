@@ -12,7 +12,7 @@ public class Serveur {
     Jeu j;
     ServerSocket serverSocket;
     Histoire h;
-    GameProcess gameprocess = new GameProcess();
+    //GameProcess gameprocess = new GameProcess();
     public Serveur(){
     }
 
@@ -30,6 +30,7 @@ public class Serveur {
         try {
             serverSocket = new ServerSocket(8080);
             Socket socket = serverSocket.accept();
+            System.out.println("connect succee");
             objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectInput = new ObjectInputStream(socket.getInputStream());
 
@@ -52,7 +53,7 @@ public class Serveur {
             j.GameMode = gamemode;
             switch (gamemode) {
                 case 1:
-                    gameprocess.gameStart(j,h);
+                    gameStart(j,h);
                     //进行26轮游戏（因为一共52张牌）
                     while (j.numberOfRounds != 26) {
                         if (j.TurnProcess == 5)
@@ -69,7 +70,7 @@ public class Serveur {
                 case 2:
                     for (int i = 0; i < 3; i++) {
                         j.Game_ind = i;
-                        gameprocess.gameStart(j,h);
+                        gameStart(j,h);
                         while (j.numberOfRounds != 26) {
                             if (j.TurnProcess == 5)
                                 j.TurnProcess = 1;
@@ -98,7 +99,7 @@ public class Serveur {
                     j.GameInformation = nGame;
                     for (int i = 0; i < nGame; i++) {
                         j.Game_ind=i;
-                        gameprocess.gameStart(j,h);
+                        gameStart(j,h);
                         while (j.numberOfRounds != 26) {
                             if (j.TurnProcess == 5)
                                 j.TurnProcess = 1;
@@ -120,7 +121,7 @@ public class Serveur {
                     int ScoreWin = input.nextInt();
                     j.GameInformation = ScoreWin;
                     while (j.Player1totalScore < ScoreWin && j.Player2totalScore < ScoreWin) {
-                        gameprocess.gameStart(j,h);
+                        gameStart(j,h);
                         while (j.numberOfRounds != 26) {
                             if (j.TurnProcess == 5)
                                 j.TurnProcess = 1;
@@ -203,6 +204,25 @@ public class Serveur {
                     j.TurnProcess++;
                 }
                 break;
+        }
+    }
+
+    public void gameStart(Jeu j, Histoire h) {
+        j.reset();
+        if (j.numberOfGames == 0) j.numberOfGames = 1;//如果游戏刚开始的话
+        if (j.playerFirst == 2) {//如果本轮该开始的话，判断哪个玩家先开始游戏。
+            j.playerFirst = (j.numberOfGames - 1) % 2;
+            j.numberOfRounds = 1;
+            //进行发牌以及牌堆的实现
+            StartHand startHand = new StartHand(j);
+            startHand.stardHand();
+            Atout a = new Atout(j);
+            a.determinerAtout();
+            Jeu j0 = (Jeu) j.clone();
+            h.ajouteListDeHistoire(j0);
+            Jeu j100 = (Jeu) j.clone();
+            h.ajouteListDeHistoire(j100);
+
         }
     }
     }

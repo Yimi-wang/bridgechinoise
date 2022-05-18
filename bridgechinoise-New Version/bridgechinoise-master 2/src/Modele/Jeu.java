@@ -177,4 +177,14 @@ public class Jeu implements Cloneable, Serializable {
     public void setAtout(Brand atout) {
         this.atout = atout;
     }
+
+    public void reset() {
+        playerFirst = 2;
+        numberOfRounds = 0;
+        Playerwin = 1100000;
+        Player1Score = 0;
+        Player2Score = 0;
+        TurnProcess = 1;
+
+    }
 }

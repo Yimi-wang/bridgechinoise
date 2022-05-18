@@ -9,7 +9,7 @@ public class Atout {
         this.j = j;
     }
 
-    void determinerAtout() {
+    public void determinerAtout() {
         //在前15轮才有王牌，后面没有王牌
         if (j.numberOfRounds <= 15) {
             Brand maxtop = new Brand(Type.trefle, 1, 3);

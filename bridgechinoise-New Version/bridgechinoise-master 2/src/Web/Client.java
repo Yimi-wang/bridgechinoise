@@ -23,6 +23,7 @@ public class Client {
         ObjectInput objectInput = null;
         try {
             socket = new Socket(ipadresse, 8080);
+            System.out.println("connect success");
             objectInput = new ObjectInputStream(socket.getInputStream());
             objectOutput = new ObjectOutputStream(socket.getOutputStream());
         } catch (Exception e) {

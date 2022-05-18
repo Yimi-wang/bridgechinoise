@@ -24,7 +24,7 @@ public class StartHand {
 
     }
 
-    void stardHand() {
+    public void stardHand() {
 
         Brand card = null;
         createPlayingCard();//
