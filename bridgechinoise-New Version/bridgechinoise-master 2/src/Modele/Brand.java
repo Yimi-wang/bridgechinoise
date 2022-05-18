@@ -1,6 +1,6 @@
 package Modele;
 
-public class Brand implements Cloneable {
+public class Brand implements Cloneable, java.io.Serializable {
     // 扑克牌的类型 ：
     private Type type;
     private final Integer inttype;
