@@ -8,8 +8,8 @@ public class Jeu implements Cloneable, Serializable {
     public LinkedList<Brand>[] pilescard;//=new List[6];//牌堆//建立了一个tableau 的list pilescard[0]是第一个牌堆，etc
     public int numberOfGames;//回合数
     public int numberOfRounds;//轮数
-    int playerFirst;//哪个玩家先手，0代表玩家A。1代表玩家B
-    int playerNow;
+    public int playerFirst;//哪个玩家先手，0代表玩家A。1代表玩家B
+    public int playerNow;
     public Brand atout;
     public Boolean avoiratout;
 
@@ -27,6 +27,7 @@ public class Jeu implements Cloneable, Serializable {
     public int GameMode;
     public int GameInformation;
     public int Game_ind;
+
 
     public Jeu() {
         numberOfGames = 0;

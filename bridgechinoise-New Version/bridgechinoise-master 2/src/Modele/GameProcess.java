@@ -21,20 +21,23 @@ public class GameProcess {
         player2 = 0;
         IA = 0;
         j = new Jeu();
-        a = new Atout(j);
-        h = new Histoire(j);
+
         j.playerFirst = 2;
         System.out.println("IA 0 : sans IA");
         System.out.println("IA 1 : random");
         System.out.println("IA 2 : IA simple");
         System.out.println("IA 3 : QAQ");
+        System.out.println("4 : web");
         System.out.println("Donner le 'IA' que vous voulez jouer");
         Scanner input = new Scanner(System.in);
         IA = input.nextInt();
+        if(IA==4){
+            return;
+        }
         gameMode();
     }
 
-    public void gameStart() {
+    public void gameStart(Jeu j, Histoire h) {
         reset();
         if (j.numberOfGames == 0) j.numberOfGames = 1;//如果游戏刚开始的话
         if (j.playerFirst == 2) {//如果本轮该开始的话，判断哪个玩家先开始游戏。
@@ -59,13 +62,14 @@ public class GameProcess {
         System.out.println("Gamemode 3 : Number de Game Fixe");
         System.out.println("Gamemode 4 : Score Fixe");
         System.out.println("Gamemode 5 : AI random VS AI simple");
+        System.out.println("Gamemode 6 : Web");
         System.out.println("Donner le 'gamemode' que vous voulez jouer");
         Scanner input = new Scanner(System.in);
         int gamemode = input.nextInt();
         j.GameMode = gamemode;
         switch (gamemode) {
             case 1:
-                gameStart();
+                gameStart(j,h);
                 //进行26轮游戏（因为一共52张牌）
                 while (j.numberOfRounds != 26) {
                     if (j.TurnProcess == 5)
@@ -82,7 +86,7 @@ public class GameProcess {
             case 2:
                 for (int i = 0; i < 3; i++) {
                     j.Game_ind = i;
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 26) {
                         if (j.TurnProcess == 5) {
                             j.TurnProcess = 1;
@@ -112,7 +116,7 @@ public class GameProcess {
                 j.GameInformation = nGame;
                 for (int i = 0; i < nGame; i++) {
                     j.Game_ind=i;
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 26) {
                         if (j.TurnProcess == 5)
                             j.TurnProcess = 1;
@@ -132,7 +136,7 @@ public class GameProcess {
                 int ScoreWin = input.nextInt();
                 j.GameInformation = ScoreWin;
                 while (j.Player1totalScore < ScoreWin && j.Player2totalScore < ScoreWin) {
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 26) {
                         if (j.TurnProcess == 5)
                             j.TurnProcess = 1;
@@ -171,7 +175,7 @@ public class GameProcess {
         int gamemode = input.nextInt();
         switch (gamemode) {
             case 1:
-                gameStart();
+                gameStart(j,h);
                 //进行26轮游戏（因为一共52张牌）
                 while (j.numberOfRounds != 26) {
                     if (j.TurnProcess == 5)
@@ -187,7 +191,7 @@ public class GameProcess {
                 break;
             case 2:
                 for (int i = 0; i < 3; i++) {
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 27) {
                         if (j.TurnProcess == 5) {
                             j.TurnProcess = 1;
@@ -214,7 +218,7 @@ public class GameProcess {
                 input = new Scanner(System.in);
                 int nGame = input.nextInt();
                 for (int i = 0; i < nGame; i++) {
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 27) {
                         if (j.TurnProcess == 5)
                             j.TurnProcess = 1;
@@ -236,7 +240,7 @@ public class GameProcess {
                 input = new Scanner(System.in);
                 int ScoreWin = input.nextInt();
                 while (j.Player1totalScore < ScoreWin && j.Player2totalScore < ScoreWin) {
-                    gameStart();
+                    gameStart(j,h);
                     while (j.numberOfRounds != 26) {
                         if (j.TurnProcess == 5)
                             j.TurnProcess = 1;
