@@ -2,8 +2,8 @@ package Web;
 
 import Modele.Histoire;
 import Modele.Jeu;
-import Modele.PlayCards;
-import Modele.TakeCard;
+import Controleur.PlayCards;
+import Controleur.TakeCard;
 
 import java.io.*;
 import java.net.Socket;

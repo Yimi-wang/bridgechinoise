@@ -1,5 +1,7 @@
 package Modele;
 
+import Controleur.PlayCards;
+import Controleur.TakeCard;
 import Web.GameStartInternet;
 
 import java.io.IOException;
@@ -343,7 +345,7 @@ public class GameProcess {
             case 1:
                 j.playerNow = j.playerFirst;
                 if (j.getPlayerNow() == 1) {
-                    playCards.IAplaycard(j, IA);
+                    playCards. IAplaycard(j, IA);
                 } else {
                     playCards.IAplaycard(j, 3);
                 }

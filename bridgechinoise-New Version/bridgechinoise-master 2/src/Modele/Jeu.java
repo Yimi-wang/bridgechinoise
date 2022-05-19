@@ -13,8 +13,8 @@ public class Jeu implements Cloneable, Serializable {
     public Brand atout;
     public Boolean avoiratout;
 
-    Brand FirstPlayerPlayCard;
-    Brand SecondPlayerPlayerCard;
+    public Brand FirstPlayerPlayCard;
+    public Brand SecondPlayerPlayerCard;
     public int Playerwin;
     public int Player1Score;
     public int Player2Score;
@@ -87,7 +87,7 @@ public class Jeu implements Cloneable, Serializable {
         }
     }
 
-    void showCard() {
+    public void showCard() {
         //将牌按照花色和大小排序
         handCardSorting();
         System.out.println("player 1 card");

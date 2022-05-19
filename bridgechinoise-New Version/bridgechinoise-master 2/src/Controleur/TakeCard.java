@@ -1,8 +1,11 @@
-package Modele;
+package Controleur;
 
 import Controleur.IASimple;
 import Controleur.IArandom;
 import Controleur.IArandom2;
+import Modele.Brand;
+import Modele.Histoire;
+import Modele.Jeu;
 
 import java.util.Scanner;
 

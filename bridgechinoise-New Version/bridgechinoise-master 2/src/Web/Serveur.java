@@ -1,5 +1,7 @@
 package Web;
 
+import Controleur.PlayCards;
+import Controleur.TakeCard;
 import Modele.*;
 
 
