@@ -1,10 +1,14 @@
-package Modele;
+package Controleur;
+
+import Modele.GameProcess;
+import Modele.Histoire;
+import Modele.Jeu;
 
 import java.io.*;
 import java.util.Scanner;
 
 public class SaveLoad implements java.io.Serializable {
-    GameProcess GameProcess = new GameProcess();
+    Modele.GameProcess GameProcess = new GameProcess();
 
     public SaveLoad() {
     }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 
 public class Histoire implements Serializable {
-    LinkedList<Jeu> listDeHistoire;
+    public LinkedList<Jeu> listDeHistoire;
 
     public Jeu j;
 
