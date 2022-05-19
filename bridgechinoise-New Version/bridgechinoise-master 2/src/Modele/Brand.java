@@ -6,6 +6,7 @@ public class Brand implements Cloneable, java.io.Serializable {
     private final Integer inttype;
     // 扑克牌的大小
     private Integer num;
+    public Integer id;
 
     // 直接创建一个构造器用来 创建每一张扑克牌
     public Brand(Type type, Integer num, Integer inttype) {
@@ -13,6 +14,7 @@ public class Brand implements Cloneable, java.io.Serializable {
         this.type = type;
         this.num = num;
         this.inttype = inttype;
+        this.id=num*(inttype+1);
     }
 
     public Type getType() {
