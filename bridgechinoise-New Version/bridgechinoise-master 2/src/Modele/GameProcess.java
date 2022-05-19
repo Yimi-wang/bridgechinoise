@@ -282,6 +282,8 @@ public class GameProcess {
                 } else {
                     playCards.playerFirstPlayCard();
                 }
+                Jeu j1 = (Jeu) j.clone();
+                h.ajouteListDeHistoire(j1);
                 break;
             //后手方出牌
             case 2:
@@ -292,6 +294,8 @@ public class GameProcess {
                 } else {
                     playCards.playerSecondePlayCard();
                 }
+                Jeu j2 = (Jeu) j.clone();
+                h.ajouteListDeHistoire(j2);
                 break;
             //根据赢家，进行拿牌操作。
             //if条件是当游戏在15轮内才进行拿牌操作。因为牌堆一共30张牌，第十六轮没有牌可以拿。
@@ -305,6 +309,8 @@ public class GameProcess {
                         takeCard.playerWinTakeCard();
                     }
 
+                    Jeu j3 = (Jeu) j.clone();
+                    h.ajouteListDeHistoire(j3);
                 } else {
                     j.TurnProcess++;
                 }
@@ -318,9 +324,12 @@ public class GameProcess {
                     } else {
                         takeCard.playerLoseTakeCard();
                     }
+                    Jeu j4 = (Jeu) j.clone();
+                    h.ajouteListDeHistoire(j4);
                 } else {
                     j.TurnProcess++;
                 }
+
                 break;
         }
     }

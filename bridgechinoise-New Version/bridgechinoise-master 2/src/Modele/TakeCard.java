@@ -40,8 +40,7 @@ public class TakeCard {
         j.playercard[j.Playerwin].add(card);
         j.TurnProcess++;
         j.showCard();
-        Jeu j3 = (Jeu) j.clone();
-        h.ajouteListDeHistoire(j3);
+
     }
 
     public void playerLoseTakeCard() {
@@ -73,8 +72,8 @@ public class TakeCard {
         if (j.TurnProcess == 5) {
             j.TurnProcess = 1;
         }
-        Jeu j4 = (Jeu) j.clone();
-        h.ajouteListDeHistoire(j4);
+//        Jeu j4 = (Jeu) j.clone();
+//        h.ajouteListDeHistoire(j4);
 
     }
 
@@ -111,8 +110,6 @@ public class TakeCard {
             j.numberOfRounds++;
         }
         j.showCard();
-        Jeu j1 = (Jeu) j.clone();
-        h.ajouteListDeHistoire(j1);
     }
 
 }

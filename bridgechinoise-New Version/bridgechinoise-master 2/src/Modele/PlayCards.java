@@ -39,8 +39,6 @@ public class PlayCards {
         playCards(index);
         //打印先手方出的牌
         System.out.println((j.playerNow + 1) + "jouer" + j.FirstPlayerPlayCard.toString());
-        Jeu j1 = (Jeu) j.clone();
-        h.ajouteListDeHistoire(j1);
     }
 
     public void playerSecondePlayCard() {
@@ -76,8 +74,6 @@ public class PlayCards {
         }
         System.out.println(("Player 1 score est " + j.Player1Score + ". Player 2 Score est " + j.Player2Score));
         if (j.numberOfRounds > 15) j.numberOfRounds++;
-        Jeu j2 = (Jeu) j.clone();
-        h.ajouteListDeHistoire(j2);
     }
 
     void IAplaycard(Jeu j, int IA) {

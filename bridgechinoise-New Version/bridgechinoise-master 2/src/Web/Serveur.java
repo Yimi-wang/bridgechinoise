@@ -9,10 +9,9 @@ import java.util.Scanner;
 
 
 public class Serveur {
-    Jeu j;
+    Jeu j=new Jeu();
     ServerSocket serverSocket;
-    Histoire h;
-    //GameProcess gameprocess = new GameProcess();
+    Histoire h= new Histoire(j);
     public Serveur(){
     }
 
@@ -50,7 +49,7 @@ public class Serveur {
             System.out.println("Donner le 'gamemode' que vous voulez jouer");
             Scanner input = new Scanner(System.in);
             int gamemode = input.nextInt();
-            j.GameMode = gamemode;
+            this.j.GameMode = gamemode;
             switch (gamemode) {
                 case 1:
                     gameStart(j,h);
@@ -219,7 +218,7 @@ public class Serveur {
             Atout a = new Atout(j);
             a.determinerAtout();
             Jeu j0 = (Jeu) j.clone();
-            h.ajouteListDeHistoire(j0);
+            this.h.ajouteListDeHistoire(j0);
             Jeu j100 = (Jeu) j.clone();
             h.ajouteListDeHistoire(j100);
 
