@@ -20,13 +20,14 @@ public class GameProcess {
     TakeCard takeCard;
     GameStartInternet GSI = new GameStartInternet();
     public GameProcess() {
+        j = new Jeu();
     }
 
     public void creatJeu() throws IOException, ClassNotFoundException {
         player1 = 0;
         player2 = 0;
         IA = 0;
-        j = new Jeu();
+        //j = new Jeu();
         a = new Atout(j);
         h = new Histoire(j);
 
@@ -390,6 +391,10 @@ public class GameProcess {
                 }
                 break;
         }
+    }
+
+    public Jeu getJ() {
+        return j;
     }
 }
 
