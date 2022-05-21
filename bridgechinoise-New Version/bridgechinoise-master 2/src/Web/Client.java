@@ -126,8 +126,11 @@ public class Client {
                     playCards.playerFirstPlayCard();
                     objectOutput.writeObject(j);
                     objectOutput.flush();
+                    System.out.println("fa song cheng gong ");
+
                 } else {
                     this.j=(Jeu) objectInput.readObject();
+                    System.out.println("jie shou cheng gong ");
                 }
                 break;
             //后手方出牌
@@ -138,8 +141,11 @@ public class Client {
                     playCards.playerSecondePlayCard();
                     objectOutput.writeObject(j);
                     objectOutput.flush();
+                    System.out.println("fa song cheng gong ");
+
                 } else {
                     this.j=(Jeu) objectInput.readObject();
+                    System.out.println("jie shou cheng gong ");
                 }
                 break;
             //根据赢家，进行拿牌操作。
@@ -152,8 +158,10 @@ public class Client {
                         takeCard.playerWinTakeCard();
                         objectOutput.writeObject(j);
                         objectOutput.flush();
+                        System.out.println("fa song cheng gong ");
                     } else {
                         this.j=(Jeu) objectInput.readObject();
+                        System.out.println("jie shou cheng gong ");
                     }
 
                 } else {
@@ -168,13 +176,18 @@ public class Client {
                         takeCard.playerLoseTakeCard();
                         objectOutput.writeObject(j);
                         objectOutput.flush();
+                        System.out.println("fa song cheng gong ");
+
                     } else {
                         this.j=(Jeu) objectInput.readObject();
+                        System.out.println("jie shou cheng gong ");
                     }
                 } else {
                     j.TurnProcess++;
                 }
                 break;
+            default:
+                System.out.println("turn erreur");
         }
     }
 
