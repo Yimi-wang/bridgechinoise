@@ -43,8 +43,8 @@ public class AdapteurStarter implements ActionListener {
 
         }
         String NB = this.interIni.NBText.getText();
-        j.GameInformation=Integer.parseInt(NB);
-        System.out.println("gamemode est " + j.GameMode);
+        if(j.GameMode>2) {j.GameInformation=Integer.parseInt(NB);
+        System.out.println("gamemode est " + j.GameMode);}
 
         if (this.isAIGame) {
             int aiType = 0;

@@ -139,7 +139,7 @@ public class IASimple {
 //    }
     public int IASimpleTakeCard() {
         //如果游戏有王牌且牌堆有王牌的话
-        Brand b = new Brand(Type.pique, 1, 0);
+        Brand b = new Brand(Type.pique, 0, 0);
         int index = -1;
         if (j.avoiratout) {
             for (int i = 0; i <= 5; i++) {

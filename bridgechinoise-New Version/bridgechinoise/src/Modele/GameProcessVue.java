@@ -118,6 +118,7 @@ public class GameProcessVue {
                 break;
             case 4:
                 int ScoreWin=j.GameInformation;
+                System.out.println(ScoreWin);
                 System.out.println(j.Player1totalScore);
                 while (j.Player1totalScore < ScoreWin && j.Player2totalScore < ScoreWin) {
                     System.out.println(j.Player1totalScore);
