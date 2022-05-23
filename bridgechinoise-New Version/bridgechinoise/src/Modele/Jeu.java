@@ -13,6 +13,7 @@ public class Jeu implements Cloneable, Serializable {
     public Brand atout;
     public Boolean avoiratout;
 
+    public int AI;
     public Brand FirstPlayerPlayCard;
     public Brand SecondPlayerPlayerCard;
     public int Playerwin;
