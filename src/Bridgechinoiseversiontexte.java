@@ -3,7 +3,7 @@ import Modele.GameProcess;
 
 import java.io.IOException;
 
-public class Bridgechinoise {
+public class Bridgechinoiseversiontexte {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         GameProcess gameProcess = new GameProcess();
