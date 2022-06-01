@@ -5,6 +5,7 @@ import Controleur.PlayCardsVue;
 import Controleur.TakeCardVue;
 import Modele.*;
 import global.ConfigurationSetting;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -182,7 +184,13 @@ public class GamePaneIA extends JPanel {
                             repaint();
 //                            try { TimeUnit.SECONDS.sleep(2);
 //                            } catch (InterruptedException ie){}
-                            estFINI(j, ifjgp.h);
+                            try {
+                                estFINI(j, ifjgp.h);
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (JavaLayerException ex) {
+                                throw new RuntimeException(ex);
+                            }
                             //玩家赢，什么事情都不用做
                             //玩家输，有卡可以拿，机器人拿卡
                             if(j.Playerwin==1&&j.numberOfRounds<16){
@@ -203,7 +211,13 @@ public class GamePaneIA extends JPanel {
                         //玩家后手出牌
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            estFINI(j, ifjgp.h);
+                            try {
+                                estFINI(j, ifjgp.h);
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (JavaLayerException ex) {
+                                throw new RuntimeException(ex);
+                            }
                             //玩家输，有牌可以拿
                             if(j.Playerwin==1&&j.numberOfRounds<16){
                                 try { TimeUnit.SECONDS.sleep(2);
@@ -221,7 +235,13 @@ public class GamePaneIA extends JPanel {
                         drawCHANGFANGXING(j);
                         repaint();
                         ifjgp.selected = null;
-                        estFINI(j,h);
+                        try {
+                            estFINI(j,h);
+                        } catch (FileNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (JavaLayerException ex) {
+                            throw new RuntimeException(ex);
+                        }
 
 
                     }
@@ -722,7 +742,7 @@ public class GamePaneIA extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h) {
+    public void estFINI(Jeu j, Histoire h) throws FileNotFoundException, JavaLayerException {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -818,7 +838,7 @@ public class GamePaneIA extends JPanel {
         }
     }
 
-    public void surrenderthisgame() {
+    public void surrenderthisgame() throws FileNotFoundException, JavaLayerException {
         if (j.playerNow == 0) {
             j.Player2Score +=(26 - j.numberOfRounds+1);
             j.Player2totalScore += (26 - j.numberOfRounds+1);
@@ -840,7 +860,7 @@ public class GamePaneIA extends JPanel {
 
     }
 
-    public void wingamewindow(Jeu j, int i, int winner) {
+    public void wingamewindow(Jeu j, int i, int winner) throws FileNotFoundException, JavaLayerException {
         if (i == 1) {
             String winmassage;
             if(winner==1)

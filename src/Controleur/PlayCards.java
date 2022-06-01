@@ -102,8 +102,8 @@ public class PlayCards {
                 index = ias.IASimplePlayerCard();
                 break;
             case 3:
-                IArandom2 iar2 = new IArandom2(j);
-                index = iar2.IArandomPlayerCard2(j);
+                IAMinMax ims = new IAMinMax(j);
+                index=ims.IAMinMaxPlayerCard();
                 break;
         }
         System.out.println(index);

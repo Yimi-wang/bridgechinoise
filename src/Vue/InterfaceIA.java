@@ -4,12 +4,14 @@ package Vue;
 import Controleur.SaveLoadVue;
 import Modele.*;
 import global.Configuration;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static java.lang.System.exit;
 
@@ -204,7 +206,13 @@ public class InterfaceIA implements Runnable {
                         slv.Save(h, savenameField.getText());
                         saveframe.dispose();
                         frame.dispose();
-                        Main.backmenu();
+                        try {
+                            Main.backmenu();
+                        } catch (FileNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (JavaLayerException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 });
                 savecancel.addActionListener(new ActionListener() {
@@ -381,7 +389,13 @@ public class InterfaceIA implements Runnable {
         quitMenuItem02.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                Main.backmenu();
+                try {
+                    Main.backmenu();
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (JavaLayerException ex) {
+                    throw new RuntimeException(ex);
+                }
 
             }
         });

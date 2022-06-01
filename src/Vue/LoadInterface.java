@@ -85,7 +85,6 @@ public class LoadInterface implements Runnable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                Main.backmenu();
             }
         });
 

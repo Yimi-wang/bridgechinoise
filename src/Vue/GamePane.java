@@ -5,6 +5,7 @@ import Controleur.PlayCardsVue;
 import Controleur.TakeCardVue;
 import Modele.*;
 import global.ConfigurationSetting;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -176,13 +178,25 @@ public class GamePane extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            estFINI(j, ifjgp.h);
+                            try {
+                                estFINI(j, ifjgp.h);
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (JavaLayerException ex) {
+                                throw new RuntimeException(ex);
+                            }
                         }
                         drawCHANGFANGXING(j);
                         //TODO Can't make the button disappear
                         repaint();
                         ifjgp.selected = null;
-                        estFINI(j, h);
+                        try {
+                            estFINI(j, h);
+                        } catch (FileNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (JavaLayerException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 } else {
                     System.out.println("Please choose your card.");
@@ -219,12 +233,24 @@ public class GamePane extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            estFINI(j, ifjgp.h);
+                            try {
+                                estFINI(j, ifjgp.h);
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (JavaLayerException ex) {
+                                throw new RuntimeException(ex);
+                            }
                         }
                         drawCHANGFANGXING(j);
                         repaint();
                         ifjgp.selected = null;
-                        estFINI(j, h);
+                        try {
+                            estFINI(j, h);
+                        } catch (FileNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (JavaLayerException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
             }
@@ -721,7 +747,7 @@ public class GamePane extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h) {
+    public void estFINI(Jeu j, Histoire h) throws FileNotFoundException, JavaLayerException {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -813,7 +839,7 @@ public class GamePane extends JPanel {
         }
     }
 
-    public void surrenderthisgame() {
+    public void surrenderthisgame() throws FileNotFoundException, JavaLayerException {
         if (j.playerNow == 0) {
             j.Player2Score +=(26 - j.numberOfRounds+1);
             j.Player2totalScore += (26 - j.numberOfRounds+1);
@@ -835,7 +861,7 @@ public class GamePane extends JPanel {
 
     }
 
-    public void wingamewindow(Jeu j, int i, int winner) {
+    public void wingamewindow(Jeu j, int i, int winner) throws FileNotFoundException, JavaLayerException {
         if (i == 1) {
             String winmassage = "Joueur " + winner + " ganne ce tour, le jeu va continuer";
             JOptionPane.showMessageDialog(null, winmassage, "winer", JOptionPane.PLAIN_MESSAGE);

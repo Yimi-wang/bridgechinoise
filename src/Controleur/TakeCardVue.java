@@ -85,8 +85,8 @@ public class TakeCardVue {
                 index = ias.IASimpleTakeCard();
                 break;
             case 3:
-                IArandom2 iar2 = new IArandom2(j);
-                index = iar2.IarandomGetCard2();
+                IASimple ias2 = new IASimple(j);
+                index = ias2.IASimpleTakeCard();
                 break;
         }
         System.out.println(index);

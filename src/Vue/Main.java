@@ -1,6 +1,7 @@
 package Vue;
 
 import global.ConfigurationSetting;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -86,7 +88,7 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Create the application.
      */
-    public Main() {
+    public Main() throws FileNotFoundException, JavaLayerException {
         initialize();
         addEventListener();
     }
@@ -94,12 +96,12 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, JavaLayerException {
         Main window = new Main();
         window.mainframe.setVisible(true);
     }
 
-    public static void backmenu() {
+    public static void backmenu() throws FileNotFoundException, JavaLayerException {
         Main window = new Main();
         window.mainframe.setVisible(true);
     }
@@ -107,7 +109,7 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+    private void initialize() throws FileNotFoundException, JavaLayerException {
 
         //字体表格
         String[] dfonts;
@@ -314,6 +316,7 @@ public class Main extends JFrame implements ActionListener {
         gameModeDisappear();
         AIModeDisappear();
 
+
     }
 
     //gameMode消失
@@ -480,8 +483,8 @@ public class Main extends JFrame implements ActionListener {
 
         if(e.getSource()==settingGetBackBtn){
             settingJframe.dispose();
-            Main window = new Main();
-            window.mainframe.setVisible(true);
+//            Main window = new Main();
+//            window.mainframe.setVisible(true);
 
         }
         if(e.getSource()==settingSaveBackBtn){
@@ -521,8 +524,8 @@ public class Main extends JFrame implements ActionListener {
                 }
                 fw.close();
                 settingJframe.dispose();
-                Main window = new Main();
-                window.mainframe.setVisible(true);
+//                Main window = new Main();
+//                window.mainframe.setVisible(true);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
