@@ -14,7 +14,7 @@ public class SaveLoadVue implements java.io.Serializable {
     }
 
     public void Save(Histoire h,String Save) {
-        Save = "res/saveload/"+Save;
+
         Save = Save.concat(".ser");
 
         try {
@@ -37,9 +37,9 @@ public class SaveLoadVue implements java.io.Serializable {
     public Histoire Load(String Load) {
         Histoire h = null;
         try {
-            String Loada = "res/saveload/" + Load;
+
             //读取对象
-            FileInputStream fileIn = new FileInputStream(Loada);
+            FileInputStream fileIn = new FileInputStream(Load);
             ObjectInputStream objIn = new ObjectInputStream(fileIn);
             h = (Histoire) objIn.readObject();
             objIn.close();

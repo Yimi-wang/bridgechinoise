@@ -4,8 +4,6 @@ import Controleur.IASimpleVue;
 import Controleur.PlayCardsVue;
 import Controleur.TakeCardVue;
 import Modele.*;
-//import global.ConfigurationSetting;
-
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,7 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -259,7 +256,7 @@ public class GamePane extends JPanel {
         drawCHANGFANGXING(j);
     }
 
-    public void  drawCHANGFANGXING(Jeu j) {
+    public void drawCHANGFANGXING(Jeu j) {
         //鐢婚暱鏂瑰舰锛屽苟涓斿皢姣忎釜闀挎柟褰㈠拰card缁戝畾
         //纭畾姣忎釜鍗＄墖鐨勯珮涓庡
         int height = getHeight();
@@ -309,38 +306,29 @@ public class GamePane extends JPanel {
         backi++;
         //TODO setting background.
         //背景
-        String background =System.getProperty("background");
+        String background = System.getProperty("background");
         int backgroundi = Integer.parseInt(background);
         backgroundi++;
-        BufferedImage imageBackGround;
-        File ImageBackGroundFile;
-        ImageBackGroundFile = new File("res/images/background (" + backgroundi + ").png");
-        try {
-            imageBackGround = ImageIO.read(ImageBackGroundFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        java.net.URL imgURL = Vue.Main.class.getResource("/res/images/background (" + backgroundi + ").png");
+        ImageIcon imageBackGround = new ImageIcon(imgURL);
+        java.awt.Image image = imageBackGround.getImage();
         int middle = getWidth() / 5 * 4;
         int height = getHeight() + 1;
-        g2d.drawImage(imageBackGround, 0, 0, getWidth() / 5 * 4, height, null);
+        g2d.drawImage(image, 0, 0, getWidth() / 5 * 4, height, null);
 
 
         //右边背景
 
-        BufferedImage imageBackGroundRight;
-        File ImageBackGroundRightFile;
-        String rightback =System.getProperty("backright");
+        ImageIcon imageBackGroundRight;
+        String rightback = System.getProperty("backright");
         int rightbacki = Integer.parseInt(rightback);
         rightbacki++;
-        ImageBackGroundRightFile = new File("res/images/backright (" + rightbacki + ").png");
-        try {
-            imageBackGroundRight = ImageIO.read(ImageBackGroundRightFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        imgURL = Vue.Main.class.getResource("/res/images/backright (" + rightbacki + ").png");
+        imageBackGroundRight = new ImageIcon(imgURL);
+        image = imageBackGroundRight.getImage();
+        g2d.drawImage(image, getWidth() / 5 * 4, 0, getWidth(), height, null);
 
-        g2d.drawImage(imageBackGroundRight, getWidth() / 5 * 4, 0, getWidth(), height, null);
-
+        ImageIcon imageIcon;
 
         if (j.TurnProcess == 2 || j.TurnProcess == 3) {
             //鐢诲厛鎵嬫柟鍑虹殑鐗?
@@ -348,50 +336,41 @@ public class GamePane extends JPanel {
                 BufferedImage imageCard;
                 File imgFilecard = null;
                 if (j.playerFirst == 0) {
-                    imgFilecard = new File("res/images/card (" + player1playercard.id + ").png");
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + player1playercard.id + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
                 } else {
-                    imgFilecard = new File("res/images/card (" + player2playercard.id + ").png");
-                }
-                try {
-                    imageCard = ImageIO.read(imgFilecard);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + player2playercard.id + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
                 }
                 if (j.playerNow == 1) {
                     ifjgp.a1 = 1;
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 12, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, getWidth() / 3, height / 20 * 12, cardWidth, cardHeight, null);
                 } else {
                     ifjgp.a1 = 0;
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
                 }
             }
             //鎵撳嵃鍙屾柟鍑虹殑鐗?
             if (j.TurnProcess == 3) {
                 //鎵撳嵃鍏堟墜鏂瑰嚭鐨勭墝
-                BufferedImage imageCard;
-                File imgFilecard = new File("res/images/card (" + player1playercard.id + ").png");
-                try {
-                    imageCard = ImageIO.read(imgFilecard);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
+                imgURL = Vue.Main.class.getResource("/res/images/card (" + player1playercard.id + ").png");
+                imageIcon = new ImageIcon(imgURL);
+                image = imageIcon.getImage();
                 int cardHeight = (height - 20) / 8;
                 int cardWidth = (int) (cardHeight * 0.6);
-                g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 12, cardWidth, cardHeight, null);
+                g2d.drawImage(image, getWidth() / 3, height / 20 * 12, cardWidth, cardHeight, null);
 
                 //鍚庢墜鏂瑰嚭鐨勭墝
-                imgFilecard = new File("res/images/card (" + player2playercard.id + ").png");
-                try {
-                    imageCard = ImageIO.read(imgFilecard);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
+                imgURL = Vue.Main.class.getResource("/res/images/card (" + player2playercard.id + ").png");
+                imageIcon = new ImageIcon(imgURL);
+                image = imageIcon.getImage();
+                g2d.drawImage(image, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
 
             }
         }
@@ -399,41 +378,32 @@ public class GamePane extends JPanel {
             Rectangle bounds = mapCards.get(card);
             //鏍规嵁闀挎柟褰㈢殑浣嶇疆锛屽～鍏呭浘鐗?
             if (bounds != null) {
-                BufferedImage imageCard;
+
                 if (ifjgp.showcard || j.playerNow == 1) {
                     if ((j.playerFirst != j.playerNow) && !playcard.limite(j, card) && j.playerNow == 1 && j.TurnProcess == 2) {
-                        File imgFile = new File("res/images/BBcard (" + card.id + ").png");
-                        try {
-                            imageCard = ImageIO.read(imgFile);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        imgURL = Vue.Main.class.getResource("/res/images/BBcard (" + card.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
                     } else {
-                        File imgFile = new File("res/images/card (" + card.id + ").png");
-                        try {
-                            imageCard = ImageIO.read(imgFile);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        imgURL = Vue.Main.class.getResource("/res/images/card (" + card.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     //鐢诲浘鍍?
-                    g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //鐢婚暱鏂瑰舰杈规
                     g2d.setColor(Color.red);
                     g2d.draw(bounds);
                 } else {
-                    File imgFile = new File("res/images/back (" + backi + ").png");
-                    try {
-                        imageCard = ImageIO.read(imgFile);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    imgURL = Vue.Main.class.getResource("/res/images/back (" + backi + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     //鐢诲浘鍍?
-                    g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //鐢婚暱鏂瑰舰杈规
                     g2d.setColor(Color.red);
                     g2d.draw(bounds);
@@ -441,32 +411,55 @@ public class GamePane extends JPanel {
 
             }
         }
-        File imgFileT = null;
-        BufferedImage imageTurn;
+
         switch (j.TurnProcess) {
             case 1:
-                if (j.playerNow == 0) imgFileT = new File("res/images/j1j-modified.png");
-                else imgFileT = new File("res/images/j2j-modified.png");
+                if (j.playerNow == 0) {
+                    imgURL = Vue.Main.class.getResource("/res/images/j1j-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                } else {
+                    imgURL = Vue.Main.class.getResource("/res/images/j2j-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                }
                 break;
             case 2:
-                if (j.playerNow == 0) imgFileT = new File("res/images/j1j-modified.png");
-                else imgFileT = new File("res/images/j2j-modified.png");
+                if (j.playerNow == 0) {
+                    imgURL = Vue.Main.class.getResource("/res/images/j1j-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                } else {
+                    imgURL = Vue.Main.class.getResource("/res/images/j2j-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                }
                 break;
             case 3:
-                if (j.playerNow == 0) imgFileT = new File("res/images/j1p-modified.png");
-                else imgFileT = new File("res/images/j2p-modified.png");
+                if (j.playerNow == 0) {
+                    imgURL = Vue.Main.class.getResource("/res/images/j1p-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                } else {
+                    imgURL = Vue.Main.class.getResource("/res/images/j2p-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                }
                 break;
             case 4:
-                if (j.playerNow == 0) imgFileT = new File("res/images/j1p-modified.png");
-                else imgFileT = new File("res/images/j2p-modified.png");
+                if (j.playerNow == 0) {
+                    imgURL = Vue.Main.class.getResource("/res/images/j1p-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                } else {
+                    imgURL = Vue.Main.class.getResource("/res/images/j2p-modified.png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+                }
                 break;
         }
-        try {
-            imageTurn = ImageIO.read(imgFileT);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        g2d.drawImage(imageTurn, getWidth() / 100 * 70, height / 100 * 45, getWidth() / 100 * 10, getWidth() / 100 * 10, null);
+
+        g2d.drawImage(image, getWidth() / 100 * 70, height / 100 * 45, getWidth() / 100 * 10, getWidth() / 100 * 10, null);
 
 
         for (Brand card : j.playercard[0]) {
@@ -477,38 +470,30 @@ public class GamePane extends JPanel {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 0) {
                     if ((j.playerFirst != j.playerNow) && !playcard.limite(j, card) && j.playerNow == 0 && j.TurnProcess == 2) {
-                        File imgFile = new File("res/images/BBcard (" + card.id + ").png");
-                        try {
-                            imageCard = ImageIO.read(imgFile);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        imgURL = Vue.Main.class.getResource("/res/images/BBcard (" + card.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
+
                     } else {
-                        File imgFile = new File("res/images/card (" + card.id + ").png");
-                        try {
-                            imageCard = ImageIO.read(imgFile);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        imgURL = Vue.Main.class.getResource("/res/images/card (" + card.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     //鐢诲浘鍍?
-                    g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //鐢婚暱鏂瑰舰杈规
                     g2d.setColor(Color.blue);
                     g2d.draw(bounds);
                 } else {
-                    File imgFile = new File("res/images/back (" + backi + ").png");
-                    try {
-                        imageCard = ImageIO.read(imgFile);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    imgURL = Vue.Main.class.getResource("/res/images/back (" + backi + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     //鐢诲浘鍍?
-                    g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //鐢婚暱鏂瑰舰杈规
                     g2d.setColor(Color.blue);
                     g2d.draw(bounds);
@@ -528,23 +513,28 @@ public class GamePane extends JPanel {
                     BufferedImage imageCard;
                     File imgFile;
                     if (a == 0) {
-                        if (j.TurnProcess < 3)
-                            imgFile = new File("res/images/Bcard (" + card.id + ").png");
-                        else
-                            imgFile = new File("res/images/card (" + card.id + ").png");
+                        if (j.TurnProcess < 3) {
+                            imgURL = Vue.Main.class.getResource("/res/images/Bcard (" + card.id + ").png");
+                            imageIcon = new ImageIcon(imgURL);
+                            image = imageIcon.getImage();
+                        } else {
+                            imgURL = Vue.Main.class.getResource("/res/images/card (" + card.id + ").png");
+                            imageIcon = new ImageIcon(imgURL);
+                            image = imageIcon.getImage();
+                        }
+
                     } else {
-                        imgFile = new File("res/images/back (" + backi + ").png");
+                        imgURL = Vue.Main.class.getResource("/res/images/back (" + backi + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
+
                     }
 
-                    try {
-                        imageCard = ImageIO.read(imgFile);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     //鐢诲浘鍍?
-                    g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //鐢婚暱鏂瑰舰杈规
                     g2d.setColor(Color.BLACK);
                     g2d.draw(bounds);
@@ -562,42 +552,44 @@ public class GamePane extends JPanel {
 
         g2d.drawString("Atout", middle + middle / 15, height / 15);
         //BRAND 鍥剧墖
-        BufferedImage imageCardAtout;
-        File ImageAtoutFile;
         if (j.avoiratout) {
-            ImageAtoutFile = new File("res/images/Atout" + j.atout.getInttype() + ".png");
+            imgURL = Vue.Main.class.getResource("/res/images/Atout"+ j.atout.getInttype() + ".png");
+            imageIcon = new ImageIcon(imgURL);
+            image = imageIcon.getImage();
+
+
+
         } else {
-            ImageAtoutFile = new File("res/images/back (" + backi + ").png");
+            imgURL = Vue.Main.class.getResource("/res/images/card (" + backi + ").png");
+            imageIcon = new ImageIcon(imgURL);
+            image = imageIcon.getImage();
+
         }
-        try {
-            imageCardAtout = ImageIO.read(ImageAtoutFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        g2d.drawImage(imageCardAtout, middle + middle / 15, height / 100 * 8, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
+
+        g2d.drawImage(image, middle + middle / 15, height / 100 * 8, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
         g2d.setColor(Color.ORANGE);
         g2d.setFont(new Font("Calibri", Font.ITALIC, 18));
         g2d.drawString("Cartes joué au tour précédent", middle + middle / 100, getHeight() / 100 * 35);
         if (j.lastgamep1playcard != null) {
             g2d.setFont(new Font(dfonts[5], Font.BOLD, 20));
             g2d.drawString("Joueur 1 ", middle + middle / 40, getHeight() / 100 * 38);
-            BufferedImage imagelastplayercard;
-            File imagelastplayercardfile;
-            imagelastplayercardfile = new File("res/images/card (" + j.lastgamep0playcard.id + ").png");
-            try {
-                imagelastplayercard = ImageIO.read(imagelastplayercardfile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            g2d.drawImage(imagelastplayercard, middle + middle / 40, getHeight() / 100 * 40, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
+
+
+            imgURL = Vue.Main.class.getResource("/res/images/card (" + j.lastgamep0playcard.id + ").png");
+            imageIcon = new ImageIcon(imgURL);
+            image = imageIcon.getImage();
+
+
+            g2d.drawImage(image, middle + middle / 40, getHeight() / 100 * 40, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
             g2d.drawString("Joueur 2 ", middle + middle / 8, getHeight() / 100 * 38);
-            imagelastplayercardfile = new File("res/images/card (" + j.lastgamep1playcard.id + ").png");
-            try {
-                imagelastplayercard = ImageIO.read(imagelastplayercardfile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            g2d.drawImage(imagelastplayercard, middle + middle / 8, getHeight() / 100 * 40, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
+
+            imgURL = Vue.Main.class.getResource("/res/images/card (" + j.lastgamep1playcard.id + ").png");
+            imageIcon = new ImageIcon(imgURL);
+            image = imageIcon.getImage();
+
+
+
+            g2d.drawImage(image, middle + middle / 8, getHeight() / 100 * 40, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
 
 
         }
@@ -665,14 +657,16 @@ public class GamePane extends JPanel {
                     BufferedImage imageCard;
                     File imgFilecard = null;
                     if (j.playerNow == 0) {
-                        imgFilecard = new File("res/images/card (" + j.player2takecard.id + ").png");
+                        imgURL = Vue.Main.class.getResource("/res/images/card (" + j.player2takecard.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
+
                     } else {
-                        imgFilecard = new File("res/images/card (" + j.player1takecard.id + ").png");
-                    }
-                    try {
-                        imageCard = ImageIO.read(imgFilecard);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        imgURL = Vue.Main.class.getResource("/res/images/card (" + j.player1takecard.id + ").png");
+                        imageIcon = new ImageIcon(imgURL);
+                        image = imageIcon.getImage();
+
+
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
@@ -680,45 +674,47 @@ public class GamePane extends JPanel {
                     if (j.playerNow == 1) {
                         g2d.setColor(Color.BLUE);
                         g2d.drawString("Joueur 1 pioche", getWidth() / 100 * 5, height / 20 * 13);
-                        g2d.drawImage(imageCard, getWidth() / 100 * 5, height / 20 * 14, cardWidth, cardHeight, null);
+                        g2d.drawImage(image, getWidth() / 100 * 5, height / 20 * 14, cardWidth, cardHeight, null);
                     } else {
 
                         g2d.setColor(Color.RED);
                         g2d.drawString("Joueur 2 pioche", getWidth() / 100 * 5, height / 100 * 38);
-                        g2d.drawImage(imageCard, getWidth() / 100 * 5, height / 100 * 20, cardWidth, cardHeight, null);
+                        g2d.drawImage(image, getWidth() / 100 * 5, height / 100 * 20, cardWidth, cardHeight, null);
                     }
 
 
                 } else if (j.TurnProcess == 3) {
 
                 } else {
-                    BufferedImage imageCard;
-                    BufferedImage imageCard2;
-                    File imgFilecard = new File("res/images/card (" + j.player2takecard.id + ").png");
-                    File imgFilecard2 = new File("res/images/card (" + j.player1takecard.id + ").png");
-                    try {
-                        imageCard = ImageIO.read(imgFilecard);
-                        imageCard2 = ImageIO.read(imgFilecard2);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+
+
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + j.player2takecard.id + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    java.awt.Image image2 = imageIcon.getImage();
+
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + j.player1takecard.id + ").png");
+                    imageIcon = new ImageIcon(imgURL);
+                    image = imageIcon.getImage();
+
+
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
                     g2d.setFont(new Font("Calibri", Font.BOLD, 20));
 
                     g2d.setColor(Color.BLUE);
                     g2d.drawString("Joueur 1 pioche", getWidth() / 100 * 5, height / 20 * 13);
-                    g2d.drawImage(imageCard2, getWidth() / 100 * 5, height / 20 * 14, cardWidth, cardHeight, null);
+                    g2d.drawImage(image, getWidth() / 100 * 5, height / 20 * 14, cardWidth, cardHeight, null);
 
                     g2d.setColor(Color.RED);
                     g2d.drawString("Joueur 2 pioche", getWidth() / 100 * 5, height / 100 * 38);
-                    g2d.drawImage(imageCard, getWidth() / 100 * 5, height / 100 * 20, cardWidth, cardHeight, null);
+                    g2d.drawImage(image2, getWidth() / 100 * 5, height / 100 * 20, cardWidth, cardHeight, null);
                 }
             }
         }
 
 
         g2d.dispose();
+
     }
 
     public void changejue(Jeu j) {
@@ -726,7 +722,7 @@ public class GamePane extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h)  {
+    public void estFINI(Jeu j, Histoire h) {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -820,16 +816,16 @@ public class GamePane extends JPanel {
 
     public void surrenderthisgame() {
         if (j.playerNow == 0) {
-            j.Player2Score +=(26 - j.numberOfRounds+1);
-            j.Player2totalScore += (26 - j.numberOfRounds+1);
-            if(j.TurnProcess>=3){
+            j.Player2Score += (26 - j.numberOfRounds + 1);
+            j.Player2totalScore += (26 - j.numberOfRounds + 1);
+            if (j.TurnProcess >= 3) {
                 j.Player2Score--;
                 j.Player2totalScore--;
             }
         } else {
-            j.Player1Score +=(26 - j.numberOfRounds+1);
-            j.Player1totalScore += (26 - j.numberOfRounds+1);
-            if(j.TurnProcess>=3){
+            j.Player1Score += (26 - j.numberOfRounds + 1);
+            j.Player1totalScore += (26 - j.numberOfRounds + 1);
+            if (j.TurnProcess >= 3) {
                 j.Player1Score--;
                 j.Player1totalScore--;
             }
