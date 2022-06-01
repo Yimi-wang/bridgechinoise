@@ -178,25 +178,13 @@ public class GamePane extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
+                            estFINI(j, ifjgp.h);
                         }
                         drawCHANGFANGXING(j);
                         //TODO Can't make the button disappear
                         repaint();
                         ifjgp.selected = null;
-                        try {
-                            estFINI(j, h);
-                        } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        estFINI(j, h);
                     }
                 } else {
                     System.out.println("Please choose your card.");
@@ -233,24 +221,12 @@ public class GamePane extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
+                            estFINI(j, ifjgp.h);
                         }
                         drawCHANGFANGXING(j);
                         repaint();
                         ifjgp.selected = null;
-                        try {
-                            estFINI(j, h);
-                        } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        estFINI(j, h);
                     }
                 }
             }
@@ -747,7 +723,7 @@ public class GamePane extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h) throws FileNotFoundException, JavaLayerException {
+    public void estFINI(Jeu j, Histoire h)  {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -839,7 +815,7 @@ public class GamePane extends JPanel {
         }
     }
 
-    public void surrenderthisgame() throws FileNotFoundException, JavaLayerException {
+    public void surrenderthisgame() {
         if (j.playerNow == 0) {
             j.Player2Score +=(26 - j.numberOfRounds+1);
             j.Player2totalScore += (26 - j.numberOfRounds+1);
@@ -861,7 +837,7 @@ public class GamePane extends JPanel {
 
     }
 
-    public void wingamewindow(Jeu j, int i, int winner) throws FileNotFoundException, JavaLayerException {
+    public void wingamewindow(Jeu j, int i, int winner) {
         if (i == 1) {
             String winmassage = "Joueur " + winner + " ganne ce tour, le jeu va continuer";
             JOptionPane.showMessageDialog(null, winmassage, "winer", JOptionPane.PLAIN_MESSAGE);

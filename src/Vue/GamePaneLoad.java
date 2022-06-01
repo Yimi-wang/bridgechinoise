@@ -37,7 +37,7 @@ public class GamePaneLoad extends JPanel {
     private Map<Brand, Rectangle> mapCards;
 
     public GamePaneLoad(Jeu j, InterfaceJeuLoad ifj, JFrame f, Histoire h) {
-        //点击鼠标，如果点击是卡的位置，则会将卡向上移，不是的话已经移动过的卡回�??原来的位置）
+        //点击鼠标，如果点击是卡的位置，则会将卡向上移，不是的话已经移动过的卡回�??原来的位置）
 
         this.j = j;
         this.ifjgp = ifj;
@@ -178,25 +178,13 @@ public class GamePaneLoad extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
+                            estFINI(j, ifjgp.h);
                         }
                         drawCHANGFANGXING(j);
                         //TODO Can't make the button disappear
                         repaint();
                         ifjgp.selected = null;
-                        try {
-                            estFINI(j,h);
-                        } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        estFINI(j,h);
                     }
                 } else {
                     System.out.println("Please choose your card.");
@@ -233,24 +221,12 @@ public class GamePaneLoad extends JPanel {
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
+                            estFINI(j, ifjgp.h);
                         }
                         drawCHANGFANGXING(j);
                         repaint();
                         ifjgp.selected = null;
-                        try {
-                            estFINI(j,h);
-                        } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        estFINI(j,h);
                     }
                 }
             }
@@ -288,16 +264,16 @@ public class GamePaneLoad extends JPanel {
         int cardWidth = (int) (cardHeight * 0.6);
         //每个卡片的偏移量
         int xDelta = cardWidth + 5;
-        //第一个卡片的横坐标和纵坐�?
+        //第一个卡片的横坐标和纵坐�?
         int xPos = getWidth() / 10;
         int yPos = height / 100 * 90;
-        //建立�?个hashmap，使每个长方形和每个卡片进行对应。显示下方玩家的手牌�?
+        //建立�?个hashmap，使每个长方形和每个卡片进行对应。显示下方玩家的手牌�?
         for (Brand card : j.playercard[0]) {
             Rectangle bounds = new Rectangle(xPos, yPos, cardWidth, cardHeight);
             mapCards.put(card, bounds);
             xPos += xDelta;
         }
-        //显示上方的手�?
+        //显示上方的手�?
         xPos = getWidth() / 10;
         yPos = height / 40;
         for (Brand card : j.playercard[1]) {
@@ -305,7 +281,7 @@ public class GamePaneLoad extends JPanel {
             mapCards.put(card, bounds);
             xPos += xDelta;
         }
-        //显示pile的手卡�??
+        //显示pile的手卡�??
         int xOri = 60;
         xPos = getWidth() / 100 * xOri;
         xDelta = cardWidth / 5;
@@ -329,7 +305,7 @@ public class GamePaneLoad extends JPanel {
         int backi = Integer.parseInt(back);
         backi++;
         //TODO setting background.
-        //����
+        //����
         String background = ConfigurationSetting.instance().lis("background");
         int backgroundi = Integer.parseInt(background);
         backgroundi++;
@@ -346,7 +322,7 @@ public class GamePaneLoad extends JPanel {
         g2d.drawImage(imageBackGround, 0, 0, getWidth() / 5 * 4, height, null);
 
 
-        //�ұ߱���
+        //�ұ߱���
 
         BufferedImage imageBackGroundRight;
         File ImageBackGroundRightFile;
@@ -363,7 +339,7 @@ public class GamePaneLoad extends JPanel {
         g2d.drawImage(imageBackGroundRight, getWidth() / 5 * 4, 0, getWidth(), height, null);
 
         if (j.TurnProcess == 2 || j.TurnProcess == 3) {
-            //画先手方出的�?
+            //画先手方出的�?
             if (j.TurnProcess == 2) {
                 BufferedImage imageCard;
                 File imgFilecard = null;
@@ -391,7 +367,7 @@ public class GamePaneLoad extends JPanel {
                     g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
                 }
             }
-            //打印双方出的�?
+            //打印双方出的�?
             if (j.TurnProcess == 3) {
                 //打印先手方出的牌
                 BufferedImage imageCard;
@@ -421,7 +397,7 @@ public class GamePaneLoad extends JPanel {
         }
         for (Brand card : j.playercard[1]) {
             Rectangle bounds = mapCards.get(card);
-            //根据长方形的位置，填充图�?
+            //根据长方形的位置，填充图�?
             if (bounds != null) {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 1) {
@@ -442,7 +418,7 @@ public class GamePaneLoad extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.red);
@@ -456,7 +432,7 @@ public class GamePaneLoad extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.red);
@@ -496,7 +472,7 @@ public class GamePaneLoad extends JPanel {
         for (Brand card : j.playercard[0]) {
             Rectangle bounds = mapCards.get(card);
             //System.out.println(bounds);
-            //根据长方形的位置，填充图�?
+            //根据长方形的位置，填充图�?
             if (bounds != null) {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 0) {
@@ -517,7 +493,7 @@ public class GamePaneLoad extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.blue);
@@ -531,7 +507,7 @@ public class GamePaneLoad extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.blue);
@@ -547,7 +523,7 @@ public class GamePaneLoad extends JPanel {
                 Brand card = j.pilescard[i].get(a);
                 Rectangle bounds = mapCards.get(card);
                 //System.out.println(bounds);
-                //根据长方形的位置，填充图�?
+                //根据长方形的位置，填充图�?
                 if (bounds != null) {
                     BufferedImage imageCard;
                     File imgFile;
@@ -567,7 +543,7 @@ public class GamePaneLoad extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.BLACK);
@@ -579,7 +555,7 @@ public class GamePaneLoad extends JPanel {
         String[] dfonts;
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 
-        //输出右边游戏信息�?
+        //输出右边游戏信息�?
         //Atout 文字
         g2d.setColor(Color.red);
         g2d.setFont(new Font(dfonts[1], Font.BOLD, 30));
@@ -652,7 +628,7 @@ public class GamePaneLoad extends JPanel {
             g2d.drawString(GameMode2, middle+middle/100, getHeight() / 100 * 75);
         }
 
-        //numbre de tour  回合�?
+        //numbre de tour  回合�?
         String nbtour = "Le nombre de tour est " + j.numberOfRounds;
         g2d.setColor(Color.blue);
         g2d.setFont(new Font("Monaco", Font.PLAIN, 20));
@@ -680,7 +656,7 @@ public class GamePaneLoad extends JPanel {
         g2d.setFont(new Font("Calibri", Font.BOLD, 50));
         g2d.drawString(String.valueOf(j.Player2Score), getWidth() / 100 * 72, height / 100 * 12);
 
-        //˫���õ��ֿ�
+        //˫���õ��ֿ�
         if (j.numberOfRounds <= 16) {
             if (!(j.numberOfRounds == 1 && j.TurnProcess <= 3)) {
 
@@ -749,7 +725,7 @@ public class GamePaneLoad extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h) throws FileNotFoundException, JavaLayerException {
+    public void estFINI(Jeu j, Histoire h) {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -819,12 +795,12 @@ public class GamePaneLoad extends JPanel {
 
     public void gameStartencore(Jeu j, Histoire h) {
         j.reset();
-        if (j.numberOfGames == 0) j.numberOfGames = 1;//�����Ϸ�տ�ʼ�Ļ�
-        if (j.playerFirst == 2) {//������ָÿ�ʼ�Ļ����ж��ĸ�����ȿ�ʼ��Ϸ��
+        if (j.numberOfGames == 0) j.numberOfGames = 1;//�����Ϸ�տ�ʼ�Ļ�
+        if (j.playerFirst == 2) {//������ָÿ�ʼ�Ļ����ж��ĸ�����ȿ�ʼ��Ϸ��
             j.playerFirst = (j.numberOfGames - 1) % 2;
             j.numberOfRounds = 1;
             j.playerNow = j.playerFirst;
-            //���з����Լ��ƶѵ�ʵ��
+            //���з����Լ��ƶѵ�ʵ��
             if (j.numberOfGames != 1) {
                 StartHand startHand = new StartHand(j);
                 startHand.stardHand();
@@ -840,7 +816,7 @@ public class GamePaneLoad extends JPanel {
         }
     }
 
-    public void surrenderthisgame() throws FileNotFoundException, JavaLayerException {
+    public void surrenderthisgame()  {
         if (j.playerNow == 0) {
             j.Player2Score +=(26 - j.numberOfRounds+1);
             j.Player2totalScore += (26 - j.numberOfRounds+1);
@@ -862,7 +838,7 @@ public class GamePaneLoad extends JPanel {
 
     }
 
-    public void wingamewindow(Jeu j, int i, int winner) throws FileNotFoundException, JavaLayerException {
+    public void wingamewindow(Jeu j, int i, int winner)  {
         if (i == 1) {
             String winmassage = "Joueur " + winner + " ganne ce tour, le jeu va continuer";
             JOptionPane.showMessageDialog(null, winmassage, "winer", JOptionPane.PLAIN_MESSAGE);
@@ -870,7 +846,7 @@ public class GamePaneLoad extends JPanel {
             String winmassage = "Joueur " + winner + " ganne cette jeux, Vous volez jouer encore?";
             int res = JOptionPane.showConfirmDialog(null, winmassage, "win", JOptionPane.YES_NO_OPTION);
             if (res == 0) {
-                //TODO how to close the window of game ��λص����˵�
+                //TODO how to close the window of game ��λص����˵�
                 fgp.dispose();
                 Main window = new Main();
                 window.mainframe.setVisible(true);

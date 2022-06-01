@@ -24,26 +24,26 @@ public class Main extends JFrame implements ActionListener {
     JButton btnLoadButton;
     JButton btnSettingButton;
     JButton btnOnlineButton;
-    //文本输入按钮
+    //&#x6587;&#x672C;&#x8F93;&#x5165;&#x6309;&#x94AE;
     JTextField jta;
     //gameMode
-    JButton GameModeQuestionButton; // ?按钮
-    JButton GameModeLeftButton;//左箭头按钮
-    JButton GameModeRightButton;//右箭头按钮
-    //JScrollPane GameModeInputJSP;//文本输入框，位于下来框下
-    JLabel lblGameMode;//gamemode标签
-    JLabel lblGameModeTest;//下方的提示框文字
-    JComboBox GameModeComboBox;//单选框
+    JButton GameModeQuestionButton; // ?&#x6309;&#x94AE;
+    JButton GameModeLeftButton;//&#x5DE6;&#x7BAD;&#x5934;&#x6309;&#x94AE;
+    JButton GameModeRightButton;//&#x53F3;&#x7BAD;&#x5934;&#x6309;&#x94AE;
+    //JScrollPane GameModeInputJSP;//&#x6587;&#x672C;&#x8F93;&#x5165;&#x6846;&#xFF0C;&#x4F4D;&#x4E8E;&#x4E0B;&#x6765;&#x6846;&#x4E0B;
+    JLabel lblGameMode;//gamemode&#x6807;&#x7B7E;
+    JLabel lblGameModeTest;//&#x4E0B;&#x65B9;&#x7684;&#x63D0;&#x793A;&#x6846;&#x6587;&#x5B57;
+    JComboBox GameModeComboBox;//&#x5355;&#x9009;&#x6846;
 
 
     //AIMode
-    JButton AIModeQuestionButton; // ?按钮
-    JButton AIModeLeftButton;//左箭头按钮
-    JButton AIModeRightButton;//右箭头按钮
-    JLabel lblAIMode;//gamemode标签
-    JComboBox AIModeComboBox;//单选框
+    JButton AIModeQuestionButton; // ?&#x6309;&#x94AE;
+    JButton AIModeLeftButton;//&#x5DE6;&#x7BAD;&#x5934;&#x6309;&#x94AE;
+    JButton AIModeRightButton;//&#x53F3;&#x7BAD;&#x5934;&#x6309;&#x94AE;
+    JLabel lblAIMode;//gamemode&#x6807;&#x7B7E;
+    JComboBox AIModeComboBox;//&#x5355;&#x9009;&#x6846;
 
-    //用户设置
+    //&#x7528;&#x6237;&#x8BBE;&#x7F6E;
     JFrame settingJframe;
 
     Container settingContentPanel;
@@ -88,7 +88,7 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Create the application.
      */
-    public Main() throws FileNotFoundException, JavaLayerException {
+    public Main()  {
         initialize();
         addEventListener();
     }
@@ -109,12 +109,12 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() throws FileNotFoundException, JavaLayerException {
+    private void initialize() {
 
-        //字体表格
+        //&#x5B57;&#x4F53;&#x8868;&#x683C;
         String[] dfonts;
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        // 初始化窗体
+        // &#x521D;&#x59CB;&#x5316;&#x7A97;&#x4F53;
         mainframe = new JFrame("Bridge Chinoise");
         mainframe.setSize(720, 506);
         mainframe.setLocationRelativeTo(null);
@@ -132,17 +132,17 @@ public class Main extends JFrame implements ActionListener {
         mainframe.getLayeredPane().add(logolabel, Integer.valueOf(Integer.MIN_VALUE));
 
 
-        //显示背景
+        //&#x663E;&#x793A;&#x80CC;&#x666F;
         ImageIcon background = new ImageIcon("res/images/bg_menu.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, mainframe.getWidth(), mainframe.getHeight());
         background.setImage(background.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         mainframe.getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
 
-//        // 游戏文本标题
+//        // &#x6E38;&#x620F;&#x6587;&#x672C;&#x6807;&#x9898;
 //        JLabel jLabel = new JLabel("Bridge Chinois");
 //        jLabel.setBounds(30, 25, 300, 30);
-//        Font f = new Font("隶书",Font.PLAIN,30);
+//        Font f = new Font("&#x96B6;&#x4E66;",Font.PLAIN,30);
 //        jLabel.setFont(f);
 //        Color fg = new Color(255,255,255);
 //        jLabel.setForeground(fg);
@@ -151,8 +151,8 @@ public class Main extends JFrame implements ActionListener {
 
         mainContentPanel = mainframe.getContentPane();
         mainContentPanel.setLayout(null);
-        // start按钮
-        //加载背景图片
+        // start&#x6309;&#x94AE;
+        //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
         String startPath = "./res/images/START.png";
         ImageIcon startIcon1 = new ImageIcon(startPath);
         Image startImg = startIcon1.getImage();
@@ -166,7 +166,7 @@ public class Main extends JFrame implements ActionListener {
 
 
 //        // online
-//        //加载背景图片
+//        //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
 //        String onlinePath = "./res/images/ONLINE.png";
 //        ImageIcon onlineIcon1 = new ImageIcon(onlinePath);
 //        Image onlineImg = onlineIcon1.getImage();
@@ -179,7 +179,7 @@ public class Main extends JFrame implements ActionListener {
 
 
         // load
-        //加载背景图片
+        //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
         String loadPath = "./res/images/LOAD.png";
         ImageIcon loadIcon1 = new ImageIcon(loadPath);
         Image loadImg = loadIcon1.getImage();
@@ -192,7 +192,7 @@ public class Main extends JFrame implements ActionListener {
 
 
         // setting
-        //加载背景图片
+        //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
         String settingPath = "./res/images/SETTING.png";
         ImageIcon settingIcon1 = new ImageIcon(settingPath);
         Image settingImg = settingIcon1.getImage();
@@ -203,49 +203,49 @@ public class Main extends JFrame implements ActionListener {
         btnSettingButton.setBounds(90, 340, 120, 40);
         mainContentPanel.add(btnSettingButton);
 
-//        //添加gameMode
+//        //&#x6DFB;&#x52A0;gameMode
 //        JLabel gameModeText = new JLabel("GameMode");
 //        gameModePanel.add(gameModeText);
 //        mainContentPanel.add(gameModePanel);
         /**
-         * start gamemode 窗口
+         * start gamemode &#x7A97;&#x53E3;
          */
-        //标题
+        //&#x6807;&#x9898;
         lblGameMode = new JLabel("GameMode");
         lblGameMode.setBounds(200, 150, 300, 30);
-        Font f1 = new Font("隶书", Font.PLAIN, 30);
+        Font f1 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 30);
         lblGameMode.setFont(f1);
         Color fg1 = new Color(255, 255, 255);
         lblGameMode.setForeground(fg1);
         mainContentPanel.add(lblGameMode);
 
         GameModeComboBox = new JComboBox();
-        // 绑定下拉框选项
+        // &#x7ED1;&#x5B9A;&#x4E0B;&#x62C9;&#x6846;&#x9009;&#x9879;
         String[] strArray = {"BO1", "BO3", "Nombre de Jeu Fixe", "Score Fixe"};
         for (String item : strArray) {
             GameModeComboBox.addItem(item);
         }
-        GameModeComboBox.setFont(new Font("宋体", Font.PLAIN, 14));
+        GameModeComboBox.setFont(new Font("&#x5B8B;&#x4F53;", Font.PLAIN, 14));
         GameModeComboBox.setBounds(150, 200, 180, 30);
         mainContentPanel.add(GameModeComboBox);
 
-        //添加问号按钮
+        //&#x6DFB;&#x52A0;&#x95EE;&#x53F7;&#x6309;&#x94AE;
         GameModeQuestionButton = new JButton("?");
         GameModeQuestionButton.setBounds(340, 200, 50, 30);
         mainContentPanel.add(GameModeQuestionButton);
 
-        //下方的文字提示
+        //&#x4E0B;&#x65B9;&#x7684;&#x6587;&#x5B57;&#x63D0;&#x793A;
         lblGameModeTest = new JLabel("<html><body>Donner le nombre de Jue<br>(Si vous choisi Numbre  Fixe)<br>ou le nombre de Score<br>(Si vous choisi Score Fixe</body></html>");
         lblGameModeTest.setBounds(150, 150, 300, 300);
-        Font f22 = new Font("隶书", Font.PLAIN, 15);
+        Font f22 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 15);
         lblGameModeTest.setFont(f22);
         Color fg22 = new Color(205, 27, 74);
         lblGameModeTest.setForeground(fg22);
         mainContentPanel.add(lblGameModeTest);
-        //添加文本框
+        //&#x6DFB;&#x52A0;&#x6587;&#x672C;&#x6846;
         jta = new JTextField();
-        jta.setForeground(Color.BLACK);    //设置组件的背景色
-        jta.setFont(new Font(dfonts[15], Font.ROMAN_BASELINE, 10));    //修改字体样式
+        jta.setForeground(Color.BLACK);    //&#x8BBE;&#x7F6E;&#x7EC4;&#x4EF6;&#x7684;&#x80CC;&#x666F;&#x8272;
+        jta.setFont(new Font(dfonts[15], Font.ROMAN_BASELINE, 10));    //&#x4FEE;&#x6539;&#x5B57;&#x4F53;&#x6837;&#x5F0F;
         jta.setBounds(150, 350, 200, 30);
         lblGameModeTest.setVisible(false);
         jta.setVisible(false);
@@ -268,48 +268,48 @@ public class Main extends JFrame implements ActionListener {
                 }
             }
         });
-        //添加左右按钮
-        GameModeLeftButton = new JButton("←");
+        //&#x6DFB;&#x52A0;&#x5DE6;&#x53F3;&#x6309;&#x94AE;
+        GameModeLeftButton = new JButton("&#x2190;");
         GameModeLeftButton.setBounds(150, 400, 50, 30);
         mainContentPanel.add(GameModeLeftButton);
-        GameModeRightButton = new JButton("→");
+        GameModeRightButton = new JButton("&#x2192;");
         GameModeRightButton.setBounds(340, 400, 50, 30);
         mainContentPanel.add(GameModeRightButton);
 
         /**
          * AImode
          */
-        // 添加AIMode**********************
+        // &#x6DFB;&#x52A0;AIMode**********************
         lblAIMode = new JLabel("AIMode");
         lblAIMode.setBounds(200, 150, 300, 30);
-        Font f2 = new Font("隶书", Font.PLAIN, 30);
+        Font f2 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 30);
         lblAIMode.setFont(f2);
         Color fg2 = new Color(255, 255, 255);
         lblAIMode.setForeground(fg2);
         mainContentPanel.add(lblAIMode);
 
         AIModeComboBox = new JComboBox();
-        // 绑定下拉框选项
+        // &#x7ED1;&#x5B9A;&#x4E0B;&#x62C9;&#x6846;&#x9009;&#x9879;
         String[] AIStrArray = {"Sans AI", "AI simple", "AI moyenne", "AI difficile"};
         for (String item : AIStrArray) {
             AIModeComboBox.addItem(item);
         }
-        AIModeComboBox.setFont(new Font("宋体", Font.PLAIN, 14));
+        AIModeComboBox.setFont(new Font("&#x5B8B;&#x4F53;", Font.PLAIN, 14));
         AIModeComboBox.setBounds(150, 200, 180, 30);
         mainContentPanel.add(AIModeComboBox);
 
-        //添加问号按钮
+        //&#x6DFB;&#x52A0;&#x95EE;&#x53F7;&#x6309;&#x94AE;
         //AIModeQuestionButton = new JButton("?");
         AIModeQuestionButton = new JButton("?");
         AIModeQuestionButton.setBounds(340, 200, 50, 30);
         mainContentPanel.add(AIModeQuestionButton);
 
 
-        //添加左右按钮
-        AIModeLeftButton = new JButton("←");
+        //&#x6DFB;&#x52A0;&#x5DE6;&#x53F3;&#x6309;&#x94AE;
+        AIModeLeftButton = new JButton("&#x2190;");
         AIModeLeftButton.setBounds(150, 400, 50, 30);
         mainContentPanel.add(AIModeLeftButton);
-        AIModeRightButton = new JButton("→");
+        AIModeRightButton = new JButton("&#x2192;");
         AIModeRightButton.setBounds(340, 400, 50, 30);
         mainContentPanel.add(AIModeRightButton);
 
@@ -319,7 +319,7 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
-    //gameMode消失
+    //gameMode&#x6D88;&#x5931;
     public void gameModeDisappear() {
         lblGameMode.setVisible(false);
         GameModeComboBox.setVisible(false);
@@ -330,14 +330,14 @@ public class Main extends JFrame implements ActionListener {
         GameModeRightButton.setVisible(false);
     }
 
-    //gameMode出现
+    //gameMode&#x51FA;&#x73B0;
     public void gameModeAppear() {
         lblGameMode.setVisible(true);
         GameModeComboBox.setVisible(true);
         GameModeQuestionButton.setVisible(true);
         if(GameModeComboBox.getSelectedIndex()<2){
-        jta.setVisible(false);
-        lblGameModeTest.setVisible(false);}
+            jta.setVisible(false);
+            lblGameModeTest.setVisible(false);}
         else{
             jta.setVisible(true);
             lblGameModeTest.setVisible(true);
@@ -365,41 +365,41 @@ public class Main extends JFrame implements ActionListener {
 
 
     /**
-     * 主界面按钮消失
+     * &#x4E3B;&#x754C;&#x9762;&#x6309;&#x94AE;&#x6D88;&#x5931;
      */
     public void mainFrameButtonDisappear() {
         btnStartButton.setVisible(false);
         btnLoadButton.setVisible(false);
         btnSettingButton.setVisible(false);
-       // btnOnlineButton.setVisible(false);
+        // btnOnlineButton.setVisible(false);
     }
 
 
     /**
-     * 主界面按钮出现
+     * &#x4E3B;&#x754C;&#x9762;&#x6309;&#x94AE;&#x51FA;&#x73B0;
      */
     public void mainFrameButtonAppear() {
         btnStartButton.setVisible(true);
         btnLoadButton.setVisible(true);
         btnSettingButton.setVisible(true);
-       // btnOnlineButton.setVisible(true);
+        // btnOnlineButton.setVisible(true);
 
     }
 
     public void addEventListener() {
 
-        //主界面按钮
+        //&#x4E3B;&#x754C;&#x9762;&#x6309;&#x94AE;
         btnStartButton.addActionListener(this);
         btnLoadButton.addActionListener(this);
-   //     btnOnlineButton.addActionListener(this);
+        //     btnOnlineButton.addActionListener(this);
         btnSettingButton.addActionListener(this);
 
-        //gameMode按钮
+        //gameMode&#x6309;&#x94AE;
         GameModeQuestionButton.addActionListener(this);
         GameModeLeftButton.addActionListener(this);
         GameModeRightButton.addActionListener(this);
 
-        //AIMode按钮
+        //AIMode&#x6309;&#x94AE;
         AIModeLeftButton.addActionListener(this);
         AIModeRightButton.addActionListener(this);
         AIModeQuestionButton.addActionListener(this);
@@ -416,7 +416,7 @@ public class Main extends JFrame implements ActionListener {
             mainFrameButtonAppear();
             gameModeDisappear();
         }
-        //将GameMode保存
+        //&#x5C06;GameMode&#x4FDD;&#x5B58;
         if (e.getSource() == GameModeRightButton) {
             AIModeAppear();
             gameModeDisappear();
@@ -438,9 +438,9 @@ public class Main extends JFrame implements ActionListener {
             }
         }
         if (e.getSource() == GameModeQuestionButton) {
-            JOptionPane.showMessageDialog(null, "BO1 (Best of game 1) : Un jeu (toutes les cartes jouées), celui qui a le meilleur score gagne.\n" +
-                    "BO3 (Best of game 3) : Trois jeu(toutes les cartes jouées dans chaque jeu)Celui qui gagne deux matchs gagne.\n" +
-                    "Nombre de Jeu fixe : On joue x fois jeu.(x est donnee par utilisateur)le joueur ayant le score le plus élevé à la fin de tous les jeu est  gagnée. \n" +
+            JOptionPane.showMessageDialog(null, "BO1 (Best of game 1) : Un jeu (toutes les cartes jou锟斤拷es), celui qui a le meilleur score gagne.\n" +
+                    "BO3 (Best of game 3) : Trois jeu(toutes les cartes jou锟斤拷es dans chaque jeu)Celui qui gagne deux matchs gagne.\n" +
+                    "Nombre de Jeu fixe : On joue x fois jeu.(x est donnee par utilisateur)le joueur ayant le score le plus 锟斤拷lev锟斤拷 锟斤拷 la fin de tous les jeu est  gagn锟斤拷e. \n" +
                     "                                 (Le joueur doit entrer le nombre de parties qu'il veut jouer ci-dessous)\n" +
                     "Score fixe : Le joueur qui atteint le score requis en premier gagne la partie. (Le joueur doit entrer le score requis ci-dessous)", "Gamemode", JOptionPane.QUESTION_MESSAGE);
         }
@@ -539,7 +539,7 @@ public class Main extends JFrame implements ActionListener {
         settingJframe.setSize(600, 700);
         settingJframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         settingJframe.setResizable(false);
-        settingJframe.setLocationRelativeTo(getOwner()); // 屏幕居中
+        settingJframe.setLocationRelativeTo(getOwner()); // &#x5C4F;&#x5E55;&#x5C45;&#x4E2D;
         settingContentPanel = settingJframe.getContentPane();
 
 
@@ -552,10 +552,10 @@ public class Main extends JFrame implements ActionListener {
         settingSaveBackBtn.setBounds(370, 600, 160, 30);
         settingContentPanel.add(settingSaveBackBtn);
 
-        //初始化组件
+        //&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;
         settingJLabel = new JLabel("Configuration");
         settingJLabel.setBounds(220, 20, 200, 30);
-        Font f1 = new Font("隶书", Font.PLAIN, 18);
+        Font f1 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 18);
         settingJLabel.setFont(f1);
         settingContentPanel.add(settingJLabel);
 
@@ -606,7 +606,7 @@ public class Main extends JFrame implements ActionListener {
         btnBackGroup.add(backradioBtn2);
         btnBackGroup.add(backradioBtn3);
 
-        //分割线
+        //&#x5206;&#x5272;&#x7EBF;
         JLabel seprate1 = new JLabel("");
         seprate1.setBounds(0, 180, 10000, 1);
         seprate1.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
@@ -656,7 +656,7 @@ public class Main extends JFrame implements ActionListener {
         btnCardGroup.add(cardRadioBtn3);
 
 
-        //分割线2 设置右边背景
+        //&#x5206;&#x5272;&#x7EBF;2 &#x8BBE;&#x7F6E;&#x53F3;&#x8FB9;&#x80CC;&#x666F;
         JLabel seprate2 = new JLabel("");
         seprate2.setBounds(0, 390, 10000, 1);
         seprate2.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
@@ -710,7 +710,7 @@ public class Main extends JFrame implements ActionListener {
         settingJframe.setVisible(true);
     }
 
-    //添加setting界面监听
+    //&#x6DFB;&#x52A0;setting&#x754C;&#x9762;&#x76D1;&#x542C;
     public void addSettingActionListener() {
 //        cardRadioBtn1.addActionListener(this);
 //        cardRadioBtn2.addActionListener(this);
@@ -726,5 +726,4 @@ public class Main extends JFrame implements ActionListener {
     }
 
 }
-
 

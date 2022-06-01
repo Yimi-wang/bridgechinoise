@@ -38,7 +38,7 @@ public class GamePaneIA extends JPanel {
     private Map<Brand, Rectangle> mapCards;
 
     public GamePaneIA(Jeu j, InterfaceIA ifj, JFrame f, Histoire h) {
-        //点击鼠标，如果点击是卡的位置，则会将卡向上移，不是的话已经移动过的卡回�??原来的位置）
+        //点击鼠标，如果点击是卡的位置，则会将卡向上移，不是的话已经移动过的卡回�??原来的位置）
 
         this.j = j;
         this.ifjgp = ifj;
@@ -92,7 +92,7 @@ public class GamePaneIA extends JPanel {
                             }
                         }
                     }
-                }//���ƽ׶Σ�������Ӯ
+                }//���ƽ׶Σ�������Ӯ
                 else if (j.TurnProcess == 3 && j.numberOfRounds <= 15&&j.Playerwin==0) {
                     for (int i = 0; i <= 5; i++) {
                         if (j.pilescard[i].size() > 0) {
@@ -109,7 +109,7 @@ public class GamePaneIA extends JPanel {
                         }
                     }
 
-                }//���ƽ׶Σ���������
+                }//���ƽ׶Σ���������
                 else if (j.TurnProcess == 4 && j.numberOfRounds <= 15&&j.Playerwin==1){
                     for (int i = 0; i <= 5; i++) {
                         if (j.pilescard[i].size() > 0) {
@@ -131,7 +131,7 @@ public class GamePaneIA extends JPanel {
 
             }
         });
-        //�����һ�غ�AI����
+        //�����һ�غ�AI����
     }
 
     @Override
@@ -163,7 +163,7 @@ public class GamePaneIA extends JPanel {
                 if (ifjgp.selected != null) {
                     if (j.playerNow == 0) {
                         player1playercard = ifjgp.selected;
-                        //����ȳ���
+                        //����ȳ���
                         if (j.playerNow == j.playerFirst){
                             j=playcard.playerFirstPlayCard(j, ifjgp.selected);
                             drawCHANGFANGXING(j);
@@ -177,29 +177,23 @@ public class GamePaneIA extends JPanel {
 //                            }
 //                            System.out.println(456);
 
-                            //AI chu pai ����
+                            //AI chu pai ����
                             playcard.IAplaycard(j,j.AI);
                             player2playercard=j.SecondPlayerPlayerCard;
                             drawCHANGFANGXING(j);
                             repaint();
 //                            try { TimeUnit.SECONDS.sleep(2);
 //                            } catch (InterruptedException ie){}
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            //���Ӯ��ʲô���鶼������
-                            //����䣬�п������ã��������ÿ�
+                            estFINI(j, ifjgp.h);
+                            //���Ӯ��ʲô���鶼������
+                            //����䣬�п������ã��������ÿ�
                             if(j.Playerwin==1&&j.numberOfRounds<16){
 //                                try { TimeUnit.SECONDS.sleep(2);
 //                                } catch (InterruptedException ie){}
                                 takecard.IAtakecard(j,j.AI);
                                 repaint();
                             }
-                            //����䣬û�п������ã������˳���
+                            //����䣬û�п������ã������˳���
                             else if(j.Playerwin==1&&j.numberOfRounds>=16){
 //                                try { TimeUnit.SECONDS.sleep(2);
 //                                } catch (InterruptedException ie){}
@@ -208,23 +202,17 @@ public class GamePaneIA extends JPanel {
                             }
 
                         }
-                        //��Һ��ֳ���
+                        //��Һ��ֳ���
                         else {
                             playcard.playerSecondePlayCard(j, ifjgp.selected);
-                            try {
-                                estFINI(j, ifjgp.h);
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (JavaLayerException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            //����䣬���ƿ�����
+                            estFINI(j, ifjgp.h);
+                            //����䣬���ƿ�����
                             if(j.Playerwin==1&&j.numberOfRounds<16){
                                 try { TimeUnit.SECONDS.sleep(2);
                                 } catch (InterruptedException ie){}
                                 takecard.IAtakecard(j,j.AI);
                                 repaint();
-                            } //����䣬û�п������ã������˳���
+                            } //����䣬û�п������ã������˳���
                             else if(j.Playerwin==1&&j.numberOfRounds>=16){
                                 try { TimeUnit.SECONDS.sleep(2);
                                 } catch (InterruptedException ie){}
@@ -235,13 +223,7 @@ public class GamePaneIA extends JPanel {
                         drawCHANGFANGXING(j);
                         repaint();
                         ifjgp.selected = null;
-                        try {
-                            estFINI(j,h);
-                        } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        estFINI(j,h);
 
 
                     }
@@ -283,16 +265,16 @@ public class GamePaneIA extends JPanel {
         int cardWidth = (int) (cardHeight * 0.6);
         //每个卡片的偏移量
         int xDelta = cardWidth + 5;
-        //第一个卡片的横坐标和纵坐�?
+        //第一个卡片的横坐标和纵坐�?
         int xPos = getWidth() / 10;
         int yPos = height / 100 * 90;
-        //建立�?个hashmap，使每个长方形和每个卡片进行对应。显示下方玩家的手牌�?
+        //建立�?个hashmap，使每个长方形和每个卡片进行对应。显示下方玩家的手牌�?
         for (Brand card : j.playercard[0]) {
             Rectangle bounds = new Rectangle(xPos, yPos, cardWidth, cardHeight);
             mapCards.put(card, bounds);
             xPos += xDelta;
         }
-        //显示上方的手�?
+        //显示上方的手�?
         xPos = getWidth() / 10;
         yPos = height / 40;
         for (Brand card : j.playercard[1]) {
@@ -300,7 +282,7 @@ public class GamePaneIA extends JPanel {
             mapCards.put(card, bounds);
             xPos += xDelta;
         }
-        //显示pile的手卡�??
+        //显示pile的手卡�??
         int xOri = 60;
         xPos = getWidth() / 100 * xOri;
         xDelta = cardWidth / 5;
@@ -324,7 +306,7 @@ public class GamePaneIA extends JPanel {
         int backi = Integer.parseInt(back);
         backi++;
         //TODO setting background.
-        //����
+        //����
         String background = ConfigurationSetting.instance().lis("background");
         int backgroundi = Integer.parseInt(background);
         backgroundi++;
@@ -341,7 +323,7 @@ public class GamePaneIA extends JPanel {
         g2d.drawImage(imageBackGround, 0, 0, getWidth() / 5 * 4, height, null);
 
 
-        //�ұ߱���
+        //�ұ߱���
 
         BufferedImage imageBackGroundRight;
         File ImageBackGroundRightFile;
@@ -359,7 +341,7 @@ public class GamePaneIA extends JPanel {
 
 
         if (j.TurnProcess == 2 || j.TurnProcess == 3) {
-            //画先手方出的�?
+            //画先手方出的�?
             if (j.TurnProcess == 2) {
                 BufferedImage imageCard;
                 File imgFilecard = null;
@@ -385,7 +367,7 @@ public class GamePaneIA extends JPanel {
                     g2d.drawImage(imageCard, getWidth() / 3, height / 20 * 5, cardWidth, cardHeight, null);
                 }
             }
-            //打印双方出的�?
+            //打印双方出的�?
             if (j.TurnProcess == 3) {
                 //打印先手方出的牌
                 BufferedImage imageCard;
@@ -413,7 +395,7 @@ public class GamePaneIA extends JPanel {
         }
         for (Brand card : j.playercard[1]) {
             Rectangle bounds = mapCards.get(card);
-            //根据长方形的位置，填充图�?
+            //根据长方形的位置，填充图�?
             if (bounds != null) {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 1) {
@@ -434,7 +416,7 @@ public class GamePaneIA extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.red);
@@ -448,7 +430,7 @@ public class GamePaneIA extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.red);
@@ -488,7 +470,7 @@ public class GamePaneIA extends JPanel {
         for (Brand card : j.playercard[0]) {
             Rectangle bounds = mapCards.get(card);
             //System.out.println(bounds);
-            //根据长方形的位置，填充图�?
+            //根据长方形的位置，填充图�?
             if (bounds != null) {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 0) {
@@ -509,7 +491,7 @@ public class GamePaneIA extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.blue);
@@ -523,7 +505,7 @@ public class GamePaneIA extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.blue);
@@ -539,7 +521,7 @@ public class GamePaneIA extends JPanel {
                 Brand card = j.pilescard[i].get(a);
                 Rectangle bounds = mapCards.get(card);
                 //System.out.println(bounds);
-                //根据长方形的位置，填充图�?
+                //根据长方形的位置，填充图�?
                 if (bounds != null) {
                     BufferedImage imageCard;
                     File imgFile;
@@ -559,7 +541,7 @@ public class GamePaneIA extends JPanel {
                     }
                     int cardHeight = (height - 20) / 8;
                     int cardWidth = (int) (cardHeight * 0.6);
-                    //画图�?
+                    //画图�?
                     g2d.drawImage(imageCard, bounds.x, bounds.y, cardWidth, cardHeight, null);
                     //画长方形边框
                     g2d.setColor(Color.BLACK);
@@ -571,7 +553,7 @@ public class GamePaneIA extends JPanel {
         String[] dfonts;
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 
-        //输出右边游戏信息�?
+        //输出右边游戏信息�?
         //Atout 文字
         g2d.setColor(Color.red);
         g2d.setFont(new Font(dfonts[1], Font.BOLD, 30));
@@ -593,7 +575,7 @@ public class GamePaneIA extends JPanel {
         g2d.drawImage(imageCardAtout, middle+middle/15, height / 100 * 8, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
         g2d.setColor(Color.ORANGE);
         g2d.setFont(new Font("Calibri",Font.ITALIC,18));
-        g2d.drawString("Cartes jou�� au tour pr��c��dent",middle+middle/100,getHeight()/100*35);
+        g2d.drawString("Cartes jou�� au tour pr��c��dent",middle+middle/100,getHeight()/100*35);
         if(j.lastgamep1playcard!=null){
             g2d.setFont(new Font(dfonts[5], Font.BOLD, 20));
             g2d.drawString("Joueur 1 ",middle+middle/40, getHeight()/100*38);
@@ -645,7 +627,7 @@ public class GamePaneIA extends JPanel {
             g2d.drawString(GameMode2, middle+middle/100, getHeight() / 100 * 75);
         }
 
-        //numbre de tour  回合�?
+        //numbre de tour  回合�?
         String nbtour = "Le numbre de tour est " + j.numberOfRounds;
         g2d.setColor(Color.blue);
         g2d.setFont(new Font("Monaco", Font.PLAIN, 20));
@@ -673,7 +655,7 @@ public class GamePaneIA extends JPanel {
         g2d.setFont(new Font("Calibri", Font.BOLD, 50));
         g2d.drawString(String.valueOf(j.Player2Score), getWidth() / 100 * 72, height / 100 * 12);
 
-        //˫���õ��ֿ�
+        //˫���õ��ֿ�
         if (j.numberOfRounds <= 16) {
             if (!(j.numberOfRounds == 1 && j.TurnProcess <= 3)) {
 
@@ -742,7 +724,7 @@ public class GamePaneIA extends JPanel {
         repaint();
     }
 
-    public void estFINI(Jeu j, Histoire h) throws FileNotFoundException, JavaLayerException {
+    public void estFINI(Jeu j, Histoire h)  {
         switch (j.GameMode) {
             case 1:
                 if (j.numberOfRounds == 27) {
@@ -813,12 +795,12 @@ public class GamePaneIA extends JPanel {
 
     public void gameStartencore(Jeu j, Histoire h) {
         j.reset();
-        if (j.numberOfGames == 0) j.numberOfGames = 1;//�����Ϸ�տ�ʼ�Ļ�
-        if (j.playerFirst == 2) {//������ָÿ�ʼ�Ļ����ж��ĸ�����ȿ�ʼ��Ϸ��
+        if (j.numberOfGames == 0) j.numberOfGames = 1;//�����Ϸ�տ�ʼ�Ļ�
+        if (j.playerFirst == 2) {//������ָÿ�ʼ�Ļ����ж��ĸ�����ȿ�ʼ��Ϸ��
             j.playerFirst = (j.numberOfGames - 1) % 2;
             j.numberOfRounds = 1;
             j.playerNow = j.playerFirst;
-            //���з����Լ��ƶѵ�ʵ��
+            //���з����Լ��ƶѵ�ʵ��
             if (j.numberOfGames != 1) {
                 StartHand startHand = new StartHand(j);
                 startHand.stardHand();
@@ -838,7 +820,7 @@ public class GamePaneIA extends JPanel {
         }
     }
 
-    public void surrenderthisgame() throws FileNotFoundException, JavaLayerException {
+    public void surrenderthisgame()  {
         if (j.playerNow == 0) {
             j.Player2Score +=(26 - j.numberOfRounds+1);
             j.Player2totalScore += (26 - j.numberOfRounds+1);
@@ -860,7 +842,7 @@ public class GamePaneIA extends JPanel {
 
     }
 
-    public void wingamewindow(Jeu j, int i, int winner) throws FileNotFoundException, JavaLayerException {
+    public void wingamewindow(Jeu j, int i, int winner) {
         if (i == 1) {
             String winmassage;
             if(winner==1)
