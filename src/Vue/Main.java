@@ -158,8 +158,8 @@ public class Main extends JFrame implements ActionListener {
         mainContentPanel.setLayout(null);
         // start&#x6309;&#x94AE;
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String startPath = "res/images/START.png";
-        ImageIcon startIcon1 = new ImageIcon(startPath);
+        imgURL = Vue.Main.class.getResource("/res/images/START.png");
+        ImageIcon startIcon1 = new ImageIcon(imgURL);
         Image startImg = startIcon1.getImage();
         Image startNewimg = startImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon startIcon2 = new ImageIcon(startNewimg);
@@ -185,8 +185,8 @@ public class Main extends JFrame implements ActionListener {
 
         // load
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String loadPath = "res/images/LOAD.png";
-        ImageIcon loadIcon1 = new ImageIcon(loadPath);
+        imgURL = Vue.Main.class.getResource("/res/images/LOAD.png");
+        ImageIcon loadIcon1 = new ImageIcon(imgURL);
         Image loadImg = loadIcon1.getImage();
         Image loadNewImg = loadImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon loadIcon2 = new ImageIcon(loadNewImg);
