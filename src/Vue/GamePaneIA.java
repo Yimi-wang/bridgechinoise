@@ -4,7 +4,7 @@ import Controleur.IASimpleVue;
 import Controleur.PlayCardsVue;
 import Controleur.TakeCardVue;
 import Modele.*;
-import global.ConfigurationSetting;
+//import global.ConfigurationSetting;
 
 
 import javax.imageio.ImageIO;
@@ -302,12 +302,12 @@ public class GamePaneIA extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        String back = ConfigurationSetting.instance().lis("back");
+        String back =System.getProperty("back");
         int backi = Integer.parseInt(back);
         backi++;
         //TODO setting background.
         //����
-        String background = ConfigurationSetting.instance().lis("background");
+        String background = System.getProperty("background");
         int backgroundi = Integer.parseInt(background);
         backgroundi++;
         BufferedImage imageBackGround;
@@ -327,7 +327,7 @@ public class GamePaneIA extends JPanel {
 
         BufferedImage imageBackGroundRight;
         File ImageBackGroundRightFile;
-        String rightback= ConfigurationSetting.instance().lis("backright");
+        String rightback=System.getProperty("backright");
         int rightbacki =Integer.parseInt(rightback);
         rightbacki++;
         ImageBackGroundRightFile = new File("res/images/backright ("+rightbacki+").png");

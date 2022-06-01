@@ -427,20 +427,13 @@ public class Main extends JFrame implements ActionListener {
             AIModeAppear();
             gameModeDisappear();
             int GameMode;
-            try {
-                FileWriter fw;
-                fw = new FileWriter("res/default.cfg", false);
-                // Human vs Human
-                GameMode = GameModeComboBox.getSelectedIndex() + 1;
-                fw.write("GameMode=" + GameMode + "\n");
-                String NB = jta.getText();
-                if (GameMode > 2) {
-                    fw.write("GameInformation=" + NB + "\n");
-                    System.out.println("gameInformation est " + NB);
-                }
-                fw.close();
-            } catch (IOException err) {
-                err.printStackTrace();
+
+            // Human vs Human
+            GameMode = GameModeComboBox.getSelectedIndex() + 1;
+            System.setProperty("GameMode", String.valueOf(GameMode));
+            String NB = jta.getText();
+            if (GameMode > 2) {
+                System.setProperty("GameInformation", String.valueOf(GameMode));
             }
         }
         if (e.getSource() == GameModeQuestionButton) {
@@ -455,16 +448,8 @@ public class Main extends JFrame implements ActionListener {
         }
         if (e.getSource() == AIModeRightButton) {
             int IA=0;
-            try {
-                FileWriter fw;
-                fw = new FileWriter("res/default.cfg", true);
-                // Human vs Human
-                IA = AIModeComboBox.getSelectedIndex();
-                fw.write("AI=" + IA + "\n");
-                fw.close();
-            } catch (IOException err) {
-                err.printStackTrace();
-            }
+            IA = AIModeComboBox.getSelectedIndex();
+            System.setProperty("AI", String.valueOf(IA));
             mainframe.dispose();
             m.stop();
             if (IA==0) InterfaceJeu.start();
@@ -632,7 +617,8 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn1 = new JRadioButton("", false);
         cardRadioBtn1.setBounds(60, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn1);
-        JLabel cardBack1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (1).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/back (1).png");
+        JLabel cardBack1 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         cardBack1.setBounds(90, 250, 60, 90);
         settingContentPanel.add(cardBack1);
 
@@ -641,7 +627,8 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn2 = new JRadioButton("", false);
         cardRadioBtn2.setBounds(230, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn2);
-        JLabel cardBack2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (2).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/back (2).png");
+        JLabel cardBack2 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         cardBack2.setBounds(260, 250, 60, 90);
         settingContentPanel.add(cardBack2);
 
@@ -650,7 +637,8 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn3 = new JRadioButton("", false);
         cardRadioBtn3.setBounds(390, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn3);
-        JLabel cardBack3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (3).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/back (3).png");
+        JLabel cardBack3 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         cardBack3.setBounds(420, 250, 60, 90);
         settingContentPanel.add(cardBack3);
 
@@ -683,7 +671,8 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn1 = new JRadioButton("", false);
         rightbackradioBtn1.setBounds(60, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn1);
-        JLabel rightback1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (1).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/backright (1).png");
+        JLabel rightback1 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         rightback1.setBounds(90, 450, 60, 90);
         settingContentPanel.add(rightback1);
 
@@ -692,7 +681,8 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn2 = new JRadioButton("", false);
         rightbackradioBtn2.setBounds(230, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn2);
-        JLabel rightback2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (2).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/backright (2).png");
+        JLabel rightback2 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         rightback2.setBounds(260, 450, 60, 90);
         settingContentPanel.add(rightback2);
 
@@ -701,10 +691,10 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn3 = new JRadioButton("", false);
         rightbackradioBtn3.setBounds(390, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn3);
-        JLabel rightback3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (3).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/backright (3).png");
+        JLabel rightback3 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         rightback3.setBounds(420, 450, 60, 90);
         settingContentPanel.add(rightback3);
-
 
         btnrightBackGroup = new ButtonGroup();
         btnrightBackGroup.add(rightbackradioBtn1);

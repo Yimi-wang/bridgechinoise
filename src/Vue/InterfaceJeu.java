@@ -441,15 +441,15 @@ public class InterfaceJeu implements Runnable {
         j = new Jeu();
         a = new Atout(j);
         h = new Histoire(j);
-        String GameMode = Configuration.instance().lis("GameMode");
+        String GameMode = System.getProperty("GameMode");
         int GameModei = Integer.parseInt(GameMode);
+        System.out.println(GameModei);
         if (GameModei > 2) {
-            String GameInformation = Configuration.instance().lis("GameInformation");
+            String GameInformation = System.getProperty("GameInformation");
             int GameInformationi = Integer.parseInt(GameInformation);
             j.GameInformation = GameInformationi;
         }
-
-        String AI = Configuration.instance().lis("AI");
+        String AI =System.getProperty("AI");
         int AIi = Integer.parseInt(AI);
         j.AI = AIi;
         j.GameMode = GameModei;
