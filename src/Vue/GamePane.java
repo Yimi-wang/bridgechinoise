@@ -174,7 +174,7 @@ public class GamePane extends JPanel {
                 if (ifjgp.selected != null) {
                     if (j.playerNow == 0) {
                         JavaClip m = new JavaClip();
-                        m.playcard();
+
                         System.out.println("playcard");
                         player1playercard = ifjgp.selected;
                         if (j.playerNow == j.playerFirst) playcard.playerFirstPlayCard(j, ifjgp.selected);
@@ -218,7 +218,6 @@ public class GamePane extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (ifjgp.selected != null) {
                     JavaClip m = new JavaClip();
-                    m.playcard();
                     if (j.playerNow == 1) {
                         System.out.println("playcard");
                         player2playercard = ifjgp.selected;
