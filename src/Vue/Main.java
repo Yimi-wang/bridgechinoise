@@ -155,7 +155,7 @@ public class Main extends JFrame implements ActionListener {
         mainContentPanel.setLayout(null);
         // start&#x6309;&#x94AE;
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String startPath = "./res/images/START.png";
+        String startPath = "res/images/START.png";
         ImageIcon startIcon1 = new ImageIcon(startPath);
         Image startImg = startIcon1.getImage();
         Image startNewimg = startImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
@@ -169,7 +169,7 @@ public class Main extends JFrame implements ActionListener {
 
 //        // online
 //        //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-//        String onlinePath = "./res/images/ONLINE.png";
+//        String onlinePath = "res/images/ONLINE.png";
 //        ImageIcon onlineIcon1 = new ImageIcon(onlinePath);
 //        Image onlineImg = onlineIcon1.getImage();
 //        Image onlineNewImg = onlineImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
@@ -182,7 +182,7 @@ public class Main extends JFrame implements ActionListener {
 
         // load
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String loadPath = "./res/images/LOAD.png";
+        String loadPath = "res/images/LOAD.png";
         ImageIcon loadIcon1 = new ImageIcon(loadPath);
         Image loadImg = loadIcon1.getImage();
         Image loadNewImg = loadImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
@@ -195,7 +195,7 @@ public class Main extends JFrame implements ActionListener {
 
         // setting
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String settingPath = "./res/images/SETTING.png";
+        String settingPath = "res/images/SETTING.png";
         ImageIcon settingIcon1 = new ImageIcon(settingPath);
         Image settingImg = settingIcon1.getImage();
         Image settingNewImg = settingImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
@@ -425,7 +425,7 @@ public class Main extends JFrame implements ActionListener {
             int GameMode;
             try {
                 FileWriter fw;
-                fw = new FileWriter("./res/default.cfg", false);
+                fw = new FileWriter("res/default.cfg", false);
                 // Human vs Human
                 GameMode = GameModeComboBox.getSelectedIndex() + 1;
                 fw.write("GameMode=" + GameMode + "\n");
@@ -453,7 +453,7 @@ public class Main extends JFrame implements ActionListener {
             int IA=0;
             try {
                 FileWriter fw;
-                fw = new FileWriter("./res/default.cfg", true);
+                fw = new FileWriter("res/default.cfg", true);
                 // Human vs Human
                 IA = AIModeComboBox.getSelectedIndex();
                 fw.write("AI=" + IA + "\n");
@@ -495,7 +495,7 @@ public class Main extends JFrame implements ActionListener {
             FileWriter fw;
             try{
                 int i=0;
-                fw = new FileWriter("./res/defaultSetting.cfg", false);
+                fw = new FileWriter("res/defaultSetting.cfg", false);
                 Enumeration element =btnBackGroup.getElements();
                 while (element.hasMoreElements()){
                     AbstractButton button = (AbstractButton)element.nextElement();
@@ -582,7 +582,7 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn1 = new JRadioButton("", false);
         backradioBtn1.setBounds(60, 100, 30, 30);
         settingContentPanel.add(backradioBtn1);
-        JLabel back1 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/background (1).png", true));
+        JLabel back1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (1).png", true));
         back1.setBounds(90, 100, 100, 60);
         settingContentPanel.add(back1);
 
@@ -591,7 +591,7 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn2 = new JRadioButton("", false);
         backradioBtn2.setBounds(230, 100, 30, 30);
         settingContentPanel.add(backradioBtn2);
-        JLabel back2 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/background (2).png", true));
+        JLabel back2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (2).png", true));
         back2.setBounds(260, 100, 100, 60);
         settingContentPanel.add(back2);
 
@@ -600,7 +600,7 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn3 = new JRadioButton("", false);
         backradioBtn3.setBounds(390, 100, 30, 30);
         settingContentPanel.add(backradioBtn3);
-        JLabel back3 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/background (3).png", true));
+        JLabel back3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (3).png", true));
         back3.setBounds(420, 100, 100, 60);
         settingContentPanel.add(back3);
 
@@ -630,7 +630,7 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn1 = new JRadioButton("", false);
         cardRadioBtn1.setBounds(60, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn1);
-        JLabel cardBack1 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/back (1).png", true));
+        JLabel cardBack1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (1).png", true));
         cardBack1.setBounds(90, 250, 60, 90);
         settingContentPanel.add(cardBack1);
 
@@ -639,7 +639,7 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn2 = new JRadioButton("", false);
         cardRadioBtn2.setBounds(230, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn2);
-        JLabel cardBack2 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/back (2).png", true));
+        JLabel cardBack2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (2).png", true));
         cardBack2.setBounds(260, 250, 60, 90);
         settingContentPanel.add(cardBack2);
 
@@ -648,7 +648,7 @@ public class Main extends JFrame implements ActionListener {
         else cardRadioBtn3 = new JRadioButton("", false);
         cardRadioBtn3.setBounds(390, 250, 30, 30);
         settingContentPanel.add(cardRadioBtn3);
-        JLabel cardBack3 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/back (3).png", true));
+        JLabel cardBack3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/back (3).png", true));
         cardBack3.setBounds(420, 250, 60, 90);
         settingContentPanel.add(cardBack3);
 
@@ -681,7 +681,7 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn1 = new JRadioButton("", false);
         rightbackradioBtn1.setBounds(60, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn1);
-        JLabel rightback1 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/backright (1).png", true));
+        JLabel rightback1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (1).png", true));
         rightback1.setBounds(90, 450, 60, 90);
         settingContentPanel.add(rightback1);
 
@@ -690,7 +690,7 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn2 = new JRadioButton("", false);
         rightbackradioBtn2.setBounds(230, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn2);
-        JLabel rightback2 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/backright (2).png", true));
+        JLabel rightback2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (2).png", true));
         rightback2.setBounds(260, 450, 60, 90);
         settingContentPanel.add(rightback2);
 
@@ -699,7 +699,7 @@ public class Main extends JFrame implements ActionListener {
         else rightbackradioBtn3 = new JRadioButton("", false);
         rightbackradioBtn3.setBounds(390, 450, 30, 30);
         settingContentPanel.add(rightbackradioBtn3);
-        JLabel rightback3 = new JLabel(SwingUtil.createAutoAdjustIcon("./res/images/backright (3).png", true));
+        JLabel rightback3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/backright (3).png", true));
         rightback3.setBounds(420, 450, 60, 90);
         settingContentPanel.add(rightback3);
 

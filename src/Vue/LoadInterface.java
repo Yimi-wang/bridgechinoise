@@ -26,7 +26,7 @@ public class LoadInterface implements Runnable{
     }
 
     public String[] getAllFileNames() {
-        File folder = new File("./res/saveload");
+        File folder = new File("res/saveload");
         File[] listOfFiles = folder.listFiles();
 
         ArrayList<String> al = new ArrayList<String>();

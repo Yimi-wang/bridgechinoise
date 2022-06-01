@@ -311,7 +311,7 @@ public class GamePaneLoad extends JPanel {
         backgroundi++;
         BufferedImage imageBackGround;
         File ImageBackGroundFile;
-        ImageBackGroundFile = new File("./res/images/background ("+backgroundi+").png");
+        ImageBackGroundFile = new File("res/images/background ("+backgroundi+").png");
         try {
             imageBackGround = ImageIO.read(ImageBackGroundFile);
         } catch (IOException e) {
@@ -329,7 +329,7 @@ public class GamePaneLoad extends JPanel {
         String rightback= ConfigurationSetting.instance().lis("backright");
         int rightbacki =Integer.parseInt(rightback);
         rightbacki++;
-        ImageBackGroundRightFile = new File("./res/images/backright ("+rightbacki+").png");
+        ImageBackGroundRightFile = new File("res/images/backright ("+rightbacki+").png");
         try {
             imageBackGroundRight = ImageIO.read(ImageBackGroundRightFile);
         } catch (IOException e) {
@@ -345,10 +345,10 @@ public class GamePaneLoad extends JPanel {
                 File imgFilecard = null;
                 if (j.playerFirst == 0) {
                     player1playercard=j.FirstPlayerPlayCard;
-                    imgFilecard = new File("./res/images/card (" + player1playercard.id + ").png");
+                    imgFilecard = new File("res/images/card (" + player1playercard.id + ").png");
                 } else {
                     player2playercard=j.FirstPlayerPlayCard;
-                    imgFilecard = new File("./res/images/card (" + player2playercard.id + ").png");
+                    imgFilecard = new File("res/images/card (" + player2playercard.id + ").png");
                 }
                 try {
                     imageCard = ImageIO.read(imgFilecard);
@@ -372,7 +372,7 @@ public class GamePaneLoad extends JPanel {
                 //打印先手方出的牌
                 BufferedImage imageCard;
                player1playercard=j.lastgamep0playcard;
-                File imgFilecard = new File("./res/images/card (" + player1playercard.id + ").png");
+                File imgFilecard = new File("res/images/card (" + player1playercard.id + ").png");
                 try {
                     imageCard = ImageIO.read(imgFilecard);
                 } catch (IOException e) {
@@ -385,7 +385,7 @@ public class GamePaneLoad extends JPanel {
 
                 //后手方出的牌
                 player2playercard=j.lastgamep1playcard;
-                imgFilecard = new File("./res/images/card (" + player2playercard.id + ").png");
+                imgFilecard = new File("res/images/card (" + player2playercard.id + ").png");
                 try {
                     imageCard = ImageIO.read(imgFilecard);
                 } catch (IOException e) {
@@ -402,14 +402,14 @@ public class GamePaneLoad extends JPanel {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 1) {
                     if ((j.playerFirst != j.playerNow) && !playcard.limite(j, card) && j.playerNow == 1 && j.TurnProcess == 2) {
-                        File imgFile = new File("./res/images/BBcard (" + card.id + ").png");
+                        File imgFile = new File("res/images/BBcard (" + card.id + ").png");
                         try {
                             imageCard = ImageIO.read(imgFile);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     } else {
-                        File imgFile = new File("./res/images/card (" + card.id + ").png");
+                        File imgFile = new File("res/images/card (" + card.id + ").png");
                         try {
                             imageCard = ImageIO.read(imgFile);
                         } catch (IOException e) {
@@ -424,7 +424,7 @@ public class GamePaneLoad extends JPanel {
                     g2d.setColor(Color.red);
                     g2d.draw(bounds);
                 } else {
-                    File imgFile = new File("./res/images/back ("+backi+").png");
+                    File imgFile = new File("res/images/back ("+backi+").png");
                     try {
                         imageCard = ImageIO.read(imgFile);
                     } catch (IOException e) {
@@ -445,20 +445,20 @@ public class GamePaneLoad extends JPanel {
         BufferedImage imageTurn;
         switch (j.TurnProcess) {
             case 1:
-                if (j.playerNow == 0) imgFileT = new File("./res/images/j1j-modified.png");
-                else imgFileT = new File("./res/images/j2j-modified.png");
+                if (j.playerNow == 0) imgFileT = new File("res/images/j1j-modified.png");
+                else imgFileT = new File("res/images/j2j-modified.png");
                 break;
             case 2:
-                if (j.playerNow == 0) imgFileT = new File("./res/images/j1j-modified.png");
-                else imgFileT = new File("./res/images/j2j-modified.png");
+                if (j.playerNow == 0) imgFileT = new File("res/images/j1j-modified.png");
+                else imgFileT = new File("res/images/j2j-modified.png");
                 break;
             case 3:
-                if (j.playerNow == 0) imgFileT = new File("./res/images/j1p-modified.png");
-                else imgFileT = new File("./res/images/j2p-modified.png");
+                if (j.playerNow == 0) imgFileT = new File("res/images/j1p-modified.png");
+                else imgFileT = new File("res/images/j2p-modified.png");
                 break;
             case 4:
-                if (j.playerNow == 0) imgFileT = new File("./res/images/j1p-modified.png");
-                else imgFileT = new File("./res/images/j2p-modified.png");
+                if (j.playerNow == 0) imgFileT = new File("res/images/j1p-modified.png");
+                else imgFileT = new File("res/images/j2p-modified.png");
                 break;
         }
         try {
@@ -477,14 +477,14 @@ public class GamePaneLoad extends JPanel {
                 BufferedImage imageCard;
                 if (ifjgp.showcard || j.playerNow == 0) {
                     if ((j.playerFirst != j.playerNow) && !playcard.limite(j, card) && j.playerNow == 0 && j.TurnProcess == 2) {
-                        File imgFile = new File("./res/images/BBcard (" + card.id + ").png");
+                        File imgFile = new File("res/images/BBcard (" + card.id + ").png");
                         try {
                             imageCard = ImageIO.read(imgFile);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     } else {
-                        File imgFile = new File("./res/images/card (" + card.id + ").png");
+                        File imgFile = new File("res/images/card (" + card.id + ").png");
                         try {
                             imageCard = ImageIO.read(imgFile);
                         } catch (IOException e) {
@@ -499,7 +499,7 @@ public class GamePaneLoad extends JPanel {
                     g2d.setColor(Color.blue);
                     g2d.draw(bounds);
                 } else {
-                    File imgFile = new File("./res/images/back ("+backi+").png");
+                    File imgFile = new File("res/images/back ("+backi+").png");
                     try {
                         imageCard = ImageIO.read(imgFile);
                     } catch (IOException e) {
@@ -529,11 +529,11 @@ public class GamePaneLoad extends JPanel {
                     File imgFile;
                     if (a == 0) {
                         if (j.TurnProcess < 3)
-                            imgFile = new File("./res/images/Bcard (" + card.id + ").png");
+                            imgFile = new File("res/images/Bcard (" + card.id + ").png");
                         else
-                            imgFile = new File("./res/images/card (" + card.id + ").png");
+                            imgFile = new File("res/images/card (" + card.id + ").png");
                     } else {
-                        imgFile = new File("./res/images/back ("+backi+").png");
+                        imgFile = new File("res/images/back ("+backi+").png");
                     }
 
                     try {
@@ -564,9 +564,9 @@ public class GamePaneLoad extends JPanel {
         BufferedImage imageCardAtout;
         File ImageAtoutFile;
         if (j.avoiratout) {
-            ImageAtoutFile = new File("./res/images/Atout" + j.atout.getInttype() + ".png");
+            ImageAtoutFile = new File("res/images/Atout" + j.atout.getInttype() + ".png");
         } else {
-            ImageAtoutFile = new File("./res/images/back ("+backi+").png");
+            ImageAtoutFile = new File("res/images/back ("+backi+").png");
         }
         try {
             imageCardAtout = ImageIO.read(ImageAtoutFile);
@@ -582,7 +582,7 @@ public class GamePaneLoad extends JPanel {
             g2d.drawString("Joueur 1 ",middle+middle/40, getHeight()/100*38);
             BufferedImage imagelastplayercard;
             File imagelastplayercardfile;
-            imagelastplayercardfile= new File("./res/images/card (" + j.lastgamep0playcard.id + ").png");
+            imagelastplayercardfile= new File("res/images/card (" + j.lastgamep0playcard.id + ").png");
             try {
                 imagelastplayercard = ImageIO.read(imagelastplayercardfile);
             } catch (IOException e) {
@@ -590,7 +590,7 @@ public class GamePaneLoad extends JPanel {
             }
             g2d.drawImage(imagelastplayercard,middle+middle/40, getHeight()/100*40, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10,null);
             g2d.drawString("Joueur 2 ",middle+middle/8, getHeight()/100*38);
-            imagelastplayercardfile= new File("./res/images/card (" + j.lastgamep1playcard.id + ").png");
+            imagelastplayercardfile= new File("res/images/card (" + j.lastgamep1playcard.id + ").png");
             try {
                 imagelastplayercard = ImageIO.read(imagelastplayercardfile);
             } catch (IOException e) {
@@ -664,9 +664,9 @@ public class GamePaneLoad extends JPanel {
                     BufferedImage imageCard;
                     File imgFilecard = null;
                     if (j.playerNow == 0) {
-                        imgFilecard = new File("./res/images/card (" + j.player2takecard.id + ").png");
+                        imgFilecard = new File("res/images/card (" + j.player2takecard.id + ").png");
                     } else {
-                        imgFilecard = new File("./res/images/card (" + j.player1takecard.id + ").png");
+                        imgFilecard = new File("res/images/card (" + j.player1takecard.id + ").png");
                     }
                     try {
                         imageCard = ImageIO.read(imgFilecard);
@@ -693,8 +693,8 @@ public class GamePaneLoad extends JPanel {
                 } else {
                     BufferedImage imageCard;
                     BufferedImage imageCard2;
-                    File imgFilecard = new File("./res/images/card (" + j.player2takecard.id + ").png");
-                    File imgFilecard2 = new File("./res/images/card (" + j.player1takecard.id + ").png");
+                    File imgFilecard = new File("res/images/card (" + j.player2takecard.id + ").png");
+                    File imgFilecard2 = new File("res/images/card (" + j.player1takecard.id + ").png");
                     try {
                         imageCard = ImageIO.read(imgFilecard);
                         imageCard2 = ImageIO.read(imgFilecard2);

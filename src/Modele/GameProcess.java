@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class GameProcess {
-    int player2;
+    int player2; int IA2;
     int player1;
     int IA;
     Jeu j;
@@ -32,9 +32,9 @@ public class GameProcess {
 
         j.playerFirst = 2;
         System.out.println("IA 0 : sans IA");
-        System.out.println("IA 1 : IA Random");
-        System.out.println("IA 2 : IA simple");
-        System.out.println("IA 3 : QAQ");
+        System.out.println("IA 1 : IA Simple");
+        System.out.println("IA 2 : IA Moyenne");
+        System.out.println("IA 3 : IA Difficile");
         System.out.println("4 : web");
         System.out.println("Choisissez la 'IA' avec laquelle que vous voulez jouer");
         Scanner input = new Scanner(System.in);
@@ -70,7 +70,7 @@ public class GameProcess {
         System.out.println("Gamemode 2 : BO3");
         System.out.println("Gamemode 3 : Nombre de Jeu fixe");
         System.out.println("Gamemode 4 : Score Fixe");
-        System.out.println("Gamemode 5 : IA random vs IA simple");
+        System.out.println("Gamemode 5 : IA  vs IA ");
         System.out.println("Gamemode 6 : Web");
         System.out.println("Choisissez le 'gamemode' souhaité");
         Scanner input = new Scanner(System.in);
@@ -164,6 +164,10 @@ public class GameProcess {
                 h.cleanHistoire();
                 break;
             case 5:
+                System.out.println("IA 1 : IA Simple");
+                System.out.println("IA 2 : IA Moyenne");
+                input = new Scanner(System.in);
+                IA2 = input.nextInt();
                 gameAI();
                 break;
             case -2:
@@ -348,7 +352,7 @@ public class GameProcess {
                 if (j.getPlayerNow() == 1) {
                     playCards. IAplaycard(j, IA);
                 } else {
-                    playCards.IAplaycard(j, 3);
+                    playCards.IAplaycard(j, IA2+3);
                 }
                 break;
             //后手方出牌
@@ -358,7 +362,7 @@ public class GameProcess {
                 if (IA > 0 && j.getPlayerNow() == 1) {
                     playCards.IAplaycard(j, IA);
                 } else {
-                    playCards.IAplaycard(j, 3);
+                    playCards.IAplaycard(j,  IA2+3);
                 }
                 break;
             //根据赢家，进行拿牌操作。
@@ -369,7 +373,7 @@ public class GameProcess {
                     if (IA > 0 && j.playerNow == 1) {
                         takeCard.IAtakecard(j, IA);
                     } else {
-                        takeCard.IAtakecard(j, 3);
+                        takeCard.IAtakecard(j, IA2+3);
                     }
 
                 } else {
@@ -383,7 +387,7 @@ public class GameProcess {
                     if (IA > 0 && j.playerNow == 1) {
                         takeCard.IAtakecard(j, IA);
                     } else {
-                        takeCard.IAtakecard(j, 3);
+                        takeCard.IAtakecard(j, IA2+3);
                     }
                 } else {
                     j.TurnProcess++;

@@ -70,6 +70,7 @@ public class InterfaceJeu implements Runnable {
         frame.setMinimumSize(new Dimension(1200, 800));
         m=new JavaClip();
         m.playgamemusic();
+
         /**
          * ��Ϸ�˵���ʵ��
          */
@@ -337,7 +338,7 @@ public class InterfaceJeu implements Runnable {
         mFalse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                m.stop();
+               m.stop();
             }
         });
         /**

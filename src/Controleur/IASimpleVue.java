@@ -22,6 +22,7 @@ public class IASimpleVue {
             for (int i = 1; i < j.playercard[player].size(); i++) {
                 if (j.playercard[player].get(i).getNum() >= max.getNum()) {
                     max = j.playercard[player].get(i);
+
                 }
             }
             return j.playercard[player].indexOf(max);

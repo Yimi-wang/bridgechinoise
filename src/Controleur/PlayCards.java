@@ -105,6 +105,14 @@ public class PlayCards {
                 IAMinMax ims = new IAMinMax(j);
                 index=ims.IAMinMaxPlayerCard();
                 break;
+            case 4:
+                IArandom2 iar2 = new IArandom2(j);
+                index = iar2.IArandomPlayerCard2(j);
+                break;
+            case 5:
+                IASimple2 ias2 = new IASimple2(j);
+                index = ias2.IASimplePlayerCard();
+                break;
         }
         System.out.println(index);
         //进行出牌操作

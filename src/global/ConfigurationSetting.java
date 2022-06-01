@@ -14,7 +14,7 @@ public class ConfigurationSetting {
     private ConfigurationSetting() {
         prop = new Properties();
         try {
-            File file = new File("./res/defaultSetting.cfg");
+            File file = new File("res/defaultSetting.cfg");
             InputStream propIn = new FileInputStream(file);
             prop.load(propIn);
         }catch (Exception e) {

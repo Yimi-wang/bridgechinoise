@@ -98,9 +98,18 @@ public class TakeCard {
                 index = ias.IASimpleTakeCard();
                 break;
             case 3:
+                ias = new IASimple(j);
+                index = ias.IASimpleTakeCard();
+                break;
+            case 4:
                 IArandom2 iar2 = new IArandom2(j);
                 index = iar2.IarandomGetCard2();
                 break;
+            case 5:
+                IASimple2 ias2 = new IASimple2(j);
+                index = ias2.IASimpleTakeCard();
+                break;
+
         }
         System.out.println(index);
         Brand card = j.pilescard[index].get(0);
