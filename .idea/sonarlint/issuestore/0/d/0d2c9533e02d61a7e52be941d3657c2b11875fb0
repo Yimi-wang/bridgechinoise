@@ -1,0 +1,26 @@
+
+@
+java:S5411"*Use the primitive boolean expression here.(Ûí
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Áá£Òûÿÿÿÿ
+R
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Ø£¹ò
+R
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Ø£¹ò
+W
+java:S4973 "<Strings and Boxed types should be compared using "equals()".(ÇÌŠÙşÿÿÿÿ
+W
+java:S4973("<Strings and Boxed types should be compared using "equals()".(‘å²öüÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬¡Å©øÿÿÿÿ
+@
+java:S2157"%Add a "clone()" method to this class.(ÀÛÅøÿÿÿÿ
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(·Æ•Ïùÿÿÿÿ
+|
+java:S2178"fCorrect this "&" to "&&" and extract the right operand to a variable if it should always be evaluated.(Ø£¹ò
+
+java:S2178 "fCorrect this "&" to "&&" and extract the right operand to a variable if it should always be evaluated.(ÇÌŠÙşÿÿÿÿ
+
+java:S2178("fCorrect this "&" to "&&" and extract the right operand to a variable if it should always be evaluated.(‘å²öüÿÿÿÿ
+U
+java:S1128"?Remove this unused import 'java.util.concurrent.RecursiveTask'.(½æØï

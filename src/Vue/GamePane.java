@@ -5,7 +5,7 @@ import Controleur.PlayCardsVue;
 import Controleur.TakeCardVue;
 import Modele.*;
 import global.ConfigurationSetting;
-import javazoom.jl.decoder.JavaLayerException;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -574,7 +574,7 @@ public class GamePane extends JPanel {
         g2d.drawImage(imageCardAtout, middle + middle / 15, height / 100 * 8, getWidth() / 100 * 7, (getWidth() / 100 * 7) / 6 * 10, null);
         g2d.setColor(Color.ORANGE);
         g2d.setFont(new Font("Calibri", Font.ITALIC, 18));
-        g2d.drawString("Cartes joue au tour precedent", middle + middle / 100, getHeight() / 100 * 35);
+        g2d.drawString("Cartes joué au tour précédent", middle + middle / 100, getHeight() / 100 * 35);
         if (j.lastgamep1playcard != null) {
             g2d.setFont(new Font(dfonts[5], Font.BOLD, 20));
             g2d.drawString("Joueur 1 ", middle + middle / 40, getHeight() / 100 * 38);
@@ -847,6 +847,8 @@ public class GamePane extends JPanel {
             if (res == 0) {
                 //TODO how to close the window of game 如何回到主菜单
                 fgp.dispose();
+                JavaClip m = new JavaClip();
+                m.stop();
                 Main window = new Main();
                 window.mainframe.setVisible(true);
             } else {

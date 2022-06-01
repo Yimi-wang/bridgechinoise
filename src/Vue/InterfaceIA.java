@@ -4,7 +4,7 @@ package Vue;
 import Controleur.SaveLoadVue;
 import Modele.*;
 import global.Configuration;
-import javazoom.jl.decoder.JavaLayerException;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,10 +26,11 @@ public class InterfaceIA implements Runnable {
     Histoire h;
     JLabel Atout;
     int a1 = 0;
+    JavaClip m;
 
     boolean showcard;
 
-    //æ„é? å‡½æ•?
+    //æ„ï¿½?ï¿½å‡½ï¿½?
     public InterfaceIA() {
     }
 
@@ -44,14 +45,14 @@ public class InterfaceIA implements Runnable {
     public void run() {
         //MusicTest m = new MusicTest();
         // m.play();
-        //ä¸çŸ¥é“ç”¨å¤?
+        //ä¸çŸ¥é“ç”¨ï¿½?
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
         }
-        //È·±£jueÀïÍ·ÓĞÊÖ¿¨
+        //È·ï¿½ï¿½jueï¿½ï¿½Í·ï¿½ï¿½ï¿½Ö¿ï¿½
         j = creatJeu();
         gameStart(j, h);
         //gameprocessvue.gameMode(j);ï¼ˆå¯åŠ¨æ¸¸æˆï¼‰
@@ -79,28 +80,32 @@ public class InterfaceIA implements Runnable {
         cardinterface.setLayout(null);
 
         frame.setMinimumSize(new Dimension(1200, 800));
+        m=new JavaClip();
+        m.playgamemusic();
         /**
-         * ÓÎÏ·²Ëµ¥À¸ÊµÏÖ
+         * ï¿½ï¿½Ï·ï¿½Ëµï¿½ï¿½ï¿½Êµï¿½ï¿½
          */
 
-        //Ö÷²Ëµ¥
+        //ï¿½ï¿½ï¿½Ëµï¿½
         JMenuBar menuBar = new JMenuBar();
         JMenu saveMenu = new JMenu("Sauvegarder");
         JMenu backMenu = new JMenu("Retour");
         JMenu surrenderMenu = new JMenu("Abondonner");
         JMenu showcardMenu = new JMenu("Montrer la carte");
+        JMenu music = new JMenu("Musique");
         JMenu helpMenu = new JMenu("Aide");
         JMenu quitterMenu = new JMenu("Quit");
         menuBar.add(saveMenu);
         menuBar.add(backMenu);
         menuBar.add(surrenderMenu);
         menuBar.add(showcardMenu);
+        menuBar.add(music);
         menuBar.add(helpMenu);
         menuBar.add(quitterMenu);
         /**
-         * SaveÖ÷²Ëµ¥ºÍ¼àÌıÒÔ¼°¶ÔÓÚ·½·¨
+         * Saveï¿½ï¿½ï¿½Ëµï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½
          */
-        //Save²Ëµ¥×Ó²Ëµ¥
+        //Saveï¿½Ëµï¿½ï¿½Ó²Ëµï¿½
         JMenuItem saveMenuItem01 = new JMenuItem("Sauvegarder et continuer");
         JMenuItem saveMenuItem02 = new JMenuItem("Sauvegarder et quitter");
         saveMenu.add(saveMenuItem01);
@@ -127,7 +132,7 @@ public class InterfaceIA implements Runnable {
 
                 JButton savecancel = new JButton("Quitter");
 
-                JLabel saveinfoLabel = new JLabel("Saissisez le nom du fichier ¨¤ sauvegarder ");
+                JLabel saveinfoLabel = new JLabel("Saissisez le nom du fichier ï¿½ï¿½ sauvegarder ");
 
                 JTextField savenameField = new JTextField("defautSaveFile");
 
@@ -187,7 +192,7 @@ public class InterfaceIA implements Runnable {
 
                 JButton savecancel = new JButton("Quitter");
 
-                JLabel saveinfoLabel = new JLabel("Saissisez le nom du fichier ¨¤ sauvegarder");
+                JLabel saveinfoLabel = new JLabel("Saissisez le nom du fichier ï¿½ï¿½ sauvegarder");
 
                 JTextField savenameField = new JTextField("defautSaveFile");
 
@@ -205,12 +210,11 @@ public class InterfaceIA implements Runnable {
                     public void actionPerformed(ActionEvent e) {
                         slv.Save(h, savenameField.getText());
                         saveframe.dispose();
+                        m.stop();
                         frame.dispose();
                         try {
                             Main.backmenu();
                         } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (JavaLayerException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
@@ -235,20 +239,21 @@ public class InterfaceIA implements Runnable {
         });
 
         /**
-         * BackÖ÷²Ëµ¥ºÍ¼àÌıºÍ¶ÔÓ¦·½·¨
+         * Backï¿½ï¿½ï¿½Ëµï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
          */
-        //Back²Ëµ¥×Ó²Ëµ¥
-        JMenuItem backMenuItem01 = new JMenuItem("Retourner ¨¤ ton tour");
-        JMenuItem backMenuItem02 = new JMenuItem("Red¨¦marrer");
+        //Backï¿½Ëµï¿½ï¿½Ó²Ëµï¿½
+        JMenuItem backMenuItem01 = new JMenuItem("Retourner Ã  ton tour");
+        JMenuItem backMenuItem02 = new JMenuItem("RedÃ©marrer");
         backMenu.add(backMenuItem01);
         backMenu.add(backMenuItem02);
-        //¼àÌıºÍ·½·¨
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½
         backMenuItem01.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int pn = j.playerNow;
                 j=h.returnHistoire();
                 while(j.playerNow!=pn)
                     j=h.returnHistoire();
+                m.stop();
                 frame.dispose();
                 InterfaceIALoad ijl = new InterfaceIALoad(h);
                 ijl.run();
@@ -260,6 +265,7 @@ public class InterfaceIA implements Runnable {
                 j=h.returnHistoire();
                 while(j.numberOfRounds!=1||j.TurnProcess!=1)
                     j=h.returnHistoire();
+                m.stop();
                 frame.dispose();
                 InterfaceIALoad ijl = new InterfaceIALoad(h);
                 ijl.run();
@@ -267,14 +273,14 @@ public class InterfaceIA implements Runnable {
             }
         });
         /**
-         * Surrender Ö÷²Ëµ¥ºÍ¼àÌıºÍ¶ÔÓ¦·½·¨
+         * Surrender ï¿½ï¿½ï¿½Ëµï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
          */
-        //surrender²Ëµ¥×Ó²Ëµ¥
+        //surrenderï¿½Ëµï¿½ï¿½Ó²Ëµï¿½
         JMenuItem surrenderMenuItem01 = new JMenuItem("Abondonner ce jeu");
         JMenuItem surrenderMenuItem02 = new JMenuItem("Abondonner tous les jeux");
         surrenderMenu.add(surrenderMenuItem01);
         surrenderMenu.add(surrenderMenuItem02);
-        //¼àÌı
+        //ï¿½ï¿½ï¿½ï¿½
         surrenderMenuItem01.addActionListener(new ActionListener() {
             @Override
 
@@ -289,19 +295,19 @@ public class InterfaceIA implements Runnable {
             }
         });
         /**
-         * showcardÖ÷²Ëµ¥ºÍ¼àÌıºÍ¶ÔÓ¦·½·¨
+         * showcardï¿½ï¿½ï¿½Ëµï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
          */
-        //shoucard²Ëµ¥×Ó²Ëµ¥
+        //shoucardï¿½Ëµï¿½ï¿½Ó²Ëµï¿½
         final JRadioButtonMenuItem showcardTrue = new JRadioButtonMenuItem("oui");
         final JRadioButtonMenuItem showcardFalse = new JRadioButtonMenuItem("non");
         showcardMenu.add(showcardTrue);
         showcardMenu.add(showcardFalse);
-        // ÆäÖĞÁ½¸ö µ¥Ñ¡°´Å¥×Ó²Ëµ¥£¬ÒªÊµÏÖµ¥Ñ¡°´Å¥µÄĞ§¹û£¬ĞèÒª½«ËüÃÇ·Åµ½Ò»¸ö°´Å¥×éÖĞ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¡ï¿½ï¿½Å¥ï¿½Ó²Ëµï¿½ï¿½ï¿½ÒªÊµï¿½Öµï¿½Ñ¡ï¿½ï¿½Å¥ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ç·Åµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
         ButtonGroup showcardgroup = new ButtonGroup();
         showcardgroup.add(showcardTrue);
         showcardgroup.add(showcardFalse);
 
-        // Ä¬ÈÏµÚÒ»¸öµ¥Ñ¡°´Å¥×Ó²Ëµ¥Ñ¡ÖĞ
+        // Ä¬ï¿½Ïµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Å¥ï¿½Ó²Ëµï¿½Ñ¡ï¿½ï¿½
         showcardFalse.setSelected(true);
 
         showcardTrue.addActionListener(new ActionListener() {
@@ -318,35 +324,61 @@ public class InterfaceIA implements Runnable {
                 cardinterface.repaint();
             }
         });
-        /**
-         * helpÖ÷²Ëµ¥ºÍ¼àÌıºÍ¶ÔÓ¦·½·¨¡£
-         */
-        //help ²Ëµ¥×Ó²Ëµ¥
-        JMenuItem helpMenuItem01 = new JMenuItem("Aide");
-        JMenuItem helpMenuItem02 = new JMenuItem("R¨¨gles");
-        helpMenu.add(helpMenuItem01);
-        helpMenu.add(helpMenuItem02);
-        //¼àÌı
-        helpMenuItem01.addActionListener(new ActionListener() {
+
+
+        final JRadioButtonMenuItem mTrue = new JRadioButtonMenuItem("oui");
+        final JRadioButtonMenuItem mFalse = new JRadioButtonMenuItem("non");
+        music.add(mTrue);
+        music.add(mFalse);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¡ï¿½ï¿½Å¥ï¿½Ó²Ëµï¿½ï¿½ï¿½ÒªÊµï¿½Öµï¿½Ñ¡ï¿½ï¿½Å¥ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ç·Åµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
+        ButtonGroup mgroup = new ButtonGroup();
+        mgroup.add(mTrue);
+        mgroup.add(mFalse);
+
+        // Ä¬ï¿½Ïµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Å¥ï¿½Ó²Ëµï¿½Ñ¡ï¿½ï¿½
+        mTrue.setSelected(true);
+
+        mTrue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Comment jouer: \n" +
+                m.stop();
+                m.playgamemusic();
+            }
+        });
+        mFalse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                m.stop();
+            }
+        });
+        /**
+         * helpï¿½ï¿½ï¿½Ëµï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+         */
+        //help ï¿½Ëµï¿½ï¿½Ó²Ëµï¿½
+        JMenuItem helpMenuItem01 = new JMenuItem("Aide");
+        JMenuItem helpMenuItem02 = new JMenuItem("RÃ¨gles");
+        helpMenu.add(helpMenuItem01);
+        helpMenu.add(helpMenuItem02);
+        //ï¿½ï¿½ï¿½ï¿½
+        helpMenuItem01.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Comment jouer:\n" +
                         "        Jouer la carte : Cliquez sur la carte puis cliquez sur jouer pour jouer la carte.\n" +
                         "        Piocher une carte : Cliquez sur le paquet pour prendre une carte\n" +
                         "\n" +
                         "\n" +
                         "\n" +
                         "Fonction barre de menus\n" +
-                        "        Sauvegarder et continuer : Entrez le nom ¨¤ sauvegarder, le jeu continue\n" +
-                        "        Sauvegarder et quitter : Saisissez le nom ¨¤ sauvegarder, le jeu est termin¨¦e\n" +
-                        "        Retour ¨¤ votre tour : revenez au tour pr¨¦c¨¦dent (si c'¨¦tait votre tour de jeu, revenez ¨¤ votre dernier tour de pioche)\n" +
+                        "        Sauvegarder et continuer : Entrez le nom Ã  sauvegarder, le jeu continue\n" +
+                        "        Sauvegarder et quitter : Saisissez le nom Ã  sauvegarder, le jeu est terminÃ©e\n" +
+                        "        Retour Ã  votre tour : revenez au tour prÃ©cÃ©dent (si c'Ã©tait votre tour de jeu, revenez Ã  votre dernier tour de pioche)\n" +
                         "\n" +
-                        "        Red¨¦marrer : red¨¦marrer le jeu\n" +
+                        "        RedÃ©marrer : redÃ©marrer le jeu\n" +
                         "\n" +
                         "        Abandonnez ce jeu : Abandonnez ce jeu et le joueur adverse obtiendra des points pour les tours restants.\n" +
                         "        Abandonnez tout le jeu : Abandonnez ce jeu. L'adversaire gagne\n" +
                         "\n" +
-                        "        Showcard : Montrez la carte de l'adversaire", "help", JOptionPane.QUESTION_MESSAGE);
+                        "        Montrer le carte : Montrez la carte de l'adversaire", "Aide", JOptionPane.QUESTION_MESSAGE);
             }
         });
         helpMenuItem02.addActionListener(new ActionListener() {
@@ -379,7 +411,7 @@ public class InterfaceIA implements Runnable {
         JMenuItem quitMenuItem02 = new JMenuItem("Return to Menu");
         quitterMenu.add(quitMenuItem01);
         quitterMenu.add(quitMenuItem02);
-        //¼àÌıºÍ·½·¨
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½
         quitMenuItem01.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 exit(0);
@@ -388,25 +420,24 @@ public class InterfaceIA implements Runnable {
         });
         quitMenuItem02.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                m.stop();
                 frame.dispose();
                 try {
                     Main.backmenu();
                 } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                } catch (JavaLayerException ex) {
                     throw new RuntimeException(ex);
                 }
 
             }
         });
 
-        //Ìí¼Óµ½frame
+        //ï¿½ï¿½Óµï¿½frame
         frame.setJMenuBar(menuBar);
         frame.add(cardinterface);
 
-        //´óĞ¡ºÏÊÊ
+        //ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½
         frame.pack();
-        //Î»ÖÃ¾ÓÖĞ
+        //Î»ï¿½Ã¾ï¿½ï¿½ï¿½
         frame.setLocationRelativeTo(null);
 
         frame.setVisible(true);
@@ -441,11 +472,11 @@ public class InterfaceIA implements Runnable {
 
     public void gameStart(Jeu j, Histoire h) {
         j.reset();
-        if (j.numberOfGames == 0) j.numberOfGames = 1;//å¦‚æœæ¸¸æˆåˆšå¼€å§‹çš„è¯?
-        if (j.playerFirst == 2) {//å¦‚æœæœ¬è½®è¯¥å¼€å§‹çš„è¯ï¼Œåˆ¤æ–­å“ªä¸ªç©å®¶å…ˆå¼€å§‹æ¸¸æˆã??
+        if (j.numberOfGames == 0) j.numberOfGames = 1;//å¦‚æœæ¸¸æˆåˆšå¼€å§‹çš„ï¿½?
+        if (j.playerFirst == 2) {//å¦‚æœæœ¬è½®è¯¥å¼€å§‹çš„è¯ï¼Œåˆ¤æ–­å“ªä¸ªç©å®¶å…ˆå¼€å§‹æ¸¸æˆï¿½??
             j.playerFirst = (j.numberOfGames - 1) % 2;
             j.numberOfRounds = 1;
-            //è¿›è¡Œå‘ç‰Œä»¥åŠç‰Œå †çš„å®ç?
+            //è¿›è¡Œå‘ç‰Œä»¥åŠç‰Œå †çš„å®ï¿½?
             if (j.numberOfGames != 1) {
                 StartHand startHand = new StartHand(j);
                 startHand.stardHand();

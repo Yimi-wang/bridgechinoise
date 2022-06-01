@@ -1,7 +1,7 @@
 package Vue;
 
 import global.ConfigurationSetting;
-import javazoom.jl.decoder.JavaLayerException;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,7 @@ public class Main extends JFrame implements ActionListener {
     JLabel lblGameModeTest;//&#x4E0B;&#x65B9;&#x7684;&#x63D0;&#x793A;&#x6846;&#x6587;&#x5B57;
     JComboBox GameModeComboBox;//&#x5355;&#x9009;&#x6846;
 
-
+    JavaClip m;
     //AIMode
     JButton AIModeQuestionButton; // ?&#x6309;&#x94AE;
     JButton AIModeLeftButton;//&#x5DE6;&#x7BAD;&#x5934;&#x6309;&#x94AE;
@@ -96,12 +96,12 @@ public class Main extends JFrame implements ActionListener {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) throws FileNotFoundException, JavaLayerException {
+    public static void main(String[] args) throws FileNotFoundException {
         Main window = new Main();
         window.mainframe.setVisible(true);
     }
 
-    public static void backmenu() throws FileNotFoundException, JavaLayerException {
+    public static void backmenu() throws FileNotFoundException{
         Main window = new Main();
         window.mainframe.setVisible(true);
     }
@@ -111,7 +111,7 @@ public class Main extends JFrame implements ActionListener {
      */
     private void initialize() {
 
-        //&#x5B57;&#x4F53;&#x8868;&#x683C;
+
         String[] dfonts;
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
         // &#x521D;&#x59CB;&#x5316;&#x7A97;&#x4F53;
@@ -121,6 +121,8 @@ public class Main extends JFrame implements ActionListener {
         mainframe.getContentPane().setLayout(null);
         mainframe.setResizable(false);
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        m = new JavaClip();
+        m.playmainmusic();
         JPanel impanel = (JPanel) mainframe.getContentPane();
         impanel.setOpaque(false);
 
@@ -213,7 +215,7 @@ public class Main extends JFrame implements ActionListener {
         //&#x6807;&#x9898;
         lblGameMode = new JLabel("GameMode");
         lblGameMode.setBounds(200, 150, 300, 30);
-        Font f1 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 30);
+        Font f1 = new Font(dfonts[0], Font.PLAIN, 30);
         lblGameMode.setFont(f1);
         Color fg1 = new Color(255, 255, 255);
         lblGameMode.setForeground(fg1);
@@ -225,7 +227,7 @@ public class Main extends JFrame implements ActionListener {
         for (String item : strArray) {
             GameModeComboBox.addItem(item);
         }
-        GameModeComboBox.setFont(new Font("&#x5B8B;&#x4F53;", Font.PLAIN, 14));
+        GameModeComboBox.setFont(new Font(dfonts[0], Font.PLAIN, 14));
         GameModeComboBox.setBounds(150, 200, 180, 30);
         mainContentPanel.add(GameModeComboBox);
 
@@ -237,7 +239,7 @@ public class Main extends JFrame implements ActionListener {
         //&#x4E0B;&#x65B9;&#x7684;&#x6587;&#x5B57;&#x63D0;&#x793A;
         lblGameModeTest = new JLabel("<html><body>Donner le nombre de Jue<br>(Si vous choisi Numbre  Fixe)<br>ou le nombre de Score<br>(Si vous choisi Score Fixe</body></html>");
         lblGameModeTest.setBounds(150, 150, 300, 300);
-        Font f22 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 15);
+        Font f22 = new Font(dfonts[0], Font.PLAIN, 15);
         lblGameModeTest.setFont(f22);
         Color fg22 = new Color(205, 27, 74);
         lblGameModeTest.setForeground(fg22);
@@ -269,10 +271,10 @@ public class Main extends JFrame implements ActionListener {
             }
         });
         //&#x6DFB;&#x52A0;&#x5DE6;&#x53F3;&#x6309;&#x94AE;
-        GameModeLeftButton = new JButton("&#x2190;");
+        GameModeLeftButton = new JButton("←");
         GameModeLeftButton.setBounds(150, 400, 50, 30);
         mainContentPanel.add(GameModeLeftButton);
-        GameModeRightButton = new JButton("&#x2192;");
+        GameModeRightButton = new JButton("→");
         GameModeRightButton.setBounds(340, 400, 50, 30);
         mainContentPanel.add(GameModeRightButton);
 
@@ -282,7 +284,7 @@ public class Main extends JFrame implements ActionListener {
         // &#x6DFB;&#x52A0;AIMode**********************
         lblAIMode = new JLabel("AIMode");
         lblAIMode.setBounds(200, 150, 300, 30);
-        Font f2 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 30);
+        Font f2 = new Font(dfonts[0], Font.PLAIN, 30);
         lblAIMode.setFont(f2);
         Color fg2 = new Color(255, 255, 255);
         lblAIMode.setForeground(fg2);
@@ -294,7 +296,7 @@ public class Main extends JFrame implements ActionListener {
         for (String item : AIStrArray) {
             AIModeComboBox.addItem(item);
         }
-        AIModeComboBox.setFont(new Font("&#x5B8B;&#x4F53;", Font.PLAIN, 14));
+        AIModeComboBox.setFont(new Font(dfonts[0], Font.PLAIN, 14));
         AIModeComboBox.setBounds(150, 200, 180, 30);
         mainContentPanel.add(AIModeComboBox);
 
@@ -306,10 +308,10 @@ public class Main extends JFrame implements ActionListener {
 
 
         //&#x6DFB;&#x52A0;&#x5DE6;&#x53F3;&#x6309;&#x94AE;
-        AIModeLeftButton = new JButton("&#x2190;");
+        AIModeLeftButton = new JButton("←");
         AIModeLeftButton.setBounds(150, 400, 50, 30);
         mainContentPanel.add(AIModeLeftButton);
-        AIModeRightButton = new JButton("&#x2192;");
+        AIModeRightButton = new JButton("→");
         AIModeRightButton.setBounds(340, 400, 50, 30);
         mainContentPanel.add(AIModeRightButton);
 
@@ -438,11 +440,10 @@ public class Main extends JFrame implements ActionListener {
             }
         }
         if (e.getSource() == GameModeQuestionButton) {
-            JOptionPane.showMessageDialog(null, "BO1 (Best of game 1) : Un jeu (toutes les cartes jou��es), celui qui a le meilleur score gagne.\n" +
-                    "BO3 (Best of game 3) : Trois jeu(toutes les cartes jou��es dans chaque jeu)Celui qui gagne deux matchs gagne.\n" +
-                    "Nombre de Jeu fixe : On joue x fois jeu.(x est donnee par utilisateur)le joueur ayant le score le plus ��lev�� �� la fin de tous les jeu est  gagn��e. \n" +
-                    "                                 (Le joueur doit entrer le nombre de parties qu'il veut jouer ci-dessous)\n" +
-                    "Score fixe : Le joueur qui atteint le score requis en premier gagne la partie. (Le joueur doit entrer le score requis ci-dessous)", "Gamemode", JOptionPane.QUESTION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "BO1: Un jeu (toutes les cartes jouées), celui qui a le meilleur score gagne.\n" +
+                    "BO3: Trois jeux(toutes les cartes jouées dans chaque jeu)Celui qui gagne deux matchs gagne.\n" +
+                    "Nombre des Jeux Fixe:  On joue x fois jeu.(x est donnée par utilisateur)le joueur ayant le score le plus élevé à la fin de tous les jeux est  gagné.\n" +
+                    "Score Fixe: Le joueur qui atteint le score requis en premier gagne la partie.\n", "Gamemode", JOptionPane.QUESTION_MESSAGE);
         }
         if (e.getSource() == AIModeLeftButton) {
             AIModeDisappear();
@@ -461,6 +462,7 @@ public class Main extends JFrame implements ActionListener {
                 err.printStackTrace();
             }
             mainframe.dispose();
+            m.stop();
             if (IA==0) InterfaceJeu.start();
             else InterfaceIA.start();
         }
@@ -472,6 +474,8 @@ public class Main extends JFrame implements ActionListener {
 
             LoadInterface li = new LoadInterface();
             li.run();
+            mainframe.dispose();
+            m.stop();
 
         }
 
@@ -555,7 +559,7 @@ public class Main extends JFrame implements ActionListener {
         //&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;
         settingJLabel = new JLabel("Configuration");
         settingJLabel.setBounds(220, 20, 200, 30);
-        Font f1 = new Font("&#x96B6;&#x4E66;", Font.PLAIN, 18);
+        Font f1 = new Font("Calibri", Font.PLAIN, 18);
         settingJLabel.setFont(f1);
         settingContentPanel.add(settingJLabel);
 

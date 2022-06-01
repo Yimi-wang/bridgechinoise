@@ -1,0 +1,22 @@
+
+f	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åƒ¥ý
+F
+java:S5411·"*Use the primitive boolean expression here.(³ýô¶ÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬¡Å©øÿÿÿÿ
+b	java:S116"MRename this field "SL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ž³Ô
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ºâË
+S	java:S1061"9Replace this use of System.out or System.err by a logger.(”¿žëüÿÿÿÿ
+N	java:S106>"9Replace this use of System.out or System.err by a logger.(Í€º®
+c	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åƒ¥ý
+S	java:S106L"9Replace this use of System.out or System.err by a logger.(•áÆÀýÿÿÿÿ
+S	java:S106P"9Replace this use of System.out or System.err by a logger.(ò¶¥åûÿÿÿÿ
+S	java:S106R"9Replace this use of System.out or System.err by a logger.(‹ÑªŽýÿÿÿÿ
+<	java:S131U""Add a default case to this switch.(–Ãê›ûÿÿÿÿ
+S	java:S106c"9Replace this use of System.out or System.err by a logger.(éÐ«þÿÿÿÿ
+S	java:S106f"9Replace this use of System.out or System.err by a logger.(¥³¾üÿÿÿÿ
+S	java:S106h"9Replace this use of System.out or System.err by a logger.(³‰äšüÿÿÿÿ
+N	java:S106y"9Replace this use of System.out or System.err by a logger.(Í€º®
+T	java:S106Œ"9Replace this use of System.out or System.err by a logger.(€Í´Ýþÿÿÿÿ
+n
+java:S3776§"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ôÇÀ‡øÿÿÿÿ
+O	java:S106Ç"9Replace this use of System.out or System.err by a logger.(ÕÿÓ

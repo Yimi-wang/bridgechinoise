@@ -44,7 +44,7 @@ public class LoadInterface implements Runnable{
         JButton confirm = new JButton("Charger");
         JButton cancel = new JButton("Quitter");
 
-        JLabel infoLabel = new JLabel("Choisissez un fichier ид charger :");
+        JLabel infoLabel = new JLabel("Choisissez un fichier pour charger :");
         infoLabel.setFont(new Font("TimesRoman", Font.PLAIN, 25));
 
         Box buttonBox = Box.createHorizontalBox();
