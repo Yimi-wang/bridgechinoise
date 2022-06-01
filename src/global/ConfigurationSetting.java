@@ -14,9 +14,14 @@ public class ConfigurationSetting {
     private ConfigurationSetting() {
         prop = new Properties();
         try {
-            File file = new File("res/defaultSetting.cfg");
-            InputStream propIn = new FileInputStream(file);
-            prop.load(propIn);
+            String path = System.getProperty("bridgechinoiseFV.jar");
+            System.out.println(path);
+            String outpath = "/res/";
+            InputStream in = new FileInputStream(new File(System.getProperty("bridgechinoiseFV.jar")+File.separator+"res"+File.separator+"defaultSetting.cfg"));
+
+
+            //InputStream propIn = new FileInputStream(imgURL);
+            prop.load(in);
         }catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
 package Vue;
 
-import global.ConfigurationSetting;
+//import global.ConfigurationSetting;
 //import sun.awt.image.InputStreamImageSource;
 
 
@@ -115,6 +115,7 @@ public class Main extends JFrame implements ActionListener {
 
 
         String[] dfonts;
+        setValue();
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
         // &#x521D;&#x59CB;&#x5316;&#x7A97;&#x4F53;
         mainframe = new JFrame("Bridge Chinoise");
@@ -198,8 +199,8 @@ public class Main extends JFrame implements ActionListener {
 
         // setting
         //&#x52A0;&#x8F7D;&#x80CC;&#x666F;&#x56FE;&#x7247;
-        String settingPath = "res/images/SETTING.png";
-        ImageIcon settingIcon1 = new ImageIcon(settingPath);
+        imgURL = Vue.Main.class.getResource("/res/images/SETTING.png");
+        ImageIcon settingIcon1 = new ImageIcon(imgURL);
         Image settingImg = settingIcon1.getImage();
         Image settingNewImg = settingImg.getScaledInstance(120, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon settingIcon2 = new ImageIcon(settingNewImg);
@@ -496,46 +497,41 @@ public class Main extends JFrame implements ActionListener {
         }
         if(e.getSource()==settingSaveBackBtn){
             FileWriter fw;
-            try{
-                int i=0;
-                fw = new FileWriter("res/defaultSetting.cfg", false);
-                Enumeration element =btnBackGroup.getElements();
-                while (element.hasMoreElements()){
-                    AbstractButton button = (AbstractButton)element.nextElement();
-                    if (button.isSelected()) {
-                        fw.write("background="+i+"\n");
+            int i=0;
+            Enumeration element =btnBackGroup.getElements();
+            while (element.hasMoreElements()){
+                AbstractButton button = (AbstractButton)element.nextElement();
+                if (button.isSelected()) {
 
-                        break;
-                    }
-                    i++;
+                    System.setProperty("background", String.valueOf(i));
+
+                    break;
                 }
-                i=0;
-                element=btnCardGroup.getElements();
-                while (element.hasMoreElements()){
-                    AbstractButton button = (AbstractButton)element.nextElement();
-                    if (button.isSelected()) {
-                        fw.write("back="+i+"\n");
-                        break;
-                    }
-                    i++;
+                i++;
+            }
+            i=0;
+            element=btnCardGroup.getElements();
+            while (element.hasMoreElements()){
+                AbstractButton button = (AbstractButton)element.nextElement();
+                if (button.isSelected()) {
+                    System.setProperty("back", String.valueOf(i));
+                    break;
                 }
-                i=0;
-                element=btnrightBackGroup.getElements();
-                while (element.hasMoreElements()){
-                    AbstractButton button = (AbstractButton)element.nextElement();
-                    if (button.isSelected()) {
-                        fw.write("backright="+i+"\n");
-                        break;
-                    }
-                    i++;
+                i++;
+            }
+            i=0;
+            element=btnrightBackGroup.getElements();
+            while (element.hasMoreElements()){
+                AbstractButton button = (AbstractButton)element.nextElement();
+                if (button.isSelected()) {
+                    System.setProperty("backright", String.valueOf(i));
+                    break;
                 }
-                fw.close();
-                settingJframe.dispose();
+                i++;
+            }
+            settingJframe.dispose();
 //                Main window = new Main();
 //                window.mainframe.setVisible(true);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
         }
     }
 
@@ -576,7 +572,7 @@ public class Main extends JFrame implements ActionListener {
         settingDesktoplbl.setFont(f1);
         settingContentPanel.add(settingDesktoplbl);
 
-        String background = ConfigurationSetting.instance().lis("background");
+        String background=System.getProperty("background");
         int backgroundi = Integer.parseInt(background);
 
 
@@ -585,7 +581,8 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn1 = new JRadioButton("", false);
         backradioBtn1.setBounds(60, 100, 30, 30);
         settingContentPanel.add(backradioBtn1);
-        JLabel back1 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (1).png", true));
+        java.net.URL imgURL = Vue.Main.class.getResource("/res/images/background (1).png");
+        JLabel back1 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         back1.setBounds(90, 100, 100, 60);
         settingContentPanel.add(back1);
 
@@ -594,7 +591,8 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn2 = new JRadioButton("", false);
         backradioBtn2.setBounds(230, 100, 30, 30);
         settingContentPanel.add(backradioBtn2);
-        JLabel back2 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (2).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/background (2).png");
+        JLabel back2 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         back2.setBounds(260, 100, 100, 60);
         settingContentPanel.add(back2);
 
@@ -603,7 +601,8 @@ public class Main extends JFrame implements ActionListener {
         else backradioBtn3 = new JRadioButton("", false);
         backradioBtn3.setBounds(390, 100, 30, 30);
         settingContentPanel.add(backradioBtn3);
-        JLabel back3 = new JLabel(SwingUtil.createAutoAdjustIcon("res/images/background (3).png", true));
+        imgURL = Vue.Main.class.getResource("/res/images/background (3).png");
+        JLabel back3 = new JLabel(SwingUtil.createAutoAdjustIcon(imgURL, true));
         back3.setBounds(420, 100, 100, 60);
         settingContentPanel.add(back3);
 
@@ -625,7 +624,7 @@ public class Main extends JFrame implements ActionListener {
         settingCardBack.setFont(f1);
         settingContentPanel.add(settingCardBack);
 
-        String back = ConfigurationSetting.instance().lis("back");
+        String back = System.getProperty("back");
         int backi = Integer.parseInt(back);
 
         if (backi == 0)
@@ -676,7 +675,7 @@ public class Main extends JFrame implements ActionListener {
         settingContentPanel.add(settingShowCard);
 
 
-        String rightback= ConfigurationSetting.instance().lis("backright");
+        String rightback= System.getProperty("backright");
         int rightbacki =Integer.parseInt(rightback);
 
         if (rightbacki == 0)
@@ -732,5 +731,10 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
+    public static void setValue() {
+        System.setProperty("background", "0");
+        System.setProperty("back", "0");
+        System.setProperty("backright", "0");
+    }
 }
 
