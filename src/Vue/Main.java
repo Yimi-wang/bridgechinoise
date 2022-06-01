@@ -1,6 +1,7 @@
 package Vue;
 
 import global.ConfigurationSetting;
+//import sun.awt.image.InputStreamImageSource;
 
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 
 
@@ -126,8 +128,8 @@ public class Main extends JFrame implements ActionListener {
         JPanel impanel = (JPanel) mainframe.getContentPane();
         impanel.setOpaque(false);
 
-
-        ImageIcon logo = new ImageIcon("res/images/Logo.png");
+        java.net.URL imgURL = Vue.Main.class.getResource("/res/images/Logo.png");
+        ImageIcon logo = new ImageIcon(imgURL);
         JLabel logolabel = new JLabel(logo);
         logolabel.setBounds(30, 20, 300, 100);
         logo.setImage(logo.getImage().getScaledInstance(logolabel.getWidth(), logolabel.getHeight(), Image.SCALE_DEFAULT));
@@ -135,7 +137,8 @@ public class Main extends JFrame implements ActionListener {
 
 
         //&#x663E;&#x793A;&#x80CC;&#x666F;
-        ImageIcon background = new ImageIcon("res/images/bg_menu.png");
+        imgURL = Vue.Main.class.getResource("/res/images/bg_menu.png");
+        ImageIcon background = new ImageIcon(imgURL);
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, mainframe.getWidth(), mainframe.getHeight());
         background.setImage(background.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
