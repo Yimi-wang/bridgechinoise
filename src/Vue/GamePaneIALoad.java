@@ -335,11 +335,11 @@ public class GamePaneIALoad extends JPanel {
                 BufferedImage imageCard;
                 File imgFilecard = null;
                 if (j.playerFirst == 0) {
-                    imgURL = Vue.Main.class.getResource("/res/images/card (" + player1playercard.id + ").png");
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + j.FirstPlayerPlayCard.id + ").png");
                     imageIcon = new ImageIcon(imgURL);
                     image = imageIcon.getImage();
                 } else {
-                    imgURL = Vue.Main.class.getResource("/res/images/card (" + player2playercard.id + ").png");
+                    imgURL = Vue.Main.class.getResource("/res/images/card (" + j.FirstPlayerPlayCard.id + ").png");
                     imageIcon = new ImageIcon(imgURL);
                     image = imageIcon.getImage();
                 }
