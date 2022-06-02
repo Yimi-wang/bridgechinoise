@@ -383,28 +383,20 @@ public class InterfaceIA implements Runnable {
         });
         helpMenuItem02.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-
-                    File pdfFile = new File("regle.pdf");
-                    if (pdfFile.exists()) {
-
-                        if (Desktop.isDesktopSupported()) {
-                            Desktop.getDesktop().open(pdfFile);
-                        } else {
-                            System.out.println("Awt Desktop is not supported!");
-                        }
-
-                    } else {
-                        System.out.println("File is not exists!");
-                    }
-
-                    System.out.println("Done");
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
+            public void actionPerformed(ActionEvent e) {  JOptionPane.showMessageDialog(null, "Le bridge chinois est un jeu de cartes à 2 joueurs.\n" +
+                    "On utilise un jeu de 52 cartes. L'ordre des cartes et des couleurs est le même qu'au bridge (as, roi, dame, valet, dix, ...deux, et pique, coeur, carreau, trèfle).\n" +
+                    "Le donneur distribue 11 cartes à chacun des 2 joueurs, puis distribue les cartes restantes en 6 piles de 5 cartes, face cachée. Puis il découvre les 6 cartes qui sont au sommet de chacune \ndes 6 piles. Si toutes les cartes visibles ont une valeur inférieure à 10, la manche est jouée sans atout. Sinon, l'atout est fixé par la carte découverte la plus forte.\n" +
+                    "\n" +
+                    "Le but du jeu est de réaliser un nombre de plis le plus grand possible (en particulier, plus que l'adversaire). Chaque pli va consister en 2 cartes, chacune posée sur le tapis par l'un des \njoueurs, choisie parmi les cartes qu'il a en main. Le pli est gagné et ramassé (faces cachées, sans possibilité de le consulter par la suite) par le joueur\n" +
+                    "     qui a posé la carte la plus forte, si les deux cartes sont de même couleur,\n" +
+                    "     qui a coupé (joué un atout) si l'une des deux cartes est un atout,\n" +
+                    "     qui a posé la première carte, si les deux cartes sont de couleur différente et qu'aucune n'est un atout (on dit que le second joueur s'est défaussé).\n" +
+                    "\n" +
+                    "Le donneur a initialement la main.\n" +
+                    "Le joueur qui gagne le pli prend (ou garde) la main.\n" +
+                    "Le joueur qui a la main choisit une des cartes de sa main, et la pose sur le tapis. L'autre joueur, s'il le peut, doit fournir : jouer une carte de la même couleur. S'il ne peut pas fournir, \nil a le choix entre couper ou se défausser. Donc, on n'est pas obligé de couper.\n" +
+                    "Si la manche se joue sans atout, le second joueur ne peut bien sûr que se défausser s'il ne peut fournir... dur !\n" +
+                    "Le joueur qui a gagné le pli le ramasse. Puis il choisit l'une des cartes découvertes (s'il en reste... voir plus loin) et la place dans sa main. Il découvre ensuite la carte cachée qu'il a \nainsi fait apparaître en sommet de pile (si la pile n'est pas vide). L'autre joueur choisit à son tour une carte découverte (il y en a au moins une, puisqu'il y a un nombre pair de \ncartes dans les piles sur la table : c'est un invariant de l'itération). Puis il découvre la carte cachée qu'il a ainsi fait apparaître en sommet de pile (si la pile n'est pas vide).", "Aide", JOptionPane.QUESTION_MESSAGE);
             }
         });
         JMenuItem quitMenuItem01 = new JMenuItem("Quitter le Jeu");

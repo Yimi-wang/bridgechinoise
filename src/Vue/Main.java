@@ -4,7 +4,12 @@ package Vue;
 //import sun.awt.image.InputStreamImageSource;
 
 
+import Controleur.SaveLoadVue;
+import Modele.Histoire;
+import Modele.Jeu;
+
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,8 +114,7 @@ public class Main extends JFrame implements ActionListener {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-
-
+        System.out.println(System.getProperty("user.dir"));
         String[] dfonts;
         setValue();
         dfonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
@@ -457,11 +461,30 @@ public class Main extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Vous pouvez choisir le mode AI ici", "AImode", JOptionPane.QUESTION_MESSAGE);
         }
         if (e.getSource() == btnLoadButton) {
+            System.out.println(System.getProperty("user.dir"));
+            JFileChooser ch = new JFileChooser();
+            ch.setCurrentDirectory(new File(System.getProperty("user.dir")));
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("SER", "ser");//文件后缀名过滤器
+            ch.setFileFilter(filter);//给对话框设置过滤器
+//获取用户选择的结果：
+            int ret = ch.showOpenDialog(this);
+            if(ret==JFileChooser.APPROVE_OPTION){
+                mainframe.dispose();
+                m.stop();
+               String asd = ch.getSelectedFile().getName();
+                System.out.println(asd);
+                SaveLoadVue sl = new SaveLoadVue();
+                Histoire h=sl.Load(asd);
+                Jeu j=h.listDeHistoire.get(h.listDeHistoire.size()-1);
+                if(j.AI==0){
+                    InterfaceJeuLoad ij = new InterfaceJeuLoad(h);
+                    ij.run();
+                }else{
+                    InterfaceIALoad ia = new InterfaceIALoad(h);
+                    ia.run();
+                }
 
-            LoadInterface li = new LoadInterface();
-            li.run();
-            mainframe.dispose();
-            m.stop();
+            }
 
         }
 

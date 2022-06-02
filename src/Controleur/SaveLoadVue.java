@@ -40,7 +40,8 @@ public class SaveLoadVue implements java.io.Serializable {
 
             //读取对象
             FileInputStream fileIn = new FileInputStream(Load);
-            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            BufferedInputStream bfi = new BufferedInputStream(fileIn);
+            ObjectInputStream objIn = new ObjectInputStream(bfi);
             h = (Histoire) objIn.readObject();
             objIn.close();
         } catch (IOException i) {
